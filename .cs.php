@@ -45,5 +45,4 @@ return PhpCsFixer\Config::create()
         ->ignoreDotFiles(true)
         ->ignoreVCS(true));
 
-
-        gsfdgffds
+        jebać kwarantanne
