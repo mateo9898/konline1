@@ -9,6 +9,8 @@ use Slim\Routing\RouteCollectorProxy;
 return function (App $app) {
     $app->get('/', \App\Action\Home\HomeAction::class)->setName('root');
 
+    $app->get('/main', \App\Action\Main\MainAction::class)->setName('main');
+
     $app->get('/hello/{name}', \App\Action\Hello\HelloAction::class)->setName('hello');
 
     $app->post('/api/users', \App\Action\User\UserCreateAction::class)->setName('api-user-create');
