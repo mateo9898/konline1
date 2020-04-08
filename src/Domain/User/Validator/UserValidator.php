@@ -21,10 +21,24 @@ final class UserValidator
     {
         $validation = new ValidationResult();
 
-        if (empty($user->username)) {
-            $validation->addError('username', __('Input required'));
+        if (empty($user->name)) {
+            $validation->addError('name', __('Input required'));
         }
 
+
+
+
+        if (empty($user->surname)) {
+            $validation->addError('surname', __('Input required'));
+        }
+
+        if (empty($user->surname)) {
+            $validation->addError('surname', __('Input required'));
+        }
+
+
+
+        
         if (empty($user->email)) {
             $validation->addError('email', __('Input required'));
         } elseif (filter_var($user->email, FILTER_VALIDATE_EMAIL) === false) {

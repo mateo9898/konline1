@@ -36,15 +36,16 @@ final class UserAuthRepository
         $query = $this->queryFactory->newSelect('users');
 
         $query->select([
-            'id',
+            'id_user',
             'password',
             'email',
-            'locale',
+            'role',
+            'name',
+            'surname',
         ]);
 
         $query->andWhere([
-            'username' => $username,
-            'enabled' => 1,
+            'email' => $email,
         ]);
 
         $row = $query->execute()->fetch('assoc');
