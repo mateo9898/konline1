@@ -21,21 +21,15 @@ final class UserValidator
     {
         $validation = new ValidationResult();
 
-        // if (empty($user->name)) {
-        //     $validation->addError('name', __('Input required'));
-        // }
+        if (empty($user->name)) {
+            $validation->addError('name', __('Input required'));
+        }
 
+        if (empty($user->surname)) {
+            $validation->addError('surname', __('Input required'));
+        }
 
-
-
-        // if (empty($user->surname)) {
-        //     $validation->addError('surname', __('Input required'));
-        // }
-
-        // if (empty($user->surname)) {
-        //     $validation->addError('surname', __('Input required'));
-        // }
-
+       
 
 
         
