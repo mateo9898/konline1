@@ -56,10 +56,10 @@ final class LoginSubmitAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
         $data = (array)$request->getParsedBody();
-        $email = (string)($data['email'] ?? '');
+        $username = (string)($data['username'] ?? '');
         $password = (string)($data['password'] ?? '');
 
-        $user = $this->auth->authenticate($email, $password);
+        $user = $this->auth->authenticate($username, $password);
 
         $flash = $this->session->getFlashBag();
         $flash->clear();

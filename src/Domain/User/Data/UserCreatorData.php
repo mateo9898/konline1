@@ -11,10 +11,10 @@ use Selective\ArrayReader\ArrayReader;
 final class UserCreatorData implements DataInterface
 {
     /** @var int|null */
-    public $id;
+    public $id_role;
 
     /** @var string|null */
-    public $username;
+    public $name;
 
     /** @var string|null */
     public $password;
@@ -23,19 +23,7 @@ final class UserCreatorData implements DataInterface
     public $email;
 
     /** @var string|null */
-    public $firstName;
-
-    /** @var string|null */
-    public $lastName;
-
-    /** @var string|null */
-    public $role;
-
-    /** @var string|null */
-    public $locale;
-
-    /** @var bool */
-    public $enabled = false;
+    public $surname;
 
     /**
      * The constructor.
@@ -46,13 +34,10 @@ final class UserCreatorData implements DataInterface
     {
         $data = new ArrayReader($array);
 
-        $this->id = $data->findInt('id');
-        $this->username = $data->findString('username');
-        $this->firstName = $data->findString('first_name');
-        $this->lastName = $data->findString('last_name');
+        $this->id_user = $data->findInt('id_user');
+        $this->name = $data->findString('name');
+        $this->surname = $data->findString('surname');
         $this->email = $data->findString('email');
-        $this->locale = $data->findString('locale');
         $this->role = $data->findString('role');
-        $this->enabled = $data->getBool('enabled', false);
     }
 }
