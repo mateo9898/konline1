@@ -86,4 +86,13 @@ final class UserAuth
 
         return $this->user;
     }
+
+    public function hasRole()
+    {
+        if ($this->user->role == 'ROLE_ADMIN') {
+            return true;
+        }
+
+        return false;
+    }
 }
