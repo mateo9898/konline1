@@ -1,5 +1,5 @@
 import './user-list.css';
-import {Student, greeter} from './greeter';
+import { Student, greeter } from './greeter';
 
 export class UserList {
 
@@ -17,12 +17,10 @@ export class UserList {
                 'type': 'POST'
             },
             'columns': [
-                {'data': 'username'},
-                {'data': 'email'},
-                {'data': 'first_name'},
-                {'data': 'last_name'},
-                {'data': 'role'},
-                {'data': 'enabled'},
+                { 'data': 'surname' },
+                { 'data': 'email' },
+                { 'data': 'name' },
+                { 'data': 'role' },
                 {
                     'orderable': false,
                     'searchable': false,
