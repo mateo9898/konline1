@@ -37,9 +37,11 @@ class UserGeneratorRepository implements RepositoryInterface
     public function insertUser(UserCreatorData $user): int
     {
         $row = [
-            'first_name' => $user->firstName,
-            'last_name' => $user->lastName,
+            'password' =>password_hash($user->password, PASSWORD_DEFAULT),
             'email' => $user->email,
+            'surname' => $user->surname,
+            'role' => "ROLE_USER",
+            'name' => $user->name,
         ];
 
         return (int)$this->queryFactory->newInsert(TableName::USERS, $row)->execute()->lastInsertId();

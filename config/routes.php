@@ -18,6 +18,9 @@ return function (App $app) {
     $app->get('/login', \App\Action\Login\LoginAction::class)->setName('login');
     $app->post('/login', \App\Action\Login\LoginSubmitAction::class);
 
+    $app->get('/register', \App\Action\User\UserCreateAction::class)->setName('register');
+    $app->post('/register', \App\Action\User\UserSubmitAction::class);
+
     // Password protected area
     $app->group('/users', function (RouteCollectorProxy $group) {
         $group->get('', \App\Action\User\UserListAction::class)->setName('user-list');
