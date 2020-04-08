@@ -39,9 +39,9 @@ final class UserAuth
      *
      * @return UserAuthData|null
      */
-    public function authenticate(string $username, string $password): ?UserAuthData
+    public function authenticate(string $name, string $password): ?UserAuthData
     {
-        $userRow = $this->repository->findByUsername($username);
+        $userRow = $this->repository->findByUsername($name);
 
         if (!$userRow) {
             return null;
@@ -53,9 +53,9 @@ final class UserAuth
 
         // Map array to DTO
         $user = new UserAuthData();
-        $user->id = (int)$userRow['id'];
+        $user->id = (int)$userRow['id_user'];
         $user->email = (string)$userRow['email'];
-        $user->locale = (string)$userRow['locale'];
+        $user->role = (string)$userRow['role'];
 
         return $user;
     }
