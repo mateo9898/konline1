@@ -31,7 +31,7 @@ final class UserAuthRepository
      *
      * @return array The user
      */
-    public function findByUsername(string $username): array
+    public function findByUsername(string $email): array
     {
         $query = $this->queryFactory->newSelect('users');
 

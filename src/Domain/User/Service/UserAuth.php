@@ -39,9 +39,9 @@ final class UserAuth
      *
      * @return UserAuthData|null
      */
-    public function authenticate(string $name, string $password): ?UserAuthData
+    public function authenticate(string $email, string $password): ?UserAuthData
     {
-        $userRow = $this->repository->findByUsername($name);
+        $userRow = $this->repository->findByUsername($email);
 
         if (!$userRow) {
             return null;
@@ -56,7 +56,6 @@ final class UserAuth
         $user->id = (int)$userRow['id_user'];
         $user->email = (string)$userRow['email'];
         $user->role = (string)$userRow['role'];
-
         return $user;
     }
 
