@@ -21,6 +21,8 @@ return function (App $app) {
     $app->get('/register', \App\Action\User\UserCreateAction::class)->setName('register');
     $app->post('/register', \App\Action\User\UserSubmitAction::class);
 
+    $app->get('/mail', \App\Action\Mail\MailAction::class)->setName('mail');
+
     // Password protected area
     $app->group('/users', function (RouteCollectorProxy $group) {
         $group->get('', \App\Action\User\UserListAction::class)->setName('user-list');
