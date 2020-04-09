@@ -1,7 +1,7 @@
 {% extends "main/layout.twig" %}
 
 {% block navbar %}
-
+<div class="mdl-layout mdl-js-layout mdl-layout--fixed-header">
 <div class="android-header mdl-layout__header mdl-layout__header--waterfall">
         <div class="mdl-layout__header-row" style="background-color:white">
           <span class="android-title mdl-layout-title">
@@ -29,7 +29,7 @@
             <li disabled class="mdl-menu__item">4.3 Jelly Bean</li>
             <li class="mdl-menu__item">Android History</li>
           </ul></a>
-              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="" style="color:#444040">Auto</a>
+              <a class="mdl-navigation__link mdl-typography--text-uppercase" href="admin" style="color:#444040">Admin</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="register" style="color:#444040">Rejestracja</a>
               <a class="mdl-navigation__link mdl-typography--text-uppercase" href="login" style="color:#444040">Logowanie</a>
             </nav>
@@ -48,5 +48,6 @@
           </ul>
         </div>
       </div>
+    </div>
 
 {% endblock %}
