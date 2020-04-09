@@ -33,7 +33,7 @@
 					<span class="login100-form-title p-b-55">
 						Login
 					</span>
-
+					                        {% include 'layout/flash.twig' %}
 					<div class="wrap-input100 validate-input m-b-16" data-validate = "Valid email is required: ex@abc.xyz">
 						<input class="input100" type="text" name="email" placeholder="Email"  required autofocus>
 						<span class="focus-input100"></span>
@@ -50,12 +50,6 @@
 						</span>
 					</div>
 
-					<div class="contact100-form-checkbox m-l-4">
-						<input class="input-checkbox100" id="ckb1" type="checkbox" name="remember-me">
-						<label class="label-checkbox100" for="ckb1">
-							Remember me
-						</label>
-					</div>
 					
 					<div class="container-login100-form-btn p-t-25">
 						<button id="btn_login" class="login100-form-btn" type="submit">{{ __('Sign in') }}</button>
@@ -63,29 +57,17 @@
 
 					<div class="text-center w-full p-t-42 p-b-22">
 						<span class="txt1">
-							Or login with
+							Lub
 						</span>
 					</div>
 
-					<a href="#" class="btn-face m-b-10">
-						<i class="fa fa-facebook-official"></i>
-						Facebook
-					</a>
-
 					<a href="#" class="btn-google m-b-10">
-						<img src="images/icons/icon-google.png" alt="GOOGLE">
-						Google
+						Strona główna
 					</a>
 
-					<div class="text-center w-full p-t-115">
-						<span class="txt1">
-							Not a member?
-						</span>
-
-						<a class="txt1 bo1 hov1" href="#">
-							Sign up now							
-						</a>
-                        {% include 'layout/flash.twig' %}
+					<a href="#" class="btn-google m-b-10">	
+						Rejestracja
+					</a>
 					</div>
 				</form>
 			</div>
