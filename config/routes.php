@@ -10,6 +10,8 @@ return function (App $app) {
     $app->get('/', \App\Action\Home\HomeAction::class)->setName('root');
 
     $app->get('/main', \App\Action\Main\MainAction::class)->setName('main');
+    
+    $app->get('/admin', \App\Action\Admin\AdminAction::class)->setName('admin');
 
     $app->get('/hello/{name}', \App\Action\Hello\HelloAction::class)->setName('hello');
 
