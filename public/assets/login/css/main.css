@@ -1,5 +1,8 @@
 /*//////////////////////////////////////////////////////////////////
-[ FONT ]*/
+[ FONT ]
+[GREEN COLOR #6ab344]
+[PINK COLOR #d33f8d]
+*/
 
 @font-face {
     font-family: Poppins-Regular;
@@ -71,7 +74,7 @@ a:focus {
 
 a:hover {
     text-decoration: none;
-    color: #d33f8d;
+    color: #6ab344;
 }
 
 /*---------------------------------------------*/
@@ -209,7 +212,7 @@ iframe {
 }
 
 .hov1:hover {
-    border-color: #d33f8d;
+    border-color: #6ab344;
 }
 
 
@@ -375,7 +378,7 @@ iframe {
 }
 
 .input100:focus+.focus-input100+.symbol-input100 {
-    color: #d33f8d;
+    color: #6ab344;
     padding-left: 18px;
 }
 
@@ -416,7 +419,7 @@ iframe {
     height: 18px;
     border-radius: 3px;
     background: #fff;
-    border: 2px solid #d33f8d;
+    border: 2px solid #6ab344;
     left: 0;
     top: 48%;
     -webkit-transform: translateY(-50%);
@@ -427,7 +430,7 @@ iframe {
 }
 
 .input-checkbox100:checked+.label-checkbox100::before {
-    color: #d33f8d;
+    color: #6ab344;
 }
 
 
@@ -454,7 +457,7 @@ iframe {
     width: 100%;
     height: 62px;
     border-radius: 3px;
-    background: #d33f8d;
+    background: #6ab344;
     display: -webkit-box;
     display: -webkit-flex;
     display: -moz-box;
@@ -525,7 +528,7 @@ iframe {
 
 .btn-face:hover,
 .btn-google:hover {
-    border-color: #d33f8d;
+    border-color: #6ab344;
 }
 
 
