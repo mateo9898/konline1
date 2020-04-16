@@ -3,7 +3,7 @@
 use Phinx\Db\Adapter\MysqlAdapter;
 use Phinx\Migration\AbstractMigration;
 
-class AlterConsultation extends AbstractMigration
+class AlterSubject extends AbstractMigration
 {
     /**
      * Change.
@@ -15,43 +15,34 @@ class AlterConsultation extends AbstractMigration
         $this->execute("ALTER DATABASE CHARACTER SET 'utf8mb4';");
         $this->execute("ALTER DATABASE COLLATE='utf8mb4_unicode_ci';");
 
-$this->table('consultation', [
+$this->table('subject', [
                 'id' => false,
-                'primary_key' => ['id_consultation'],
+                'primary_key' => ['id_subject'],
                 'engine' => 'InnoDB',
                 'encoding' => 'utf8mb4',
                 'collation' => 'utf8mb4_unicode_ci',
                 'comment' => '',
                 'row_format' => 'DYNAMIC',
             ])
-                ->addColumn('id_consultation', 'integer', [
+                ->addColumn('id_subject', 'integer', [
                     'null' => false,
                     'limit' => MysqlAdapter::INT_REGULAR,
                     'identity' => 'enable',
                 ])
-                ->addColumn('hour', 'time', [
+                ->addColumn('name', 'string', [
                     'null' => false,
-                    'after' => 'id_consultation',
-                ])
-                ->addColumn('duration_in_minutes', 'integer', [
-                    'null' => false,
-                    'limit' => MysqlAdapter::INT_REGULAR,
-                    'after' => 'hour',
+                    'limit' => 255,
+                    'collation' => 'utf8mb4_unicode_ci',
+                    'encoding' => 'utf8mb4',
+                    'after' => 'id_subject',
                 ])
                 ->addColumn('id_user_FK', 'integer', [
                     'null' => false,
                     'limit' => MysqlAdapter::INT_REGULAR,
-                    'after' => 'duration_in_minutes',
-                ])
-                ->addColumn('id_day_FK', 'integer', [
-                    'null' => false,
-                    'limit' => MysqlAdapter::INT_REGULAR,
-                    'after' => 'id_user_FK',
+                    'after' => 'name',
                 ])
                 ->addForeignKey('id_user_FK','users','id_user',
-                ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_user_FK'])
-                ->addForeignKey('id_day_FK','day_consultation','id_day',
-                ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_day_FK'])
+                ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_user_FK1'])
                 ->create();
     }
 }

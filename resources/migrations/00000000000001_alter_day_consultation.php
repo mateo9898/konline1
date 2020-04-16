@@ -33,7 +33,13 @@ $this->table('day_consultation', [
                     'null' => false,
                     'after' => 'id_day',
                 ])
-                
+                ->addColumn('id_user_FK', 'integer', [
+                    'null' => false,
+                    'limit' => MysqlAdapter::INT_REGULAR,
+                    'after' => 'date',
+                ])
+                ->addForeignKey('id_user_FK','users','id_user',
+                ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_user_FK'])
                 ->create();
     }
 }
