@@ -29,19 +29,32 @@ $this->table('consultation', [
                     'limit' => MysqlAdapter::INT_REGULAR,
                     'identity' => 'enable',
                 ])
-                ->addColumn('hour', 'time', [
+                ->addColumn('start', 'time', [
                     'null' => false,
                     'after' => 'id_consultation',
                 ])
-                ->addColumn('duration_in_minutes', 'integer', [
+                ->addColumn('end', 'time', [
                     'null' => false,
-                    'limit' => MysqlAdapter::INT_REGULAR,
-                    'after' => 'hour',
+                    'after' => 'start',
+                ])
+                ->addColumn('name', 'string', [
+                    'null' => false,
+                    'limit' => 255,
+                    'collation' => 'utf8mb4_unicode_ci',
+                    'encoding' => 'utf8mb4',
+                    'after' => 'end',
+                ])
+                ->addColumn('surname', 'string', [
+                    'null' => false,
+                    'limit' => 255,
+                    'collation' => 'utf8mb4_unicode_ci',
+                    'encoding' => 'utf8mb4',
+                    'after' => 'name',
                 ])
                 ->addColumn('id_user_FK', 'integer', [
                     'null' => false,
                     'limit' => MysqlAdapter::INT_REGULAR,
-                    'after' => 'duration_in_minutes',
+                    'after' => 'end',
                 ])
                 ->addColumn('id_day_FK', 'integer', [
                     'null' => false,
