@@ -23,6 +23,7 @@ class Admin extends AbstractMigration
             'surname'=> 'Kowalski',
             'password' => password_hash('admin', PASSWORD_DEFAULT),
             'email' => 'admin@example.com',
+            'role' => 'ROLE_ADMIN',
         ];
 
         $this->table('users')->insert($rows)->save();
