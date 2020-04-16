@@ -189,9 +189,14 @@
                 </div>
                 <!--/.row -->
                 <!--row -->
-                <div id="dp">
-                    
-                </div> 
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="white-box">
+                            <h3 class="box-title">Kalendarz konsultacji</h3>
+                                <div id="dp"></div> 
+                        </div>
+                    </div>
+                </div>
                 <!-- /.row -->
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
@@ -432,7 +437,7 @@
     <script src="js/daypilot/daypilot-all.min.js" type="text/javascript"></script>
     <script type="text/javascript">
                         var dp = new DayPilot.Calendar("dp");
-                        dp.viewType = "Week";
+                        dp.viewType = "WorkWeek";
                         dp.events.list = [
                         {
                             "id":"5",
