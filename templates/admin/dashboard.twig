@@ -193,6 +193,12 @@
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div class="white-box">
                             <h3 class="box-title">Kalendarz konsultacji</h3>
+                            <div style="float:left; width: 160px;">
+                                <div id="nav"></div>
+                                </div>
+                                <div style="margin-left: 160px;">
+                                <div id="dp"></div>
+                            </div>
                                 <div id="dp"></div> 
                         </div>
                     </div>
@@ -458,7 +464,19 @@
                             "end":"2020-04-12T16:00:00"
                         }];
                         dp.init();
-                    </script>
+    </script>
+    <script type="text/javascript">
+        var nav = new DayPilot.Navigator("nav");
+        nav.showMonths = 2;
+        nav.skipMonths = 2;
+        nav.selectMode = "week";
+        nav.init();
+        nav.onTimeRangeSelected = function(args) {
+            dp.startDate = args.day;
+            dp.update();
+            loadEvents();
+        };
+    </script>
 
 
 </body>

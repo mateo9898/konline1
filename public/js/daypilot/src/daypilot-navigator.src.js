@@ -20,21 +20,21 @@ This product includes DayPilot (http://www.daypilot.org) developed by Annpoint, 
 */
 
 if (typeof DayPilot === 'undefined') {
-	var DayPilot = {};
+    var DayPilot = {};
 }
 
 if (typeof DayPilot.Global === 'undefined') {
     DayPilot.Global = {};
 }
 
-(function() {
+(function () {
 
     if (typeof DayPilot.Navigator !== 'undefined') {
         return;
     }
-    
+
     DayPilotNavigator = {};
-    DayPilot.Navigator = function(id) {
+    DayPilot.Navigator = function (id) {
         this.v = '2018.2.232-lite';
         var calendar = this;
         this.id = id;
@@ -49,7 +49,7 @@ if (typeof DayPilot.Global === 'undefined') {
         this.cellWidth = 20;
         this.cellHeight = 20;
         this._cssOnly = true;
-        this.selectionStart = null;  // today
+        this.selectionStart = null; // today
         this.selectionEnd = null;
         this.selectionDay = new DayPilot.Date().getDatePart();
         this.showMonths = 1;
@@ -67,14 +67,13 @@ if (typeof DayPilot.Global === 'undefined') {
 
         this.nav = {};
 
-        this._prepare = function() {
-            
+        this._prepare = function () {
+
             this.root.dp = this;
-            
+
             if (this._cssOnly) {
                 this.root.className = this._prefixCssClass('_main');
-            }
-            else {
+            } else {
                 this.root.className = this._prefixCssClass('main');
             }
 
@@ -90,8 +89,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
             if (!this.startDate) {
                 this.startDate = new DayPilot.Date(DayPilot.Date.fromYearMonthDay(this.year, this.month));
-            }
-            else { // make sure it's the first day
+            } else { // make sure it's the first day
                 this.startDate = new DayPilot.Date(this.startDate).firstDayOfMonth();
             }
 
@@ -100,43 +98,42 @@ if (typeof DayPilot.Global === 'undefined') {
             this.months = [];
         };
 
-        this._api2 = function() {
+        this._api2 = function () {
             return calendar.api === 2;
         };
-        
-        this._clearTable = function() {
+
+        this._clearTable = function () {
             // TODO do something smarter here
             this.root.innerHTML = '';
         };
 
-        this._prefixCssClass = function(part) {
+        this._prefixCssClass = function (part) {
             var prefix = this.theme || this.cssClassPrefix;
             if (prefix) {
                 return prefix + part;
-            }
-            else {
+            } else {
                 return "";
             }
         };
-        
-        this._addClass = function(object, name) {
+
+        this._addClass = function (object, name) {
             var fullName = this._cssOnly ? this._prefixCssClass("_" + name) : this._prefixCssClass(name);
             DayPilot.Util.addClass(object, fullName);
         };
 
-        this._removeClass = function(object, name) {
+        this._removeClass = function (object, name) {
             var fullName = this._cssOnly ? this._prefixCssClass("_" + name) : this._prefixCssClass(name);
             DayPilot.Util.removeClass(object, fullName);
         };
 
-        this._drawTable = function(j, showLinks) {
+        this._drawTable = function (j, showLinks) {
             var month = {};
             month.cells = [];
             month.days = [];
             month.weeks = [];
 
             var startDate = this.startDate.addMonths(j);
-            
+
             var showBefore = showLinks.before;
             var showAfter = showLinks.after;
 
@@ -149,7 +146,7 @@ if (typeof DayPilot.Global === 'undefined') {
             var rowCount = 6;
             month._rowCount = rowCount;
             var today = (new DayPilot.Date()).getDatePart();
-            
+
             var width = this.cellWidth * 7;
             var height = this.cellHeight * rowCount + this.titleHeight + this.dayHeaderHeight;
             month.height = height;
@@ -160,16 +157,15 @@ if (typeof DayPilot.Global === 'undefined') {
             main.style.position = 'relative';
             if (this._cssOnly) {
                 main.className = this._prefixCssClass('_month');
-            }
-            else {
+            } else {
                 main.className = this._prefixCssClass('month');
             }
-            
+
             main.style.cursor = 'default';
             main.style.MozUserSelect = 'none';
             main.style.KhtmlUserSelect = 'none';
             main.style.WebkitUserSelect = 'none';
-            
+
             main.month = month;
 
             this.root.appendChild(main);
@@ -188,8 +184,7 @@ if (typeof DayPilot.Global === 'undefined') {
             tl.setAttribute("unselectable", "on");
             if (this._cssOnly) {
                 tl.className = this._prefixCssClass('_titleleft');
-            }
-            else {
+            } else {
                 tl.className = this._prefixCssClass('titleleft');
             }
             if (showLinks.left) {
@@ -212,8 +207,7 @@ if (typeof DayPilot.Global === 'undefined') {
             ti.setAttribute("unselectable", "on");
             if (this._cssOnly) {
                 ti.className = this._prefixCssClass('_title');
-            }
-            else {
+            } else {
                 ti.className = this._prefixCssClass('title');
             }
             ti.innerHTML = resolved.locale().monthNames[startDate.getMonth()] + ' ' + startDate.getYear();
@@ -232,8 +226,7 @@ if (typeof DayPilot.Global === 'undefined') {
             tr.setAttribute("unselectable", "on");
             if (this._cssOnly) {
                 tr.className = this._prefixCssClass('_titleright');
-            }
-            else {
+            } else {
                 tr.className = this._prefixCssClass('titleright');
             }
             if (showLinks.right) {
@@ -259,8 +252,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 dh.setAttribute("unselectable", "on");
                 if (this._cssOnly) {
                     dh.className = this._prefixCssClass('_dayheader');
-                }
-                else {
+                } else {
                     dh.className = this._prefixCssClass('dayheader');
                 }
                 //dh.innerHTML = "<span style='margin-right: 2px'>" + this._getDayName(x) + "</span>";
@@ -290,8 +282,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
                     if (this._cssOnly) {
                         dc.className = this._prefixCssClass((isCurrentMonth ? '_day' : '_dayother'));
-                    }
-                    else {
+                    } else {
                         dc.className = this._prefixCssClass((isCurrentMonth ? 'day' : 'dayother'));
                     }
                     calendar._addClass(dc, "cell");
@@ -315,8 +306,7 @@ if (typeof DayPilot.Global === 'undefined') {
                     inner.style.position = 'absolute';
                     if (this._cssOnly) {
                         inner.className = (day.getTime() === today.getTime() && isCurrentMonth) ? this._prefixCssClass('_todaybox') : this._prefixCssClass('_daybox');
-                    }
-                    else {
+                    } else {
                         inner.className = (day.getTime() === today.getTime() && isCurrentMonth) ? this._prefixCssClass('todaybox') : this._prefixCssClass('daybox');
                     }
                     calendar._addClass(inner, "cell_box");
@@ -415,8 +405,7 @@ if (typeof DayPilot.Global === 'undefined') {
             line.style.lineHeight = '1px';
             if (this._cssOnly) {
                 line.className = this._prefixCssClass("_line");
-            }
-            else {
+            } else {
                 line.className = this._prefixCssClass("line");
             }
             //line.style.borderBottom = '1px solid black';
@@ -425,17 +414,17 @@ if (typeof DayPilot.Global === 'undefined') {
             this.months.push(month);
         };
 
-        this._cellSelect = function(main, x, y) {
+        this._cellSelect = function (main, x, y) {
             var div = main.month.cells[x][y];
             calendar._addClass(div, 'select');
         };
 
-        this._selectModeLowerCase = function() {
+        this._selectModeLowerCase = function () {
             var selectMode = this.selectMode || "";
             return selectMode.toLowerCase();
         };
 
-        this._adjustSelection = function() {
+        this._adjustSelection = function () {
             // ignores selectionEnd
             // uses selectMode
             var selectMode = calendar._selectModeLowerCase();
@@ -463,7 +452,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this.select = function(date) {
+        this.select = function (date) {
             var focus = true;
 
             var originalStart = this.selectionStart;
@@ -500,8 +489,8 @@ if (typeof DayPilot.Global === 'undefined') {
             }
 
         };
-        
-        this.update = function() {
+
+        this.update = function () {
 
             this._resetCssOnly();
             this._adjustSelection();
@@ -513,7 +502,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this._getDayName = function(i) {
+        this._getDayName = function (i) {
             var x = i + resolved.weekStarts();
             if (x > 6) {
                 x -= 7;
@@ -522,7 +511,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this._isSelected = function(date) {
+        this._isSelected = function (date) {
             if (this.selectionStart === null || this.selectionEnd === null) {
                 return false;
             }
@@ -534,13 +523,11 @@ if (typeof DayPilot.Global === 'undefined') {
             return false;
         };
 
-        this._cellMouseDown = function(ev) {
-        };
+        this._cellMouseDown = function (ev) {};
 
-        this._cellMouseMove = function(ev) {
-        };
+        this._cellMouseMove = function (ev) {};
 
-        this._cellClick = function(ev) {
+        this._cellClick = function (ev) {
             var month = this.parentNode.month;
 
             var x = this.x;
@@ -552,7 +539,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
 
             calendar.clearSelection();
-            
+
             calendar.selectionDay = day;
 
             var day = calendar.selectionDay;
@@ -606,25 +593,25 @@ if (typeof DayPilot.Global === 'undefined') {
             calendar._timeRangeSelectedDispatch();
         };
 
-        this._timeRangeSelectedDispatch = function() {
+        this._timeRangeSelectedDispatch = function () {
             var start = calendar.selectionStart;
             var end = calendar.selectionEnd.addDays(1);
             var days = DayPilot.DateUtil.daysDiff(start, end);
             var day = calendar.selectionDay;
 
             if (calendar._api2()) {
-                
+
                 var args = {};
                 args.start = start;
                 args.end = end;
                 args.day = day;
-                args.days =  days;
-                args.preventDefault = function() {
+                args.days = days;
+                args.preventDefault = function () {
                     this.preventDefault.value = true;
                 };
-                
+
                 if (typeof calendar.onTimeRangeSelect === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onTimeRangeSelect(args);
                     });
                     if (args.preventDefault.value) {
@@ -648,15 +635,14 @@ if (typeof DayPilot.Global === 'undefined') {
                     case 'None':
                         break;
                 }
-                
+
                 if (typeof calendar.onTimeRangeSelected === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onTimeRangeSelected(args);
                     });
                 }
-                
-            }
-            else {
+
+            } else {
                 switch (calendar.timeRangeSelectedHandling) {
                     case 'Bind':
                         var bound = eval(calendar.bound);
@@ -678,39 +664,39 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._clickRight = function(ev) {
+        this._clickRight = function (ev) {
             calendar._moveMonth(calendar.skipMonths);
         };
 
-        this._clickLeft = function(ev) {
+        this._clickLeft = function (ev) {
             calendar._moveMonth(-calendar.skipMonths);
         };
 
-        this._moveMonth = function(i) {
+        this._moveMonth = function (i) {
             this.startDate = this.startDate.addMonths(i);
             this._clearTable();
             this._prepare();
             this._drawMonths();
         };
 
-        this.visibleStart = function() {
+        this.visibleStart = function () {
             return calendar.startDate.firstDayOfMonth().firstDayOfWeek(resolved.weekStarts());
         };
 
-        this.visibleEnd = function() {
+        this.visibleEnd = function () {
             return calendar.startDate.firstDayOfMonth().addMonths(this.showMonths - 1).firstDayOfWeek(resolved.weekStarts()).addDays(42);
         };
 
-        this._drawMonths = function() {
+        this._drawMonths = function () {
             for (var j = 0; j < this.showMonths; j++) {
                 var showLinks = this._getShowLinks(j);
                 this._drawTable(j, showLinks);
             }
-			
-    	    this.root.style.height = this._getHeight() + "px"; 
+
+            this.root.style.height = this._getHeight() + "px";
         };
-        
-        this._getHeight = function() {
+
+        this._getHeight = function () {
             var total = 0;
             for (var i = 0; i < this.months.length; i++) {
                 var month = this.months[i];
@@ -718,8 +704,8 @@ if (typeof DayPilot.Global === 'undefined') {
             }
             return total;
         };
-        
-        this._getShowLinks = function(j) {
+
+        this._getShowLinks = function (j) {
             if (this.internal.showLinks) {
                 return this.internal.showLinks;
             }
@@ -732,32 +718,30 @@ if (typeof DayPilot.Global === 'undefined') {
 
             return showLinks;
         };
-        
+
         this.internal = {};
-		
+
         this._resolved = {};
         var resolved = this._resolved;
-        
-        resolved.locale = function() {
+
+        resolved.locale = function () {
             return DayPilot.Locale.find(calendar.locale);
         };
-        
-        resolved.weekStarts = function() {
+
+        resolved.weekStarts = function () {
             if (calendar.weekStarts === 'Auto') {
                 var locale = resolved.locale();
                 if (locale) {
                     return locale.weekStarts;
-                }
-                else {
+                } else {
                     return 0; // Sunday
                 }
-            }
-            else {
+            } else {
                 return calendar.weekStarts;
             }
         };
 
-        this.clearSelection = function() {
+        this.clearSelection = function () {
             for (var j = 0; j < this.selected.length; j++) {
                 this._removeClass(this.selected[j], 'select');
             }
@@ -766,48 +750,44 @@ if (typeof DayPilot.Global === 'undefined') {
 
         this._angular = {};
         this._angular.scope = null;
-        this._angular.notify = function() {
+        this._angular.notify = function () {
             if (calendar._angular.scope) {
                 calendar._angular.scope["$apply"]();
             }
         };
-        this._angular.apply = function(f) {
+        this._angular.apply = function (f) {
             if (calendar.angularAutoApply && calendar._angular.scope) {
                 calendar._angular.scope["$apply"](f);
-            }
-            else {
+            } else {
                 f();
             }
         };
 
-        this._loadFromServer = function() {
+        this._loadFromServer = function () {
             // make sure it has a place to ask
             if (this.backendUrl || typeof WebForm_DoCallback === 'function') {
                 return (typeof calendar.items === 'undefined') || (!calendar.items);
-            }
-            else {
+            } else {
                 return false;
             }
         };
 
-        this._resetCssOnly = function() {
+        this._resetCssOnly = function () {
             if (!calendar._cssOnly) {
                 calendar._cssOnly = true;
                 window.console && window.console.log && window.console.log("DayPilot: cssOnly = false mode is not supported anymore.");
             }
         };
 
-        this._loadTop = function() {
+        this._loadTop = function () {
             if (this.id && this.id.tagName) {
                 this.nav.top = this.id;
-            }
-            else if (typeof this.id === "string") {
+            } else if (typeof this.id === "string") {
                 this.nav.top = document.getElementById(this.id);
                 if (!this.nav.top) {
                     throw "DayPilot.Navigator: The placeholder element not found: '" + id + "'.";
                 }
-            }
-            else {
+            } else {
                 throw "DayPilot.Navigator() constructor requires the target element or its ID as a parameter";
             }
 
@@ -815,54 +795,54 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this.init = function() {
+        this.init = function () {
             //this.root = document.getElementById(id);
             this._loadTop();
 
             this._resetCssOnly();
-            
+
             if (this.root.dp) { // already initialized
                 return;
             }
-            
+
             this._adjustSelection();
             this._prepare();
             this._drawMonths();
             this._registerDispose();
-            
+
             this.initialized = true;
         };
-        
-        this.dispose = function() {
+
+        this.dispose = function () {
             var c = calendar;
-            
+
             if (!c.root) {
                 return;
             }
-            
+
             c.root.removeAttribute("style");
             c.root.removeAttribute("class");
             c.root.dp = null;
             c.root.innerHTML = null;
             c.root = null;
-            
+
         };
-        
-        this._registerDispose = function() {
+
+        this._registerDispose = function () {
             //var root = document.getElementById(id);
             this.root.dispose = this.dispose;
-        };        
-		
+        };
+
         this.Init = this.init;
 
     };
 
     // jQuery plugin
     if (typeof jQuery !== 'undefined') {
-        (function($) {
-            $.fn.daypilotNavigator = function(options) {
+        (function ($) {
+            $.fn.daypilotNavigator = function (options) {
                 var first = null;
-                var j = this.each(function() {
+                var j = this.each(function () {
                     if (this.daypilot) { // already initialized
                         return;
                     }
@@ -879,8 +859,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 });
                 if (this.length === 1) {
                     return first;
-                }
-                else {
+                } else {
                     return j;
                 }
             };
@@ -895,7 +874,7 @@ if (typeof DayPilot.Global === 'undefined') {
             return;
         }
 
-        app.directive("daypilotNavigator", function() {
+        app.directive("daypilotNavigator", function () {
             return {
                 "restrict": "E",
                 "template": "<div id='{{id}}'></div>",

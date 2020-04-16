@@ -27,9 +27,9 @@ if (typeof DayPilot.Global === 'undefined') {
     DayPilot.Global = {};
 }
 
-(function() {
+(function () {
 
-    var doNothing = function() {};
+    var doNothing = function () {};
 
     if (typeof DayPilot.Calendar !== 'undefined') {
         return;
@@ -57,7 +57,7 @@ if (typeof DayPilot.Global === 'undefined') {
     DayPilotCalendar.moving = null;
 
     // helpers
-    DayPilotCalendar.register = function(calendar) {
+    DayPilotCalendar.register = function (calendar) {
         if (!DayPilotCalendar.registered) {
             DayPilotCalendar.registered = [];
         }
@@ -84,7 +84,7 @@ if (typeof DayPilot.Global === 'undefined') {
         a.splice(i, 1);
     };
 
-    DayPilotCalendar.getCellsAbove = function(cell) {
+    DayPilotCalendar.getCellsAbove = function (cell) {
         var array = [];
         var c = DayPilotCalendar.getColumn(cell);
 
@@ -97,12 +97,12 @@ if (typeof DayPilot.Global === 'undefined') {
             tr = tr.previousSibling;
             while (tr && tr.tagName !== "TR") {
                 tr = tr.previousSibling;
-	        }
+            }
         }
         return array;
     };
 
-    DayPilotCalendar.getCellsBelow = function(cell) {
+    DayPilotCalendar.getCellsBelow = function (cell) {
         var array = [];
         var c = DayPilotCalendar.getColumn(cell);
         var tr = cell.parentNode;
@@ -114,18 +114,18 @@ if (typeof DayPilot.Global === 'undefined') {
             tr = tr.nextSibling;
             while (tr && tr.tagName !== "TR") {
                 tr = tr.nextSibling;
-	        }
+            }
         }
         return array;
     };
 
-    DayPilotCalendar.getColumn = function(cell) {
+    DayPilotCalendar.getColumn = function (cell) {
         var i = 0;
         while (cell.previousSibling) {
             cell = cell.previousSibling;
             if (cell.tagName === "TD") {
                 i++;
-	    }
+            }
         }
         return i;
     };
@@ -146,7 +146,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
     };
 
-    DayPilotCalendar.gMouseUp = function (e){
+    DayPilotCalendar.gMouseUp = function (e) {
 
         if (DayPilotCalendar.resizing) {
             if (!DayPilotCalendar.resizingShadow) {
@@ -172,12 +172,11 @@ if (typeof DayPilot.Global === 'undefined') {
             DayPilotCalendar.resizing = null;
 
             dpEvent.calendar._eventResizeDispatch(dpEvent, height, top, border);
-        }
-        else if (DayPilotCalendar.moving) {
+        } else if (DayPilotCalendar.moving) {
             if (!DayPilotCalendar.movingShadow) {
                 DayPilotCalendar.moving = null;
-	            document.body.style.cursor = 'default';
-	            return;
+                document.body.style.cursor = 'default';
+                return;
             }
 
             var top = DayPilotCalendar.movingShadow.offsetTop;
@@ -191,13 +190,12 @@ if (typeof DayPilot.Global === 'undefined') {
             // stop moving on the client
             DayPilotCalendar.moving = null;
             DayPilotCalendar.movingShadow = null;
-	        //document.body.style.cursor = 'default';
+            //document.body.style.cursor = 'default';
             dpEvent.calendar.nav.top.style.cursor = 'auto';
 
             var ev = e || window.event;
             dpEvent.calendar._eventMoveDispatch(dpEvent, newColumnIndex, top, ev);
-        }
-        else if (DayPilotCalendar.selecting && DayPilotCalendar.topSelectedCell !== null) {
+        } else if (DayPilotCalendar.selecting && DayPilotCalendar.topSelectedCell !== null) {
             var calendar = DayPilotCalendar.selecting.calendar;
             DayPilotCalendar.selecting = false;
 
@@ -207,15 +205,14 @@ if (typeof DayPilot.Global === 'undefined') {
             if (calendar.timeRangeSelectedHandling !== "Hold" && calendar.timeRangeSelectedHandling !== "HoldForever") {
                 doNothing();
             }
-        }
-        else {
+        } else {
             DayPilotCalendar.selecting = false;
         }
 
 
     };
 
-    DayPilotCalendar.deleteShadow = function(shadow) {
+    DayPilotCalendar.deleteShadow = function (shadow) {
         if (!shadow) {
             return;
         }
@@ -226,7 +223,7 @@ if (typeof DayPilot.Global === 'undefined') {
         shadow.parentNode.removeChild(shadow);
     };
 
-    DayPilotCalendar.moveShadow = function(column) {
+    DayPilotCalendar.moveShadow = function (column) {
         var shadow = DayPilotCalendar.movingShadow;
         var parent = shadow.parentNode;
 
@@ -241,7 +238,7 @@ if (typeof DayPilot.Global === 'undefined') {
         shadow.style.width = (DayPilotCalendar.movingShadow.parentNode.offsetWidth + 1) + 'px';
     };
 
-    DayPilotCalendar.Calendar = function(id) {
+    DayPilotCalendar.Calendar = function (id) {
 
         var isConstructor = false;
         if (this instanceof DayPilotCalendar.Calendar && !this.__constructor) {
@@ -268,7 +265,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         this.nav = {};
 
-        this.afterRender = function() {};
+        this.afterRender = function () {};
 
         // potentially leaking a bit but significantly faster in IE
         this.fasterDispose = true;
@@ -293,7 +290,7 @@ if (typeof DayPilot.Global === 'undefined') {
         this.height = 300;
         this.heightSpec = 'BusinessHours';
         this.hideUntilInit = true;
-        this.hourWidth = 45;
+        this.hourWidth = 450;
         this.initScrollPos = 'Auto';
         this.loadingLabelText = "Loading...";
         this.loadingLabelVisible = true;
@@ -329,8 +326,8 @@ if (typeof DayPilot.Global === 'undefined') {
         this.onTimeRangeSelect = null;
         this.onTimeRangeSelected = null;
 
-        this.clearSelection = function() {
-            for(var j = 0; j < DayPilotCalendar.selectedCells.length; j++) {
+        this.clearSelection = function () {
+            for (var j = 0; j < DayPilotCalendar.selectedCells.length; j++) {
                 var cell = DayPilotCalendar.selectedCells[j];
                 if (cell) {
                     if (cell.selected) {
@@ -343,17 +340,17 @@ if (typeof DayPilot.Global === 'undefined') {
             DayPilotCalendar.selectedCells = [];
         };
 
-        this._ie = (navigator && navigator.userAgent && navigator.userAgent.indexOf("MSIE") !== -1);  // IE
+        this._ie = (navigator && navigator.userAgent && navigator.userAgent.indexOf("MSIE") !== -1); // IE
         this._ff = (navigator && navigator.userAgent && navigator.userAgent.indexOf("Firefox") !== -1);
-        this._opera105 = (function() {
-            if (/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+        this._opera105 = (function () {
+            if (/Opera[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
                 var v = new Number(RegExp.$1);
                 return v >= 10.5;
             }
             return false;
         })();
-        this._webkit522 = (function() {
-            if (/AppleWebKit[\/\s](\d+\.\d+)/.test(navigator.userAgent)){
+        this._webkit522 = (function () {
+            if (/AppleWebKit[\/\s](\d+\.\d+)/.test(navigator.userAgent)) {
                 var v = new Number(RegExp.$1);
                 return v >= 522;
             }
@@ -362,7 +359,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         this.cleanSelection = this.clearSelection;
 
-        this._postBack2 = function(action, data, parameters) {
+        this._postBack2 = function (action, data, parameters) {
             var envelope = {};
             envelope.action = action;
             envelope.parameters = parameters;
@@ -373,13 +370,13 @@ if (typeof DayPilot.Global === 'undefined') {
             __doPostBack(calendar.uniqueID, commandstring);
         };
 
-        this._callBack2 = function(action, data, parameters) {
+        this._callBack2 = function (action, data, parameters) {
 
             if (this.callbackTimeout) {
                 window.clearTimeout(this.callbackTimeout);
             }
 
-            this.callbackTimeout = window.setTimeout(function() {
+            this.callbackTimeout = window.setTimeout(function () {
                 calendar.loadingStart();
             }, 100);
 
@@ -393,17 +390,16 @@ if (typeof DayPilot.Global === 'undefined') {
             var commandstring = "JSON" + DayPilot.JSON.stringify(envelope);
             if (this.backendUrl) {
                 DayPilot.request(this.backendUrl, this._callBackResponse, commandstring, this.ajaxError);
-            }
-            else if (typeof WebForm_DoCallback === 'function') {
+            } else if (typeof WebForm_DoCallback === 'function') {
                 WebForm_DoCallback(this.uniqueID, commandstring, this._updateView, this.clientName, this.onCallbackError, true);
             }
         };
 
-        this.onCallbackError = function(result, context) {
+        this.onCallbackError = function (result, context) {
             alert("Error!\r\nResult: " + result + "\r\nContext:" + context);
         };
 
-        this.dispose = function() {
+        this.dispose = function () {
             var c = calendar;
             c._deleteEvents();
 
@@ -432,15 +428,15 @@ if (typeof DayPilot.Global === 'undefined') {
             DayPilotCalendar.unregister(c);
         };
 
-        this._registerDispose = function() {
+        this._registerDispose = function () {
             this.nav.top.dispose = this.dispose;
         };
 
-        this._callBackResponse = function(response) {
+        this._callBackResponse = function (response) {
             calendar._updateView(response.responseText);
         };
 
-        this._getCallBackHeader = function() {
+        this._getCallBackHeader = function () {
             var h = {};
 
             h.control = "dpc";
@@ -462,7 +458,7 @@ if (typeof DayPilot.Global === 'undefined') {
             return h;
         };
 
-        this._createShadow = function(object, copyText) {
+        this._createShadow = function (object, copyText) {
             var parentTd = object.parentNode;
             while (parentTd && parentTd.tagName !== "TD") {
                 parentTd = parentTd.parentNode;
@@ -489,7 +485,7 @@ if (typeof DayPilot.Global === 'undefined') {
             inner.className = calendar._prefixCssClass("_shadow_inner");
             shadow.appendChild(inner);
 
-            if (copyText && false) {  // disabled
+            if (copyText && false) { // disabled
                 shadow.style.overflow = 'hidden';
                 shadow.style.fontSize = object.style.fontSize;
                 shadow.style.fontFamily = object.style.fontFamily;
@@ -510,7 +506,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
 
         this._resolved = {};
-        this._resolved.locale = function() {
+        this._resolved.locale = function () {
             var found = DayPilot.Locale.find(calendar.locale);
             if (!found) {
                 return DayPilot.Locale.US;
@@ -518,7 +514,7 @@ if (typeof DayPilot.Global === 'undefined') {
             return found;
         };
 
-        this._resolved.timeFormat = function() {
+        this._resolved.timeFormat = function () {
             if (calendar.timeFormat !== 'Auto') {
                 return calendar.timeFormat;
             }
@@ -527,13 +523,12 @@ if (typeof DayPilot.Global === 'undefined') {
 
         var resolved = this._resolved;
 
-        this._updateView = function(result, context) {
+        this._updateView = function (result, context) {
 
             if (result && result.indexOf("$$$") === 0) {
                 if (window.console) {
                     console.log("Error received from the server side: " + result);
-                }
-                else {
+                } else {
                     throw "Error received from the server side: " + result;
                 }
                 return;
@@ -603,32 +598,31 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this._durationHours = function() {
+        this._durationHours = function () {
             return 24;
         };
 
-        this._businessHoursSpan = function() {
-                if (this.businessBeginsHour > this.businessEndsHour) {
-                    return 24 - this.businessBeginsHour + this.businessEndsHour;
-                }
-                else {
-                    return this.businessEndsHour - this.businessBeginsHour;
-                }
+        this._businessHoursSpan = function () {
+            if (this.businessBeginsHour > this.businessEndsHour) {
+                return 24 - this.businessBeginsHour + this.businessEndsHour;
+            } else {
+                return this.businessEndsHour - this.businessBeginsHour;
+            }
         };
 
-        this._rowCount = function() {
+        this._rowCount = function () {
             return 48;
         };
 
-        this._api2 = function() {
+        this._api2 = function () {
             return calendar.api === 2;
         };
 
-        this.eventClickCallBack = function(e, data) {
+        this.eventClickCallBack = function (e, data) {
             this._callBack2('EventClick', data, e);
         };
 
-        this.eventClickPostBack = function(e, data) {
+        this.eventClickPostBack = function (e, data) {
             this._postBack2('EventClick', data, e);
         };
 
@@ -641,12 +635,12 @@ if (typeof DayPilot.Global === 'undefined') {
 
                 var args = {};
                 args.e = e;
-                args.preventDefault = function() {
+                args.preventDefault = function () {
                     this.preventDefault.value = true;
                 };
 
                 if (typeof calendar.onEventClick === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onEventClick(args);
                     });
                     if (args.preventDefault.value) {
@@ -664,12 +658,11 @@ if (typeof DayPilot.Global === 'undefined') {
                 }
 
                 if (typeof calendar.onEventClicked === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onEventClicked(args);
                     });
                 }
-            }
-            else {
+            } else {
                 switch (calendar.eventClickHandling) {
                     case 'PostBack':
                         calendar.eventClickPostBack(e);
@@ -685,11 +678,11 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this.eventDeleteCallBack = function(e, data) {
+        this.eventDeleteCallBack = function (e, data) {
             this._callBack2('EventDelete', data, e);
         };
 
-        this.eventDeletePostBack = function(e, data) {
+        this.eventDeletePostBack = function (e, data) {
             this._postBack2('EventDelete', data, e);
         };
 
@@ -698,12 +691,12 @@ if (typeof DayPilot.Global === 'undefined') {
 
                 var args = {};
                 args.e = e;
-                args.preventDefault = function() {
+                args.preventDefault = function () {
                     this.preventDefault.value = true;
                 };
 
                 if (typeof calendar.onEventDelete === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onEventDelete(args);
                     });
                     if (args.preventDefault.value) {
@@ -724,12 +717,11 @@ if (typeof DayPilot.Global === 'undefined') {
                 }
 
                 if (typeof calendar.onEventDeleted === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onEventDeleted(args);
                     });
                 }
-            }
-            else {
+            } else {
                 switch (calendar.eventDeleteHandling) {
                     case 'PostBack':
                         calendar.eventDeletePostBack(e);
@@ -745,7 +737,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this.eventResizeCallBack = function(e, newStart, newEnd, data) {
+        this.eventResizeCallBack = function (e, newStart, newEnd, data) {
             if (!newStart)
                 throw 'newStart is null';
             if (!newEnd)
@@ -759,7 +751,7 @@ if (typeof DayPilot.Global === 'undefined') {
             this._callBack2('EventResize', data, params);
         };
 
-        this.eventResizePostBack = function(e, newStart, newEnd, data) {
+        this.eventResizePostBack = function (e, newStart, newEnd, data) {
             if (!newStart)
                 throw 'newStart is null';
             if (!newEnd)
@@ -773,7 +765,7 @@ if (typeof DayPilot.Global === 'undefined') {
             this._postBack2('EventResize', data, params);
         };
 
-        this._eventResizeDispatch = function (e, shadowHeight, shadowTop, border ) {
+        this._eventResizeDispatch = function (e, shadowHeight, shadowTop, border) {
             var _startOffset = 1;
 
             var newStart = new Date();
@@ -791,8 +783,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 newStart = day.addTime(ts);
                 newEnd = e.end();
 
-            }
-            else if (border === 'bottom') {
+            } else if (border === 'bottom') {
                 var day = end.getDatePart();
                 var step = Math.floor((shadowTop + shadowHeight - _startOffset) / calendar.cellHeight);
                 var minutes = step * 30;
@@ -809,12 +800,12 @@ if (typeof DayPilot.Global === 'undefined') {
                 args.e = e;
                 args.newStart = newStart;
                 args.newEnd = newEnd;
-                args.preventDefault = function() {
+                args.preventDefault = function () {
                     this.preventDefault.value = true;
                 };
 
                 if (typeof calendar.onEventResize === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onEventResize(args);
                     });
                     if (args.preventDefault.value) {
@@ -837,12 +828,11 @@ if (typeof DayPilot.Global === 'undefined') {
                 }
 
                 if (typeof calendar.onEventResized === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onEventResized(args);
                     });
                 }
-            }
-            else {
+            } else {
                 switch (calendar.eventResizeHandling) {
                     case 'PostBack':
                         calendar.eventResizePostBack(e, newStart, newEnd);
@@ -857,7 +847,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this.eventMovePostBack = function(e, newStart, newEnd, newResource, data) {
+        this.eventMovePostBack = function (e, newStart, newEnd, newResource, data) {
             if (!newStart)
                 throw 'newStart is null';
             if (!newEnd)
@@ -871,7 +861,7 @@ if (typeof DayPilot.Global === 'undefined') {
             this._postBack2('EventMove', data, params);
         };
 
-        this.eventMoveCallBack = function(e, newStart, newEnd, newResource, data) {
+        this.eventMoveCallBack = function (e, newStart, newEnd, newResource, data) {
             if (!newStart)
                 throw 'newStart is null';
             if (!newEnd)
@@ -899,7 +889,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
             day.setTime(Date.UTC(start.getUTCFullYear(), start.getUTCMonth(), start.getUTCDate()));
 
-            var startOffset = start.getTime() - (day.getTime() + start.getUTCHours() * 3600 *1000 + Math.floor(start.getUTCMinutes()/30)*30*60*1000 );
+            var startOffset = start.getTime() - (day.getTime() + start.getUTCHours() * 3600 * 1000 + Math.floor(start.getUTCMinutes() / 30) * 30 * 60 * 1000);
             var length = end.getTime() - start.getTime();
 
             var newColumn = this.columns[newColumnIndex];
@@ -920,12 +910,12 @@ if (typeof DayPilot.Global === 'undefined') {
                 args.e = e;
                 args.newStart = newStart;
                 args.newEnd = newEnd;
-                args.preventDefault = function() {
+                args.preventDefault = function () {
                     this.preventDefault.value = true;
                 };
 
                 if (typeof calendar.onEventMove === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onEventMove(args);
                     });
                     if (args.preventDefault.value) {
@@ -948,12 +938,11 @@ if (typeof DayPilot.Global === 'undefined') {
                 }
 
                 if (typeof calendar.onEventMoved === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onEventMoved(args);
                     });
                 }
-            }
-            else {
+            } else {
                 switch (calendar.eventMoveHandling) {
                     case 'PostBack':
                         calendar.eventMovePostBack(e, newStart, newEnd, newColumn.Value);
@@ -969,7 +958,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this.timeRangeSelectedPostBack = function(start, end, resource, data) {
+        this.timeRangeSelectedPostBack = function (start, end, resource, data) {
 
             var range = {};
             range.start = start;
@@ -978,7 +967,7 @@ if (typeof DayPilot.Global === 'undefined') {
             this._postBack2('TimeRangeSelected', data, range);
         };
 
-        this.timeRangeSelectedCallBack = function(start, end, resource, data) {
+        this.timeRangeSelectedCallBack = function (start, end, resource, data) {
 
             var range = {};
             range.start = start;
@@ -997,12 +986,12 @@ if (typeof DayPilot.Global === 'undefined') {
                 var args = {};
                 args.start = start;
                 args.end = end;
-                args.preventDefault = function() {
+                args.preventDefault = function () {
                     this.preventDefault.value = true;
                 };
 
                 if (typeof calendar.onTimeRangeSelect === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onTimeRangeSelect(args);
                     });
                     if (args.preventDefault.value) {
@@ -1021,12 +1010,11 @@ if (typeof DayPilot.Global === 'undefined') {
                 }
 
                 if (typeof calendar.onTimeRangeSelected === 'function') {
-                    calendar._angular.apply(function() {
+                    calendar._angular.apply(function () {
                         calendar.onTimeRangeSelected(args);
                     });
                 }
-            }
-            else {
+            } else {
                 switch (calendar.timeRangeSelectedHandling) {
                     case 'PostBack':
                         calendar.timeRangeSelectedPostBack(start, end);
@@ -1041,7 +1029,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._onCellMousedown = function(ev) {
+        this._onCellMousedown = function (ev) {
 
             if (DayPilotCalendar.selecting) {
                 return;
@@ -1052,7 +1040,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
 
             var button = (window.event) ? window.event.button : ev.which;
-            if (button !== 1 && button !== 0) {  // Khtml says first button is 0
+            if (button !== 1 && button !== 0) { // Khtml says first button is 0
                 return;
             }
 
@@ -1075,11 +1063,11 @@ if (typeof DayPilot.Global === 'undefined') {
             return false;
         };
 
-        this._activateSelection = function() {
+        this._activateSelection = function () {
             var selection = this.getSelection();
 
             // color them
-            for(var j = 0; j < DayPilotCalendar.selectedCells.length; j++) {
+            for (var j = 0; j < DayPilotCalendar.selectedCells.length; j++) {
                 var cell = DayPilotCalendar.selectedCells[j];
                 if (cell && !cell.selected) {
                     var div = document.createElement("div");
@@ -1093,7 +1081,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._mousemove = function(ev) {
+        this._mousemove = function (ev) {
 
             if (typeof (DayPilotCalendar) === 'undefined') {
                 return;
@@ -1118,8 +1106,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 DayPilotCalendar.selectedCells = DayPilotCalendar.getCellsBelow(this);
                 DayPilotCalendar.topSelectedCell = DayPilotCalendar.selectedCells[0];
                 DayPilotCalendar.bottomSelectedCell = DayPilotCalendar.firstSelected;
-            }
-            else {
+            } else {
                 DayPilotCalendar.selectedCells = DayPilotCalendar.getCellsAbove(this);
                 DayPilotCalendar.topSelectedCell = DayPilotCalendar.firstSelected;
                 DayPilotCalendar.bottomSelectedCell = DayPilotCalendar.selectedCells[0];
@@ -1128,14 +1115,14 @@ if (typeof DayPilot.Global === 'undefined') {
             calendar._activateSelection();
         };
 
-        this.getSelection = function() {
-                var start = DayPilotCalendar.topSelectedCell.start;
-                var end = DayPilotCalendar.bottomSelectedCell.end;
+        this.getSelection = function () {
+            var start = DayPilotCalendar.topSelectedCell.start;
+            var end = DayPilotCalendar.bottomSelectedCell.end;
 
-                return new DayPilot.Selection(start, end, null, calendar);
+            return new DayPilot.Selection(start, end, null, calendar);
         };
 
-        this._mouseup = function (ev){
+        this._mouseup = function (ev) {
             /*
             if (DayPilotCalendar.selecting && DayPilotCalendar.topSelectedCell !== null) {
                 DayPilotCalendar.selecting = false;
@@ -1153,7 +1140,7 @@ if (typeof DayPilot.Global === 'undefined') {
             */
         };
 
-        this._prepareColumns = function() {
+        this._prepareColumns = function () {
             this.columns = this._createDaysViewColumns();
 
             for (var i = 0; i < this.columns.length; i++) {
@@ -1161,10 +1148,10 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._activateColumn = function(column) {
+        this._activateColumn = function (column) {
             column.Start = new DayPilot.Date(column.Start);
 
-            column.putIntoBlock = function(ep) {
+            column.putIntoBlock = function (ep) {
 
                 for (var i = 0; i < this.blocks.length; i++) {
                     var block = this.blocks[i];
@@ -1181,7 +1168,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 block.lines = [];
                 block.events = [];
 
-                block.overlapsWith = function(start, width) {
+                block.overlapsWith = function (start, width) {
                     var end = start + width - 1;
 
                     if (!(end < this.min || start > this.max - 1)) {
@@ -1202,7 +1189,7 @@ if (typeof DayPilot.Global === 'undefined') {
                     }
 
                     var line = [];
-                    line.isFree = function(start, width) {
+                    line.isFree = function (start, width) {
                         var end = start + width - 1;
                         var max = this.length;
 
@@ -1234,7 +1221,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
             };
 
-            column.putIntoLine = function(ep) {
+            column.putIntoLine = function (ep) {
                 var thisCol = this;
 
                 for (var i = 0; i < this.lines.length; i++) {
@@ -1246,7 +1233,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 }
 
                 var line = [];
-                line.isFree = function(start, width) {
+                line.isFree = function (start, width) {
                     var end = start + width - 1;
                     var max = this.length;
 
@@ -1269,7 +1256,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this._createDaysViewColumns = function() {
+        this._createDaysViewColumns = function () {
             var columns = [];
 
             var start = this.startDate.getDatePart();
@@ -1311,27 +1298,26 @@ if (typeof DayPilot.Global === 'undefined') {
             return columns;
         };
 
-        this.visibleStart = function() {
+        this.visibleStart = function () {
             return this.columns[0].Start;
         };
 
-        this.visibleEnd = function() {
+        this.visibleEnd = function () {
             var max = this.columns.length - 1;
             return this.columns[max].Start.addDays(1);
         };
 
 
-        this._prefixCssClass = function(part) {
+        this._prefixCssClass = function (part) {
             var prefix = this.theme || this.cssClassPrefix;
             if (prefix) {
                 return prefix + part;
-            }
-            else {
+            } else {
                 return "";
             }
         };
 
-        this._deleteEvents = function() {
+        this._deleteEvents = function () {
 
             if (this.elements.events) {
 
@@ -1368,7 +1354,7 @@ if (typeof DayPilot.Global === 'undefined') {
             this.elements.events = [];
         };
 
-        this._drawEvent = function(e) {
+        this._drawEvent = function (e) {
             /*
 
             supported e.data properties:
@@ -1423,7 +1409,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
             div.onclick = this._eventClickDispatch;
 
-            div.onmouseout = function(ev) {
+            div.onmouseout = function (ev) {
                 if (div.deleteIcon) {
                     div.deleteIcon.style.display = "none";
                 }
@@ -1434,7 +1420,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 var resizeMargin = 5;
                 var moveMargin = calendar.eventHeaderVisible ? (calendar.eventHeaderHeight) : 10;
 
-                if (typeof(DayPilotCalendar) === 'undefined') {
+                if (typeof (DayPilotCalendar) === 'undefined') {
                     return;
                 }
 
@@ -1457,21 +1443,17 @@ if (typeof DayPilot.Global === 'undefined') {
                 if (offset.y <= moveMargin && calendar.eventResizeHandling !== 'Disabled') {
                     this.style.cursor = "n-resize";
                     this.dpBorder = 'top';
-                }
-                else if (this.offsetHeight - offset.y <= resizeMargin && calendar.eventResizeHandling !== 'Disabled') {
+                } else if (this.offsetHeight - offset.y <= resizeMargin && calendar.eventResizeHandling !== 'Disabled') {
                     if (isLastPart) {
                         this.style.cursor = "s-resize";
                         this.dpBorder = 'bottom';
-                    }
-                    else {
+                    } else {
                         this.style.cursor = 'not-allowed';
                     }
-                }
-                else if (!DayPilotCalendar.resizing && !DayPilotCalendar.moving) {
+                } else if (!DayPilotCalendar.resizing && !DayPilotCalendar.moving) {
                     if (calendar.eventClickHandling !== 'Disabled') {
                         this.style.cursor = 'pointer';
-                    }
-                    else {
+                    } else {
                         this.style.cursor = 'default';
                     }
                 }
@@ -1491,8 +1473,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
                     calendar.nav.top.style.cursor = this.style.cursor;
 
-                }
-                else if (button === 1 && calendar.eventMoveHandling !== 'Disabled') {
+                } else if (button === 1 && calendar.eventMoveHandling !== 'Disabled') {
                     DayPilotCalendar.moving = this;
                     DayPilotCalendar.moving.event = this.event;
                     var helper = DayPilotCalendar.moving.helper = {};
@@ -1503,8 +1484,7 @@ if (typeof DayPilot.Global === 'undefined') {
                     var offset = DayPilot.mo3(this, ev);
                     if (offset) {
                         DayPilotCalendar.moveOffsetY = offset.y;
-                    }
-                    else {
+                    } else {
                         DayPilotCalendar.moveOffsetY = 0;
                     }
 
@@ -1541,7 +1521,7 @@ if (typeof DayPilot.Global === 'undefined') {
             // TODO
             if (e.client.barVisible()) {
                 var height = e.part.height - 2;
-                var barTop =  100 * e.part.barTop / height; // %
+                var barTop = 100 * e.part.barTop / height; // %
                 var barHeight = Math.ceil(100 * e.part.barHeight / height); // %
 
                 var bar = document.createElement("div");
@@ -1559,8 +1539,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 barInner.style.top = barTop + "%";
                 if (0 < barHeight && barHeight <= 1) {
                     barInner.style.height = "1px";
-                }
-                else {
+                } else {
                     barInner.style.height = barHeight + "%";
                 }
 
@@ -1580,7 +1559,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 del.style.width = "17px";
                 del.style.height = "17px";
                 del.className = calendar._prefixCssClass("_event_delete");
-                del.onclick = function(ev) {
+                del.onclick = function (ev) {
                     var e = this.parentNode.event;
                     if (e) {
                         calendar._eventDeleteDispatch(e);
@@ -1604,7 +1583,7 @@ if (typeof DayPilot.Global === 'undefined') {
             calendar.elements.events.push(div);
         };
 
-        this._makeChildrenUnselectable = function(el) {
+        this._makeChildrenUnselectable = function (el) {
             var c = (el && el.childNodes) ? el.childNodes.length : 0;
             for (var i = 0; i < c; i++) {
                 try {
@@ -1613,13 +1592,11 @@ if (typeof DayPilot.Global === 'undefined') {
                         child.unselectable = 'on';
                         this._makeChildrenUnselectable(child);
                     }
-                }
-                catch (e) {
-                }
+                } catch (e) {}
             }
         };
 
-        this._drawEvents = function() {
+        this._drawEvents = function () {
 
             //var start = new Date();
 
@@ -1634,7 +1611,7 @@ if (typeof DayPilot.Global === 'undefined') {
                     for (var j = 0; j < block.lines.length; j++) {
                         var line = block.lines[j];
 
-                        for(var k = 0; k < line.length; k++) {
+                        for (var k = 0; k < line.length; k++) {
                             var e = line[k];
 
                             e.part.width = 100 / block.lines.length;
@@ -1655,15 +1632,14 @@ if (typeof DayPilot.Global === 'undefined') {
             //var diff = end.getTime() - start.getTime();
         };
 
-        this._drawTop = function() {
+        this._drawTop = function () {
 
             //this.nav.top = document.getElementById(this.id);
             this.nav.top.innerHTML = '';
 
             if (this._cssOnly) {
                 DayPilot.Util.addClass(this.nav.top, this._prefixCssClass("_main"));
-            }
-            else {
+            } else {
                 this.nav.top.style.lineHeight = "1.2";
                 this.nav.top.style.textAlign = "left";
             }
@@ -1686,19 +1662,17 @@ if (typeof DayPilot.Global === 'undefined') {
 
             if (this.heightSpec === 'BusinessHours') {
                 this.nav.scroll.style.overflow = "auto";
-            }
-            else
-            {
+            } else {
                 this.nav.scroll.style.overflow = "hidden";
             }
 
             this.nav.scroll.style.position = "relative";
 
             if (!this._cssOnly) {
-/*
-                this.nav.scroll.style.border = "1px solid " + this.borderColor;
-                this.nav.scroll.style.backgroundColor = this.hourNameBackColor;
-*/
+                /*
+                                this.nav.scroll.style.border = "1px solid " + this.borderColor;
+                                this.nav.scroll.style.backgroundColor = this.hourNameBackColor;
+                */
             }
 
             var header = this._drawTopHeaderDiv();
@@ -1736,7 +1710,7 @@ if (typeof DayPilot.Global === 'undefined') {
         };
 
         // used during full update
-        this._drawHourTable = function() {
+        this._drawHourTable = function () {
             // clear old hour table
             if (!this.fasterDispose) DayPilot.pu(this.nav.hourTable);
             this.nav.scrollable.rows[0].cells[0].innerHTML = '';
@@ -1745,7 +1719,7 @@ if (typeof DayPilot.Global === 'undefined') {
         };
 
         // used during initial load only
-        this._drawScrollable = function() {
+        this._drawScrollable = function () {
             var zoom = document.createElement("div");
             zoom.style.zoom = 1;
             zoom.style.position = 'relative';
@@ -1778,8 +1752,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
             if (!this._cssOnly) {
                 c.appendChild(this._createEventsAndCells());
-            }
-            else {
+            } else {
                 var wrap = document.createElement("div");
                 wrap.style.position = "relative";
                 c.appendChild(wrap);
@@ -1795,7 +1768,7 @@ if (typeof DayPilot.Global === 'undefined') {
             return zoom;
         };
 
-        this._createEventsAndCells = function() {
+        this._createEventsAndCells = function () {
             var table = document.createElement("table");
 
             table.cellPadding = "0";
@@ -1814,7 +1787,7 @@ if (typeof DayPilot.Global === 'undefined') {
             return table;
         };
 
-        this._createEventsTable = function() {
+        this._createEventsTable = function () {
             var table = document.createElement("table");
 
             //table.style.position = "absolute";
@@ -1869,20 +1842,22 @@ if (typeof DayPilot.Global === 'undefined') {
             return table;
         };
 
-        this._createHourTable = function() {
+        this._createHourTable = function () {
             var table = document.createElement("table");
             table.cellSpacing = "0";
             table.cellPadding = "0";
             table.border = "0";
             table.style.border = '0px none';
             table.style.width = this.hourWidth + "px";
-            table.oncontextmenu = function() { return false; };
+            table.oncontextmenu = function () {
+                return false;
+            };
 
             var extraRow = this._cssOnly ? 0 : 1;
 
             if (extraRow) {
                 var r = table.insertRow(-1);
-                r.style.height = "1px";  // maybe has no effect
+                r.style.height = "1px"; // maybe has no effect
                 r.style.backgroundColor = "white";
 
                 var c = r.insertCell(-1);
@@ -1899,7 +1874,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this._createHourRow = function(table, i) {
+        this._createHourRow = function (table, i) {
             var height = (this.cellHeight * 2);
 
             var r = table.insertRow(-1);
@@ -1929,25 +1904,24 @@ if (typeof DayPilot.Global === 'undefined') {
             //block.style.display = "block";
             if (this._cssOnly) {
                 block.className = this._prefixCssClass("_rowheader_inner");
-            }
-            else {
-/*
-                block.style.borderBottom = "1px solid " + this.hourNameBorderColor;
-                block.style.textAlign = "right";
-*/
+            } else {
+                /*
+                                block.style.borderBottom = "1px solid " + this.hourNameBorderColor;
+                                block.style.textAlign = "right";
+                */
             }
             block.style.height = (height - 1) + "px";
             block.unselectable = "on";
 
             var text = document.createElement("div");
-/*
-            if (!this._cssOnly) {
-                text.style.padding = "2px";
-                text.style.fontFamily = this.hourFontFamily;
-                text.style.fontSize = this.hourFontSize;
-                text.style.color = this.hourFontColor;
-            }
-*/
+            /*
+                        if (!this._cssOnly) {
+                            text.style.padding = "2px";
+                            text.style.fontFamily = this.hourFontFamily;
+                            text.style.fontSize = this.hourFontSize;
+                            text.style.color = this.hourFontColor;
+                        }
+            */
             text.unselectable = "on";
 
             var start = this.startDate.addHours(i);
@@ -1969,8 +1943,7 @@ if (typeof DayPilot.Global === 'undefined') {
             if (!this._cssOnly) {
                 span.style.fontSize = "10px";
                 span.style.verticalAlign = "super";
-            }
-            else {
+            } else {
                 span.className = this._prefixCssClass("_rowheader_minutes");
             }
 
@@ -1979,19 +1952,16 @@ if (typeof DayPilot.Global === 'undefined') {
             if (timeFormat === "Clock12Hours") {
                 if (am) {
                     sup = "AM";
-                }
-                else {
+                } else {
                     sup = "PM";
                 }
-            }
-            else {
+            } else {
                 sup = "00";
             }
 
             if (!this._cssOnly) {
                 span.innerHTML = "&nbsp;" + sup;
-            }
-            else {
+            } else {
                 span.innerHTML = sup;
             }
 
@@ -2004,7 +1974,7 @@ if (typeof DayPilot.Global === 'undefined') {
             c.appendChild(frame);
         };
 
-        this._getScrollableHeight = function() {
+        this._getScrollableHeight = function () {
             switch (this.heightSpec) {
                 case "Full":
                     return (24 * 2 * this.cellHeight);
@@ -2020,7 +1990,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._updateCorner = function() {
+        this._updateCorner = function () {
             var parent = calendar.nav.corner ? calendar.nav.corner.parentNode : null;
             if (!parent) {
                 return;
@@ -2034,7 +2004,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this._drawTopHeaderDiv = function() {
+        this._drawTopHeaderDiv = function () {
             var header = document.createElement("div");
             if (!this._cssOnly) {
                 header.style.borderLeft = "1px solid " + this.borderColor;
@@ -2069,7 +2039,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 // c.style.backgroundColor = this.hourNameBackColor;
             }
             c.valign = "top";
-            c.style.position = 'relative';  // ref point
+            c.style.position = 'relative'; // ref point
             c.style.padding = '0px';
             c.style.border = '0px none';
 
@@ -2085,7 +2055,9 @@ if (typeof DayPilot.Global === 'undefined') {
                 this.nav.header.style.borderLeft = "1px solid " + this.borderColor;
                 this.nav.header.style.borderTop = "1px solid " + this.borderColor;
             }
-            this.nav.header.oncontextmenu = function() { return false; };
+            this.nav.header.oncontextmenu = function () {
+                return false;
+            };
 
             var scrollbar = this.nav.scroll.style.overflow !== 'hidden';
             if (!this._cssOnly) {
@@ -2101,14 +2073,14 @@ if (typeof DayPilot.Global === 'undefined') {
                 c.unselectable = "on";
 
                 if (!this._cssOnly) {
-/*                    c.style.backgroundColor = this.hourNameBackColor;
-                    c.style.borderTop = "1px solid " + this.borderColor;
-                    c.style.borderBottom = "0px none";
-                    c.style.borderLeft = "0px none";
-                    c.style.borderRight = "0px none";
-                    c.style.padding = '0px';
-                    c.style.verticalAlign = 'top';
-                    c.innerHTML = "&nbsp;";*/
+                    /*                    c.style.backgroundColor = this.hourNameBackColor;
+                                        c.style.borderTop = "1px solid " + this.borderColor;
+                                        c.style.borderBottom = "0px none";
+                                        c.style.borderLeft = "0px none";
+                                        c.style.borderRight = "0px none";
+                                        c.style.padding = '0px';
+                                        c.style.verticalAlign = 'top';
+                                        c.innerHTML = "&nbsp;";*/
                 }
 
                 var inside = document.createElement("div");
@@ -2116,11 +2088,10 @@ if (typeof DayPilot.Global === 'undefined') {
                 inside.style.position = "relative";
                 inside.style.width = "16px";
                 if (!this._cssOnly) {
-/*                    inside.style.lineHeight = "1px";
-                    inside.style.fontSize = "1px";
-                    inside.style.height = "1px";*/
-                }
-                else {
+                    /*                    inside.style.lineHeight = "1px";
+                                        inside.style.fontSize = "1px";
+                                        inside.style.height = "1px";*/
+                } else {
                     inside.style.height = this.headerHeight + "px";
                     inside.className = this._prefixCssClass("_cornerright");
 
@@ -2140,25 +2111,26 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this._drawCorner = function() {
+        this._drawCorner = function () {
             var wrap = document.createElement("div");
             wrap.style.position = 'relative';
 
             if (this._cssOnly) {
                 wrap.className = this._prefixCssClass("_corner");
-            }
-            else {
-/*
-                wrap.style.backgroundColor = this.hourNameBackColor;
-                wrap.style.fontFamily = this.headerFontFamily;
-                wrap.style.fontSize = this.headerFontSize;
-                wrap.style.color = this.headerFontColor;
-                wrap.style.borderTop = "1px solid " + this.borderColor;
-*/
+            } else {
+                /*
+                                wrap.style.backgroundColor = this.hourNameBackColor;
+                                wrap.style.fontFamily = this.headerFontFamily;
+                                wrap.style.fontSize = this.headerFontSize;
+                                wrap.style.color = this.headerFontColor;
+                                wrap.style.borderTop = "1px solid " + this.borderColor;
+                */
             }
             wrap.style.width = this.hourWidth + "px";
             wrap.style.height = this.headerHeight + "px";
-            wrap.oncontextmenu = function() { return false; };
+            wrap.oncontextmenu = function () {
+                return false;
+            };
 
             var corner = document.createElement("div");
             corner.unselectable = "on";
@@ -2172,7 +2144,7 @@ if (typeof DayPilot.Global === 'undefined') {
             return wrap;
         };
 
-        this._disposeMain = function()  {
+        this._disposeMain = function () {
             var table = this.nav.main;
             table.root = null;
             table.onmouseup = null;
@@ -2194,7 +2166,7 @@ if (typeof DayPilot.Global === 'undefined') {
         };
 
         // draw time cells
-        this._drawMain = function() {
+        this._drawMain = function () {
 
             //DayPilotCalendar.selectedCells = [];
             var cols = [];
@@ -2324,11 +2296,11 @@ if (typeof DayPilot.Global === 'undefined') {
 
                     c.onmousedown = this._onCellMousedown;
                     c.onmousemove = this._mousemove;
-                    c.onmouseup = function() {
+                    c.onmouseup = function () {
                         return false;
                     };
 
-                    c.onclick = function() {
+                    c.onclick = function () {
                         return false;
                     };
 
@@ -2340,11 +2312,11 @@ if (typeof DayPilot.Global === 'undefined') {
                         c.style.verticalAlign = 'top';
 
                         if (!this._cssOnly) {
-/*
-                            if (j !== cl - 1) {
-                                c.style.borderRight = '1px solid ' + calendar.cellBorderColor;
-                            }
-*/
+                            /*
+                                                        if (j !== cl - 1) {
+                                                            c.style.borderRight = '1px solid ' + calendar.cellBorderColor;
+                                                        }
+                            */
                         }
 
                         c.style.height = calendar.cellHeight + 'px';
@@ -2352,32 +2324,31 @@ if (typeof DayPilot.Global === 'undefined') {
                         c.unselectable = 'on';
 
                         if (!this._cssOnly) {
-/*                            var div = document.createElement("div");
-                            div.unselectable = 'on';
-                            div.style.fontSize = '1px';
-                            div.style.height = '0px';
+                            /*                            var div = document.createElement("div");
+                                                        div.unselectable = 'on';
+                                                        div.style.fontSize = '1px';
+                                                        div.style.height = '0px';
 
-                            // hack, no multiplying
-                            var endHour = (c.end.getMinutes() + c.end.getSeconds() + c.end.getMilliseconds()) > 0;
+                                                        // hack, no multiplying
+                                                        var endHour = (c.end.getMinutes() + c.end.getSeconds() + c.end.getMilliseconds()) > 0;
 
-                            if (endHour) {
-                                if (calendar.hourHalfBorderColor !== '') {
-                                    div.style.borderBottom = '1px solid ' + calendar.hourHalfBorderColor; // HourHalfBorderColor
-                                }
-                            }
-                            else {
-                                if (calendar.hourBorderColor !== '') {
-                                    div.style.borderBottom = '1px solid ' + calendar.hourBorderColor; // HourBorderColor
-                                }
-                            }
+                                                        if (endHour) {
+                                                            if (calendar.hourHalfBorderColor !== '') {
+                                                                div.style.borderBottom = '1px solid ' + calendar.hourHalfBorderColor; // HourHalfBorderColor
+                                                            }
+                                                        }
+                                                        else {
+                                                            if (calendar.hourBorderColor !== '') {
+                                                                div.style.borderBottom = '1px solid ' + calendar.hourBorderColor; // HourBorderColor
+                                                            }
+                                                        }
 
-                            var content = document.createElement("div");
-                            content.style.height = (calendar.cellHeight - 1) + "px";
-                            content.style.overflow = 'hidden';
-                            content.unselectable = 'on';
-                            c.appendChild(content);*/
-                        }
-                        else {
+                                                        var content = document.createElement("div");
+                                                        content.style.height = (calendar.cellHeight - 1) + "px";
+                                                        content.style.overflow = 'hidden';
+                                                        content.unselectable = 'on';
+                                                        c.appendChild(content);*/
+                        } else {
                             var div = document.createElement("div");
                             div.unselectable = 'on';
                             div.style.height = calendar.cellHeight + "px";
@@ -2413,7 +2384,7 @@ if (typeof DayPilot.Global === 'undefined') {
             //var scroll = calendar.nav.scroll;
 
 
-            calendar.nav.scrollable.onmousemove = function(ev) {
+            calendar.nav.scrollable.onmousemove = function (ev) {
                 ev = ev || window.event;
 
                 var ref = calendar.nav.scrollable;
@@ -2443,8 +2414,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
                         // DayPilotCalendar.resizingShadow.style.height = (newHeight - 4) + 'px';
                         DayPilotCalendar.resizingShadow.style.height = (newHeight) + 'px';
-                    }
-                    else if (DayPilotCalendar.resizing.dpBorder === 'top') {
+                    } else if (DayPilotCalendar.resizing.dpBorder === 'top') {
                         var newTop = Math.floor(((DayPilotCalendar.originalTop + delta - _startOffset) + _step / 2) / _step) * _step + _startOffset;
 
                         if (newTop < _startOffset) {
@@ -2460,16 +2430,13 @@ if (typeof DayPilot.Global === 'undefined') {
 
                         if (newHeight < _step) {
                             newHeight = _step;
-                        }
-                        else {
+                        } else {
                             DayPilotCalendar.resizingShadow.style.top = newTop + 'px';
                         }
 
                         DayPilotCalendar.resizingShadow.style.height = (newHeight) + 'px';
                     }
-           }
-
-                else if (DayPilotCalendar.moving) {
+                } else if (DayPilotCalendar.moving) {
 
                     if (!DayPilotCalendar.movingShadow) {
                         // fixes the ie8 bug (incorrect offsetX and offsetY causes flickering during move if there are inline elements in the event
@@ -2500,7 +2467,7 @@ if (typeof DayPilot.Global === 'undefined') {
                     var main = calendar.nav.events;
                     var max = calendar.nav.main.clientHeight;
 
-                    var height = parseInt(DayPilotCalendar.movingShadow.style.height);  // DayPilotCalendar.moving.data.height
+                    var height = parseInt(DayPilotCalendar.movingShadow.style.height); // DayPilotCalendar.moving.data.height
                     if (newTop + height > max) {
                         newTop = max - height;
                     }
@@ -2525,29 +2492,26 @@ if (typeof DayPilot.Global === 'undefined') {
             calendar.nav.scrollable.style.display = '';
         };
 
-        this._isBusinessCell = function(start, end) {
-            if (this.businessBeginsHour < this.businessEndsHour)
-            {
+        this._isBusinessCell = function (start, end) {
+            if (this.businessBeginsHour < this.businessEndsHour) {
                 return !(start.getHours() < this.businessBeginsHour || start.getHours() >= this.businessEndsHour || start.getDayOfWeek() === 6 || start.getDayOfWeek() === 0);
             }
 
-            if (start.getHours() >= this.businessBeginsHour)
-            {
+            if (start.getHours() >= this.businessBeginsHour) {
                 return true;
             }
 
-            if (start.getHours() < this.businessEndsHour)
-            {
+            if (start.getHours() < this.businessEndsHour) {
                 return true;
             }
 
             return false;
         };
 
-        this._disposeHeader = function() {
+        this._disposeHeader = function () {
             var table = this.nav.header;
             if (table && table.rows) {
-                for(var y = 0; y < table.rows.length; y++) {
+                for (var y = 0; y < table.rows.length; y++) {
                     var r = table.rows[y];
                     for (var x = 0; x < r.cells.length; x++) {
                         var c = r.cells[x];
@@ -2560,7 +2524,7 @@ if (typeof DayPilot.Global === 'undefined') {
             if (!this.fasterDispose) DayPilot.pu(table);
         };
 
-        this._drawHeaderRow = function(create) {
+        this._drawHeaderRow = function (create) {
 
             // column headers
             var r = (create) ? this.nav.header.insertRow(-1) : this.nav.header.rows[0];
@@ -2590,16 +2554,15 @@ if (typeof DayPilot.Global === 'undefined') {
                     div.style.cursor = 'default';
                     div.style.position = 'relative';
                     if (!this._cssOnly) {
-/*
-                        div.style.fontFamily = this.headerFontFamily;
-                        div.style.fontSize = this.headerFontSize;
-                        div.style.color = this.headerFontColor;
-                        if (i !== len -1) { // last one
-                            div.style.borderRight = "1px solid " + this.borderColor;
-                        }
-*/
-                    }
-                    else {
+                        /*
+                                                div.style.fontFamily = this.headerFontFamily;
+                                                div.style.fontSize = this.headerFontSize;
+                                                div.style.color = this.headerFontColor;
+                                                if (i !== len -1) { // last one
+                                                    div.style.borderRight = "1px solid " + this.borderColor;
+                                                }
+                        */
+                    } else {
                         div.className = calendar._prefixCssClass('_colheader');
                     }
                     div.style.height = this.headerHeight + "px";
@@ -2611,8 +2574,7 @@ if (typeof DayPilot.Global === 'undefined') {
                         text.style.width = '100%';
                         text.style.padding = "2px";
                         div.style.textAlign = 'center';
-                    }
-                    else {
+                    } else {
                         text.className = calendar._prefixCssClass('_colheader_inner');
                     }
                     text.unselectable = 'on';
@@ -2626,14 +2588,14 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._widthUnit = function() {
+        this._widthUnit = function () {
             if (this.width && this.width.indexOf("px") !== -1) {
                 return "Pixel";
             }
             return "Percentage";
         };
 
-        this._drawHeader = function() {
+        this._drawHeader = function () {
 
             var header = this.nav.header;
             var create = true;
@@ -2664,7 +2626,7 @@ if (typeof DayPilot.Global === 'undefined') {
             this._drawHeaderRow(create);
         };
 
-        this.loadingStart = function() {
+        this.loadingStart = function () {
             if (this.loadingLabelVisible) {
                 this.nav.loading.innerHTML = this.loadingLabelText;
                 this.nav.loading.style.top = (this.headerHeight + 5) + "px";
@@ -2672,13 +2634,13 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this.commandCallBack = function(command, data) {
+        this.commandCallBack = function (command, data) {
             var params = {};
             params.command = command;
             this._callBack2('Command', data, params);
         };
 
-        this.loadingStop = function(msg) {
+        this.loadingStop = function (msg) {
             if (this.callbackTimeout) {
                 window.clearTimeout(this.callbackTimeout);
             }
@@ -2686,12 +2648,12 @@ if (typeof DayPilot.Global === 'undefined') {
             this.nav.loading.style.display = 'none';
         };
 
-        this._enableScrolling = function() {
+        this._enableScrolling = function () {
 
             var scrollDiv = this.nav.scroll;
 
             if (!scrollDiv.onscroll) {
-                scrollDiv.onscroll = function() {
+                scrollDiv.onscroll = function () {
                     calendar._saveScrollHour();
                 };
             }
@@ -2706,8 +2668,7 @@ if (typeof DayPilot.Global === 'undefined') {
             if (scrollpos === 'Auto') {
                 if (this.heightSpec === "BusinessHours") {
                     scrollpos = 2 * this.cellHeight * this.businessBeginsHour;
-                }
-                else {
+                } else {
                     scrollpos = 0;
                 }
             }
@@ -2724,20 +2685,19 @@ if (typeof DayPilot.Global === 'undefined') {
             alert("Error!\r\nResult: " + result + "\r\nContext:" + context);
         };
 
-        this._fixScrollHeader = function() {
+        this._fixScrollHeader = function () {
             var w = DayPilot.sw(this.nav.scroll);
             var d = this.nav.cornerRight;
             if (d && w > 0) {
                 if (this._cssOnly) {
                     d.style.width = w + 'px';
-                }
-                else {
+                } else {
                     d.style.width = (w - 3) + 'px';
                 }
             }
         };
 
-        this._registerGlobalHandlers = function() {
+        this._registerGlobalHandlers = function () {
             if (!DayPilotCalendar.globalHandlers) {
                 DayPilotCalendar.globalHandlers = true;
                 DayPilot.re(document, 'mouseup', DayPilotCalendar.gMouseUp);
@@ -2748,7 +2708,7 @@ if (typeof DayPilot.Global === 'undefined') {
         this.events = {};
         //this.events.list = [];
 
-        this.events.add = function(e) {
+        this.events.add = function (e) {
             e.calendar = calendar;
 
             if (!calendar.events.list) {
@@ -2760,98 +2720,98 @@ if (typeof DayPilot.Global === 'undefined') {
             calendar._angular.notify();
         };
 
-        this.events.update = function(e) {
+        this.events.update = function (e) {
             e.commit();
             calendar.update();
             calendar._angular.notify();
         };
 
-        this.events.remove = function(e) {
+        this.events.remove = function (e) {
             var index = DayPilot.indexOf(calendar.events.list, e.data);
             calendar.events.list.splice(index, 1);
             calendar.update();
             calendar._angular.notify();
         };
 
-      this.events.load = function(url, success, error) {
-        var onError = function(args) {
-          var largs = {};
-          largs.exception = args.exception;
-          largs.request = args.request;
+        this.events.load = function (url, success, error) {
+            var onError = function (args) {
+                var largs = {};
+                largs.exception = args.exception;
+                largs.request = args.request;
 
-          if (typeof error === 'function') {
-            error(largs);
-          }
-        };
-
-        var onSuccess = function(args) {
-          var r = args.request;
-          var data;
-
-          // it's supposed to be JSON
-          try {
-            data = JSON.parse(r.responseText);
-          }
-          catch (e) {
-            var fargs = {};
-            fargs.exception = e;
-            onError(fargs);
-            return;
-          }
-
-          if (DayPilot.isArray(data)) {
-            var sargs = {};
-            sargs.preventDefault = function() {
-              this.preventDefault.value = true;
+                if (typeof error === 'function') {
+                    error(largs);
+                }
             };
-            sargs.data = data;
-            if (typeof success === "function") {
-              success(sargs);
+
+            var onSuccess = function (args) {
+                var r = args.request;
+                var data;
+
+                // it's supposed to be JSON
+                try {
+                    data = JSON.parse(r.responseText);
+                } catch (e) {
+                    var fargs = {};
+                    fargs.exception = e;
+                    onError(fargs);
+                    return;
+                }
+
+                if (DayPilot.isArray(data)) {
+                    var sargs = {};
+                    sargs.preventDefault = function () {
+                        this.preventDefault.value = true;
+                    };
+                    sargs.data = data;
+                    if (typeof success === "function") {
+                        success(sargs);
+                    }
+
+                    if (sargs.preventDefault.value) {
+                        return;
+                    }
+
+                    calendar.events.list = data;
+                    if (calendar._initialized) {
+                        calendar.update();
+                    }
+                }
+            };
+
+            var usePost = calendar.eventsLoadMethod && calendar.eventsLoadMethod.toUpperCase() === "POST";
+
+            if (usePost) {
+                DayPilot.Http.ajax({
+                    "method": "POST",
+                    "data": {
+                        "start": calendar.visibleStart().toString(),
+                        "end": calendar.visibleEnd().toString()
+                    },
+                    "url": url,
+                    "success": onSuccess,
+                    "error": onError
+                });
+            } else {
+                var fullUrl = url;
+                var queryString = "start=" + calendar.visibleStart().toString() + "&end=" + calendar.visibleEnd().toString();
+                if (fullUrl.indexOf("?") > -1) {
+                    fullUrl += "&" + queryString;
+                } else {
+                    fullUrl += "?" + queryString;
+                }
+
+                DayPilot.Http.ajax({
+                    "method": "GET",
+                    "url": fullUrl,
+                    "success": onSuccess,
+                    "error": onError
+                });
             }
 
-            if (sargs.preventDefault.value) {
-              return;
-            }
-
-            calendar.events.list = data;
-            if (calendar._initialized) {
-              calendar.update();
-            }
-          }
         };
 
-        var usePost = calendar.eventsLoadMethod && calendar.eventsLoadMethod.toUpperCase() === "POST";
-
-        if (usePost) {
-          DayPilot.Http.ajax({
-            "method": "POST",
-            "data": { "start": calendar.visibleStart().toString(), "end": calendar.visibleEnd().toString()},
-            "url": url,
-            "success": onSuccess,
-            "error": onError
-          });
-        }
-        else {
-          var fullUrl = url;
-          var queryString = "start=" + calendar.visibleStart().toString() + "&end=" + calendar.visibleEnd().toString();
-          if (fullUrl.indexOf("?") > -1) {
-            fullUrl += "&" + queryString;
-          }
-          else {
-            fullUrl += "?" + queryString;
-          }
-
-          DayPilot.Http.ajax({
-            "method": "GET",
-            "url": fullUrl,
-            "success": onSuccess,
-            "error": onError
-          });
-        }
-
-      };
-
-        this.update = function() {
+        this.update = function () {
             calendar._resetCssOnly();
 
             calendar._prepareVariables();
@@ -2883,23 +2843,20 @@ if (typeof DayPilot.Global === 'undefined') {
 
             if (this.visible) {
                 this.show();
-            }
-            else {
+            } else {
                 this.hide();
             }
         };
 
-        this._loadTop = function() {
+        this._loadTop = function () {
             if (this.id && this.id.tagName) {
                 this.nav.top = this.id;
-            }
-            else if (typeof this.id === "string") {
+            } else if (typeof this.id === "string") {
                 this.nav.top = document.getElementById(this.id);
                 if (!this.nav.top) {
                     throw "DayPilot.Calendar: The placeholder element not found: '" + id + "'.";
                 }
-            }
-            else {
+            } else {
                 throw "DayPilot.Calendar() constructor requires the target element or its ID as a parameter";
             }
         };
@@ -2907,7 +2864,7 @@ if (typeof DayPilot.Global === 'undefined') {
         this._cache = {};
         this._cache.events = [];
 
-        this._doBeforeEventRender = function(i) {
+        this._doBeforeEventRender = function (i) {
             var cache = this._cache.events;
             var data = this.events.list[i];
             var evc = {};
@@ -2927,7 +2884,7 @@ if (typeof DayPilot.Global === 'undefined') {
 
         };
 
-        this._loadEvents = function() {
+        this._loadEvents = function () {
 
             var events = this.events.list;
 
@@ -2961,7 +2918,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 }
             }
 
-            for(var i = 0; i < this.columns.length; i++) {
+            for (var i = 0; i < this.columns.length; i++) {
 
                 var scroll = {};
                 scroll.minEnd = 1000000;
@@ -2991,7 +2948,7 @@ if (typeof DayPilot.Global === 'undefined') {
                     var startTicks = start.getTime();
                     var endTicks = end.getTime();
 
-                    if (endTicks < startTicks) {  // skip invalid events
+                    if (endTicks < startTicks) { // skip invalid events
                         continue;
                     }
 
@@ -3024,8 +2981,8 @@ if (typeof DayPilot.Global === 'undefined') {
                         }*/
                         ep.part.height = Math.max(Math.ceil(boxBottom / this.cellHeight) * this.cellHeight - ep.part.top, this.cellHeight - 1) + 1;
 
-                        ep.part.barTop = Math.max(top - ep.part.top - 1, 0);  // minimum 0
-                        ep.part.barHeight = Math.max(bottom - top - 2, 1);  // minimum 1
+                        ep.part.barTop = Math.max(top - ep.part.top - 1, 0); // minimum 0
+                        ep.part.barHeight = Math.max(bottom - top - 2, 1); // minimum 1
 
                         var start = ep.part.top;
                         var end = ep.part.top + ep.part.height;
@@ -3072,7 +3029,7 @@ if (typeof DayPilot.Global === 'undefined') {
                 for (var j = 0; j < col.blocks.length; j++) {
                     var block = col.blocks[j];
                     block.events.sort(this._eventComparer);
-                    for (var k = 0; k < block.events.length; k++ ) {
+                    for (var k = 0; k < block.events.length; k++) {
                         var e = block.events[k];
                         block.putIntoLine(e);
                     }
@@ -3080,7 +3037,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._eventComparer = function(a, b) {
+        this._eventComparer = function (a, b) {
             if (!a || !b || !a.start || !b.start) {
                 return 0; // no sorting, invalid arguments
             }
@@ -3094,7 +3051,7 @@ if (typeof DayPilot.Global === 'undefined') {
             return byEnd;
         };
 
-        this.debug = function(msg, append) {
+        this.debug = function (msg, append) {
             if (!this.debuggingEnabled) {
                 return;
             }
@@ -3109,7 +3066,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this.getPixels = function(date, start) {
+        this.getPixels = function (date, start) {
             if (!start) start = this.startDate;
 
             var startTicks = start.getTime();
@@ -3144,21 +3101,21 @@ if (typeof DayPilot.Global === 'undefined') {
             return result;
         };
 
-        this._ticksToPixels = function(ticks) {
-            return Math.floor( (this.cellHeight * ticks) / (1000 * 60 * 30) );
+        this._ticksToPixels = function (ticks) {
+            return Math.floor((this.cellHeight * ticks) / (1000 * 60 * 30));
         };
 
-        this._prepareVariables = function() {
+        this._prepareVariables = function () {
             this.startDate = new DayPilot.Date(this.startDate).getDatePart();
         };
 
-        this._updateHeaderHeight = function() {
+        this._updateHeaderHeight = function () {
             if (this.nav.corner) {
                 this.nav.corner.style.height = this.headerHeight + "px";
             }
         };
 
-        this._updateHeight = function() {
+        this._updateHeight = function () {
             var sh = this._getScrollableHeight();
             if (this.nav.scroll && sh > 0) {
                 this.nav.scroll.style.height = sh + "px";
@@ -3167,12 +3124,12 @@ if (typeof DayPilot.Global === 'undefined') {
 
         this._angular = {};
         this._angular.scope = null;
-        this._angular.notify = function() {
+        this._angular.notify = function () {
             if (calendar._angular.scope) {
                 calendar._angular.scope["$apply"]();
             }
         };
-        this._angular.apply = function(f) {
+        this._angular.apply = function (f) {
             // autoapply has been disabled
             f();
 
@@ -3186,24 +3143,22 @@ if (typeof DayPilot.Global === 'undefined') {
             */
         };
 
-        this._saveScrollHour = function() {
+        this._saveScrollHour = function () {
             var top = calendar.nav.scroll.scrollTop;
-            var pos = top / (2*calendar.cellHeight);
+            var pos = top / (2 * calendar.cellHeight);
             calendar._config.scrollHour = pos;
         };
 
-        this._restoreScrollHour = function() {
+        this._restoreScrollHour = function () {
             var scrollpos = 0;
             if (calendar._config.scrollHour) {
                 scrollpos = 2 * calendar.cellHeight * calendar._config.scrollHour;
                 //calendar._config.scrollHour = null;
-            }
-            else {
+            } else {
                 if (calendar.initScrollPos === 'Auto') {
                     if (this.heightSpec === "BusinessHours") {
                         scrollpos = 2 * this.cellHeight * this.businessBeginsHour;
-                    }
-                    else {
+                    } else {
                         scrollpos = 0;
                     }
                 }
@@ -3212,32 +3167,31 @@ if (typeof DayPilot.Global === 'undefined') {
             calendar.nav.scroll.scrollTop = scrollpos;
         };
 
-        this._loadFromServer = function() {
+        this._loadFromServer = function () {
             // make sure it has a place to ask
             if (this.backendUrl || typeof WebForm_DoCallback === 'function') {
                 return (typeof calendar.events.list === 'undefined') || (!calendar.events.list);
-            }
-            else {
+            } else {
                 return false;
             }
         };
 
-        this._show = function() {
+        this._show = function () {
             if (this.nav.top.style.visibility === 'hidden') {
                 this.nav.top.style.visibility = 'visible';
             }
         };
 
-        this.show = function() {
+        this.show = function () {
             calendar.visible = true;
             calendar.nav.top.style.display = '';
         };
 
-        this.hide = function() {
+        this.hide = function () {
             calendar.visible = false;
             calendar.nav.top.style.display = 'none';
         };
-        this._initShort = function() {
+        this._initShort = function () {
             this._prepareVariables();
             this._prepareColumns();
             this._drawTop();
@@ -3254,12 +3208,12 @@ if (typeof DayPilot.Global === 'undefined') {
 
         this._config = {};
 
-        this._saveConfig = function() {
+        this._saveConfig = function () {
             this._config.themes = [];
             this._config.themes.push(this.theme || this.cssClassPrefix);
         };
 
-        this._clearThemes = function() {
+        this._clearThemes = function () {
             var themes = this._config.themes;
             for (var i = 0; i < themes.length; i++) {
                 var theme = themes[i];
@@ -3268,7 +3222,7 @@ if (typeof DayPilot.Global === 'undefined') {
             this._config.themes = [];
         };
 
-        this._doAfterRender = function() {
+        this._doAfterRender = function () {
             this.afterRender(null, false);
             if (typeof this.onAfterRender === "function") {
                 var args = {};
@@ -3277,7 +3231,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._doInit = function() {
+        this._doInit = function () {
             if (typeof this.onInit === "function" && !this._onInitCalled) {
                 this._onInitCalled = true;
                 var args = {};
@@ -3285,23 +3239,23 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this._resetCssOnly = function() {
+        this._resetCssOnly = function () {
             if (!calendar._cssOnly) {
                 calendar._cssOnly = true;
                 window.console && window.console.log && window.console.log("DayPilot: cssOnly = false mode is not supported anymore.");
             }
         };
 
-        this._visible = function() {
+        this._visible = function () {
             var el = calendar.nav.top;
             return el.offsetWidth > 0 && el.offsetHeight > 0;
         };
 
-        this._waitForVisibility = function() {
+        this._waitForVisibility = function () {
             var visible = calendar._visible;
 
             if (!visible()) {
-                calendar._visibilityInterval = setInterval(function() {
+                calendar._visibilityInterval = setInterval(function () {
                     if (visible()) {
                         calendar._enableScrolling();
                         calendar._fixScrollHeader();
@@ -3311,7 +3265,7 @@ if (typeof DayPilot.Global === 'undefined') {
             }
         };
 
-        this.init = function() {
+        this.init = function () {
             this._loadTop();
 
             var loadFromServer = this._loadFromServer();
@@ -3356,10 +3310,10 @@ if (typeof DayPilot.Global === 'undefined') {
 
     };
 
-    DayPilotCalendar.Cell = function(start, end, column) {
+    DayPilotCalendar.Cell = function (start, end, column) {
         this.start = start;
         this.end = end;
-        this.column = function() {
+        this.column = function () {
 
         };
     };
@@ -3375,10 +3329,10 @@ if (typeof DayPilot.Global === 'undefined') {
 
     // jQuery plugin
     if (typeof jQuery !== 'undefined') {
-        (function( $ ){
-            $.fn.daypilotCalendar = function(options) {
+        (function ($) {
+            $.fn.daypilotCalendar = function (options) {
                 var first = null;
-                var j = this.each(function() {
+                var j = this.each(function () {
                     if (this.daypilot) { // already initialized
                         return;
                     };
@@ -3395,12 +3349,11 @@ if (typeof DayPilot.Global === 'undefined') {
                 });
                 if (this.length === 1) {
                     return first;
-                }
-                else {
+                } else {
                     return j;
                 }
             };
-        })( jQuery );
+        })(jQuery);
     }
 
     (function registerAngularModule() {
@@ -3411,8 +3364,8 @@ if (typeof DayPilot.Global === 'undefined') {
             return;
         }
 
-        app.directive("daypilotCalendar", ['$parse', function($parse) {
-//        app.directive("daypilotCalendar", function() {
+        app.directive("daypilotCalendar", ['$parse', function ($parse) {
+            //        app.directive("daypilotCalendar", function() {
             return {
                 "restrict": "E",
                 "template": "<div></div>",
@@ -3438,12 +3391,14 @@ if (typeof DayPilot.Global === 'undefined') {
 
                     // bind event handlers from attributes starting with "on"
                     for (var name in attrs) {
-                        if (name.indexOf("on") === 0) {  // event handler
-                            (function(name) {
-                                calendar[name] = function(args) {
+                        if (name.indexOf("on") === 0) { // event handler
+                            (function (name) {
+                                calendar[name] = function (args) {
                                     var f = $parse(attrs[name]);
-                                    scope["$apply"](function() {
-                                        f(scope, {"args": args});
+                                    scope["$apply"](function () {
+                                        f(scope, {
+                                            "args": args
+                                        });
                                     });
                                 };
                             })(name);
@@ -3464,7 +3419,7 @@ if (typeof DayPilot.Global === 'undefined') {
                         calendar._doInit();
                     }, true);
 
-                    watch.call(scope, events, function(value) {
+                    watch.call(scope, events, function (value) {
                         //var calendar = element.data("calendar");
                         calendar.events.list = value;
                         calendar.update();
