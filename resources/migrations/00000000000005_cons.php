@@ -15,14 +15,7 @@ class Cons extends AbstractMigration
      */
     public function up(): void
     {
-        $rows = [];
 
-        $rows[] = [
-            'id_day' => 1,
-            'date' => date("Y-m-d"),
-            'id_user_FK'=> 1,
-        ];
-        $this->table('day_consultation')->insert($rows)->save();
         $rows1[] = [
             'id_subject' => 1,
             'name'=> 'IAM',
@@ -31,12 +24,11 @@ class Cons extends AbstractMigration
         $this->table('subject')->insert($rows1)->save();
         $rows2[] = [
             'id_consultation' => 1,
-            'start'=> date("H:i"),
-            'end'=> date("H:i"),
+            'start'=>date("Y-m-d, H:i", mktime (11,30,11,04,16,2020)),
+            'end'=> date("Y-m-d, H:i", mktime (12,30,12,04,16,2020)),
             'name'=>'Andrzej',
             'surname'=>'Luszcz',
             'id_user_FK'=> 1,
-            'id_day_FK'=> 1,
             'id_subject_FK'=> 1,
         ];
         $this->table('consultation')->insert($rows2)->save();

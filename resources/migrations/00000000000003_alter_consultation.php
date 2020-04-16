@@ -29,12 +29,12 @@ $this->table('consultation', [
                     'limit' => MysqlAdapter::INT_REGULAR,
                     'identity' => 'enable',
                 ])
-                ->addColumn('start', 'time', [
-                    'null' => false,
+                ->addColumn('start', 'timestamp', [
+                    'null' => true,
                     'after' => 'id_consultation',
                 ])
-                ->addColumn('end', 'time', [
-                    'null' => false,
+                ->addColumn('end', 'timestamp', [
+                    'null' => true,
                     'after' => 'start',
                 ])
                 ->addColumn('name', 'string', [
@@ -56,11 +56,6 @@ $this->table('consultation', [
                     'limit' => MysqlAdapter::INT_REGULAR,
                     'after' => 'end',
                 ])
-                ->addColumn('id_day_FK', 'integer', [
-                    'null' => false,
-                    'limit' => MysqlAdapter::INT_REGULAR,
-                    'after' => 'id_user_FK',
-                ])
                 ->addColumn('id_subject_FK', 'integer', [
                     'null' => false,
                     'limit' => MysqlAdapter::INT_REGULAR,
@@ -68,8 +63,6 @@ $this->table('consultation', [
                 ])
                 ->addForeignKey('id_user_FK','users','id_user',
                 ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_user_FK2'])
-                ->addForeignKey('id_day_FK','day_consultation','id_day',
-                ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_day_FK'])
                 ->addForeignKey('id_subject_FK','subject','id_subject',
                 ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_subject_FK'])
                 ->create();
