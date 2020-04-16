@@ -33,7 +33,7 @@ class Init extends AbstractMigration
                 'limit' => 255,
                 'collation' => 'utf8mb4_unicode_ci',
                 'encoding' => 'utf8mb4',
-                'after' => 'role',
+                'after' => 'password',
             ])
             ->addColumn('password', 'string', [
                 'null' => false,
@@ -55,13 +55,6 @@ class Init extends AbstractMigration
                 'collation' => 'utf8mb4_unicode_ci',
                 'encoding' => 'utf8mb4',
                 'after' => 'name',
-            ])
-            ->addColumn('role', 'string', [
-                'null' => true,
-                'limit' => 255,
-                'collation' => 'utf8mb4_unicode_ci',
-                'encoding' => 'utf8mb4',
-                'after' => 'password',
             ])
             ->addIndex(['email'], [
                 'name' => 'email',
