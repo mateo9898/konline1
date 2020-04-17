@@ -12,6 +12,7 @@
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.12.1",
+        "@material/data-table": "^5.1.0",
         "bootstrap": "^4.4.1",
         "datatables.net-bs4": "^1.10.20",
         "datatables.net-responsive-bs4": "^2.2.3",

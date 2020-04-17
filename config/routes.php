@@ -25,6 +25,8 @@ return function (App $app) {
 
     $app->get('/mail', \App\Action\Mail\MailAction::class)->setName('mail');
 
+    $app->get('/datatable', \App\Action\User\ConsListAction::class)->setName('cons-list');
+    $app->post('/datatable', \App\Action\User\ConsListDataTableAction::class)->setName('cons-datatable');
     // Password protected area
     $app->group('/users', function (RouteCollectorProxy $group) {
         $group->get('', \App\Action\User\UserListAction::class)->setName('user-list');
