@@ -51,10 +51,17 @@ $this->table('consultation', [
                     'encoding' => 'utf8mb4',
                     'after' => 'name',
                 ])
+                ->addColumn('email', 'string', [
+                    'null' => false,
+                    'limit' => 255,
+                    'collation' => 'utf8mb4_unicode_ci',
+                    'encoding' => 'utf8mb4',
+                    'after' => 'surname',
+                ])
                 ->addColumn('id_user_FK', 'integer', [
                     'null' => false,
                     'limit' => MysqlAdapter::INT_REGULAR,
-                    'after' => 'end',
+                    'after' => 'email',
                 ])
                 ->addColumn('id_subject_FK', 'integer', [
                     'null' => false,

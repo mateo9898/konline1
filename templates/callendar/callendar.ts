@@ -1,7 +1,6 @@
-import './user-list.css';
-import { Student, greeter } from './greeter';
 
-export class UserList {
+
+export class ConsList {
 
     public constructor() {
         //($('#data-table') as any).DataTable();
@@ -45,11 +44,11 @@ export class UserList {
     }
 };
 
-$(function () {
+// $(function () {
 
-    let user = new Student("Jane", "M.", "User");
+//     let user = new Student("Jane", "M.", "User");
 
-    greeter(user);
+//     greeter(user);
 
-    new UserList();
-});
+//     new UserList();
+// });
