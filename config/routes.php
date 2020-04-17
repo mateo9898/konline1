@@ -23,15 +23,19 @@ return function (App $app) {
     $app->get('/register', \App\Action\User\UserCreateAction::class)->setName('register');
     $app->post('/register', \App\Action\User\UserSubmitAction::class);
 
+    $app->get('/create-cons', \App\Action\InsertCons\ConsCreateAction::class)->setName('create-cons');
+    $app->post('/create-cons', \App\Action\InsertCons\ConsSubmitAction::class);
+
     $app->get('/mail', \App\Action\Mail\MailAction::class)->setName('mail');
 
     
-    $app->get('/datatable', \App\Action\Cons\ConsListAction::class)->setName('cons-list');
-    $app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
+    $app->get('/datatable', \App\Action\Cons\ConsListAction::class)->setName('user-list');
+    $app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
 
-    // Password protected area
-    // $app->group('/users', function (RouteCollectorProxy $group) {
-    //     $group->get('', \App\Action\User\UserListAction::class)->setName('user-list');
-    //     $group->post('/datatable', \App\Action\User\UserListDataTableAction::class)->setName('user-datatable');
+
+    // $app->group('/datatable', function (RouteCollectorProxy $group) {
+    //     $group->get('', \App\Action\Cons\ConsListAction::class)->setName('cons-list');
+    //     $group->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
     // })->add(UserAuthMiddleware::class);
+    // Password protected area
 };

@@ -28,6 +28,7 @@ class Cons extends AbstractMigration
             'end'=> date("1999-01-01 12:11:11"),
             'name'=>'Andrzej',
             'surname'=>'Luszcz',
+            'email'=>'andrzej.luszcz@gmail.com',
             'id_user_FK'=> 1,
             'id_subject_FK'=> 1,
         ];
