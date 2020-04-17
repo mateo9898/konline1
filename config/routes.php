@@ -25,11 +25,13 @@ return function (App $app) {
 
     $app->get('/mail', \App\Action\Mail\MailAction::class)->setName('mail');
 
-    $app->get('/datatable', \App\Action\User\ConsListAction::class)->setName('cons-list');
-    $app->post('/datatable', \App\Action\User\ConsListDataTableAction::class)->setName('cons-datatable');
+    
+    $app->get('/datatable', \App\Action\Cons\ConsListAction::class)->setName('cons-list');
+    $app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
+
     // Password protected area
-    $app->group('/users', function (RouteCollectorProxy $group) {
-        $group->get('', \App\Action\User\UserListAction::class)->setName('user-list');
-        $group->post('/datatable', \App\Action\User\UserListDataTableAction::class)->setName('user-datatable');
-    })->add(UserAuthMiddleware::class);
+    // $app->group('/users', function (RouteCollectorProxy $group) {
+    //     $group->get('', \App\Action\User\UserListAction::class)->setName('user-list');
+    //     $group->post('/datatable', \App\Action\User\UserListDataTableAction::class)->setName('user-datatable');
+    // })->add(UserAuthMiddleware::class);
 };

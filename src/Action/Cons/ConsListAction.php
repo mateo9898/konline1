@@ -36,6 +36,6 @@ final class ConsListAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        return $this->twig->render($response, 'user/user-list.twig');
+        return $this->twig->render($response, 'cons/cons-list.twig');
     }
 }
