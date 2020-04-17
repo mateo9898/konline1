@@ -27,8 +27,8 @@
     <link href="assets/admin/css/style.css" rel="stylesheet">
     <!-- color CSS -->
     <link href="assets/admin/css/colors/default.css" id="theme" rel="stylesheet">
-
     
+    {% include 'callendar/callendarStyle.twig' %} 
 
 </head>
 
@@ -189,7 +189,16 @@
                 </div>
                 <!--/.row -->
                 <!--row -->
-                <!-- /.row -->
+                <div class="row">
+                    <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
+                        <div class="white-box">
+                            {% include 'callendar/callendarContent.twig' %}
+                        </div>
+                    </div>
+                </div
+
+
+
                 <div class="row">
                     <div class="col-md-12 col-lg-12 col-sm-12 col-xs-12">
                         <div class="white-box">
@@ -391,7 +400,6 @@
                 </div>
             </div>
             <!-- /.container-fluid -->
-            <footer class="footer text-center"> 2017 &copy; Ample Admin brought to you by wrappixel.com </footer>
         </div>
         <!-- ============================================================== -->
         <!-- End Page Content -->
@@ -424,7 +432,6 @@
     <script src="assets/admin/js/custom.min.js"></script>
     <script src="assets/admin/js/dashboard1.js"></script>
     <script src="assets/admin/bower_components/toast-master/js/jquery.toast.js"></script>
-
 
 </body>
 
