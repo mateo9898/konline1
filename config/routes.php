@@ -7,11 +7,11 @@ use Slim\App;
 use Slim\Routing\RouteCollectorProxy;
 
 return function (App $app) {
-    $app->get('/', \App\Action\Home\HomeAction::class)->setName('root');
+    $app->get('/old', \App\Action\Home\HomeAction::class)->setName('root');
 
-    $app->get('/main', \App\Action\Main\MainAction::class)->setName('main');
+    $app->get('/home', \App\Action\Main\MainAction::class)->setName('home');
     
-    $app->get('/admin', \App\Action\Admin\AdminAction::class)->setName('admin');
+    $app->get('/', \App\Action\Admin\AdminAction::class)->setName('main');
 
     $app->get('/hello/{name}', \App\Action\Hello\HelloAction::class)->setName('hello');
 
