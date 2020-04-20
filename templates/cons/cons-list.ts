@@ -12,7 +12,7 @@ export class ConsList {
                 //  'url': __('js/datatable-english.json')
             },
             'ajax': {
-                'url': 'users/datatable',
+                'url': 'cons/datatable',
                 'type': 'POST'
             },
             'columns': [{

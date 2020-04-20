@@ -42,23 +42,29 @@ class ConsListDataTableRepository implements RepositoryInterface
      */
     public function getTableData(array $params): array
     {
-        $query = $this->queryFactory->newSelect('consultation c', 'subject s');
+        $query = $this->queryFactory->newSelect('consultation');
 
         $query->select([
-            'c.id_consultation',
-            'c.start',
-            'c.end',
-            'c.name',
-            'c.surname',
-            'c.id_user_FK',
-            'c.id_subject_FK',
-            's.id_subject',
-            's.name',
+            'id_consultation',
+            'start',
+            'end',
+            'name',
+            'surname',
+            'id_user_FK',
+            'id_subject_FK',
         ]);
 
-        $query->andWhere([
-            's.id_subject' => 'c.id_consultation',
+        $query->join([
+            'table' => 'subject',
+            'alias' => 's',
+            'type' => 'LEFT',
+            'conditions' => array(
+                's.id_subject = id_subject_FK',
+            )
+
+
         ]);
+
 
         return $this->dataTable->load($query, $params);
     }
