@@ -38,7 +38,7 @@
 	<link rel="stylesheet" type="text/css" href="assets/callendar/css/main.css">
 	<!--===============================================================================================-->
 
-
+    {% block style %} {% endblock %}
 
 
 
@@ -111,7 +111,7 @@
                 </div>
                 <ul class="nav" id="side-menu">
                     <li style="padding: 70px 0 0;">
-                        <a href="dashboard.html" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Strona główna</a>
+                        <a href="#" class="waves-effect"><i class="fa fa-clock-o fa-fw" aria-hidden="true"></i>Strona główna</a>
                     </li>
                     <li>
                         <a href="profile.html" class="waves-effect"><i class="fa fa-user fa-fw" aria-hidden="true"></i>Panel nauczyciela</a>
@@ -125,7 +125,7 @@
 
                 </ul>
                 <div class="center p-20">
-                     <a href="add" target="_blank" class="btn btn-danger btn-block waves-effect waves-light">Zarezerwuj konsultacje</a>
+                     <a href="add" class="btn btn-danger btn-block waves-effect waves-light">Zarezerwuj konsultacje</a>
                  </div>
             </div>
             
@@ -165,5 +165,7 @@
     <script src="assets/admin/js/custom.min.js"></script>
     <script src="assets/admin/js/dashboard1.js"></script>
     <script src="assets/admin/bower_components/toast-master/js/jquery.toast.js"></script>
+    
+    {% block js %}{% endblock %}
     </body>
 </html>

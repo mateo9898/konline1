@@ -1,20 +1,50 @@
 {% extends "admin/layout.twig" %}
 
+{% block style %}
+<style>
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 15px;
+  border-radius: 5px;  
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%; 
+  background: #7ace4c;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  background: #7ace4c;
+  cursor: pointer;
+}
+</style>
+{% endblock %}
 
 {% block content %}
 <div id="page-wrapper">
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Profile page</h4>
+                        <h4 class="page-title">Rezerwowanie terminu konsultacji</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="https://wrappixel.com/templates/ampleadmin/" target="_blank"
-                            class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Upgrade
-                            to Pro</a>
                         <ol class="breadcrumb">
-                            <li><a href="#">Dashboard</a></li>
-                            <li class="active">Profile Page</li>
+                            <li><a href="#">Strona główna</a></li>
+                            <li class="active">Rezerwowanie terminu konsultacji</li>
                         </ol>
                     </div>
                 </div>
@@ -23,28 +53,21 @@
                 <div class="row">
                     <div class="col-md-4 col-xs-12">
                         <div class="white-box">
-                            <div class="user-bg"> <img width="100%" alt="user" src="../plugins/images/large/img1.jpg">
-                                <div class="overlay-box">
-                                    <div class="user-content">
-                                        <a href="javascript:void(0)"><img src="../plugins/images/users/genu.jpg"
-                                                class="thumb-lg img-circle" alt="img"></a>
-                                        <h4 class="text-white">User Name</h4>
-                                        <h5 class="text-white">info@myadmin.com</h5>
-                                    </div>
-                                </div>
+                            <div class="user-bg"> <img width="100%" alt="user" src="assets/admin/images/large/teacher.jpg">
+
                             </div>
                             <div class="user-btm-box">
                                 <div class="col-md-4 col-sm-4 text-center">
                                     <p class="text-purple"><i class="ti-facebook"></i></p>
-                                    <h1>258</h1>
+                                    <h1>dr inż.</h1>
                                 </div>
                                 <div class="col-md-4 col-sm-4 text-center">
                                     <p class="text-blue"><i class="ti-twitter"></i></p>
-                                    <h1>125</h1>
+                                    <h1> Jan</h1>
                                 </div>
                                 <div class="col-md-4 col-sm-4 text-center">
                                     <p class="text-danger"><i class="ti-dribbble"></i></p>
-                                    <h1>556</h1>
+                                    <h1>Nowak</h1>
                                 </div>
                             </div>
                         </div>
@@ -53,51 +76,61 @@
                         <div class="white-box">
                             <form class="form-horizontal form-material">
                                 <div class="form-group">
-                                    <label class="col-md-12">Full Name</label>
+                                    <label class="col-md-12">Imię</label>
                                     <div class="col-md-12">
-                                        <input type="text" placeholder="Johnathan Doe"
+                                        <input type="text" placeholder=""
+                                            class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Nazwisko</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder=""
                                             class="form-control form-control-line"> </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="example-email" class="col-md-12">Email</label>
                                     <div class="col-md-12">
-                                        <input type="email" placeholder="johnathan@admin.com"
+                                        <input type="email" placeholder=""
                                             class="form-control form-control-line" name="example-email"
                                             id="example-email"> </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-md-12">Password</label>
-                                    <div class="col-md-12">
-                                        <input type="password" value="password" class="form-control form-control-line">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Phone No</label>
-                                    <div class="col-md-12">
-                                        <input type="text" placeholder="123 456 7890"
-                                            class="form-control form-control-line"> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-md-12">Message</label>
-                                    <div class="col-md-12">
-                                        <textarea rows="5" class="form-control form-control-line"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-12">Select Country</label>
+                                    <label class="col-sm-12">Wybierz przedmiot</label>
                                     <div class="col-sm-12">
                                         <select class="form-control form-control-line">
-                                            <option>London</option>
-                                            <option>India</option>
-                                            <option>Usa</option>
-                                            <option>Canada</option>
-                                            <option>Thailand</option>
+                                            <option>Przedmiot domyślny</option>
+                                            <option>Przedmiot #2</option>
+                                            <option>Przedmiot #3</option>
+                                            <option>Przedmiot #4</option>
+                                            <option>Przedmiot #5</option>
                                         </select>
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label class="col-md-12">Data konsultacji</label>
+                                    <div class="col-md-12">
+                                        <input type="date" class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12">Godzina rozpoczęcia konsultacji</label>
+                                    <div class="col-md-12">
+                                        <input type="time" class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12" style="padding-bottom: 15px;">Przewidywany czas trwania</label>
+                                    <div class="col-md-12">
+                                        <div class="slidecontainer">
+                                            <input type="range" min="10" max="90" value="10" step="10" class="slider" id="duration">
+                                         <p style="padding-top: 15px;"><span id="duration-time"></span> minut</p>
+                                        </div>
+                                </div>
+                                 <div class="form-group">
+                                    <label class="col-md-12"></label>
+                                    <div class="col-md-12"> </div>
+                                </div>
+                                <div class="form-group">
                                     <div class="col-sm-12">
-                                        <button class="btn btn-success">Update Profile</button>
+                                        <button class="btn btn-success">Zarezerwuj termin</button>
                                     </div>
                                 </div>
                             </form>
@@ -107,4 +140,15 @@
                 <!-- /.row -->
             </div>
         </div>
-    {% endblock %}
+            {% endblock %}
+{% block js %}
+<script>
+var slider = document.getElementById("duration");
+var output = document.getElementById("duration-time");
+output.innerHTML = slider.value;
+
+slider.oninput = function() {
+  output.innerHTML = this.value;
+}
+</script>
+{% endblock %}
