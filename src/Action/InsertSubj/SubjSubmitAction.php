@@ -1,19 +1,17 @@
 <?php
 
-namespace App\Action\InsertCons;
+namespace App\Action\InsertSubj;
 
-use App\Domain\Cons\Data\ConsCreatorData;
-use App\Domain\Cons\Service\ConsCreator;
+use App\Domain\Subj\Data\SubjCreatorData;
+use App\Domain\Subj\Service\SubjCreator;
 use App\Responder\Responder;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Views\Twig;
-
 
 /**
  * Action.
  */
-final class ConsCreateAction
+final class SubjSubmitAction
 {
     /**
      * @var Responder
@@ -21,24 +19,20 @@ final class ConsCreateAction
     private $responder;
 
     /**
-     * @var ConsCreator
+     * @var SubjCreator
      */
-    private $consCreator;
-/**
-     * @var Twig
-     */
-    private $twig;
+    private $subjCreator;
+
     /**
      * The constructor.
      *
      * @param Responder $responder The responder
-     * @param UserCreator $userCreator The service
+     * @param ConsCreator $userCreator The service
      */
-    public function __construct(Responder $responder, ConsCreator $consCreator, Twig $twig)
+    public function __construct(Responder $responder, SubjCreator $subjCreator)
     {
-        $this->twig = $twig;
         $this->responder = $responder;
-        $this->consCreator = $consCreator;
+        $this->subjCreator = $subjCreator;
     }
 
     /**
@@ -53,6 +47,15 @@ final class ConsCreateAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        return $this->twig->render($response, 'admin/newCons.twig');
+        // Collect input from the HTTP request
+        $subjData = new SubjCreatorData((array)$request->getParsedBody());
+
+        // Invoke the Domain with inputs and retain the result
+        $subjId = $this->subjCreator->createSubj($subjData);
+
+        // Build the HTTP response
+        return $this->responder->encodeJson($response, [
+            'subj_id' => $subjId,
+        ]);
     }
 }

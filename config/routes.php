@@ -31,8 +31,8 @@ return function (App $app) {
     $app->get('/register', \App\Action\User\UserCreateAction::class)->setName('register');
     $app->post('/register', \App\Action\User\UserSubmitAction::class);
 
-    $app->get('/create-cons', \App\Action\InsertCons\ConsCreateAction::class)->setName('create-cons');
-    $app->post('/create-cons', \App\Action\InsertCons\ConsSubmitAction::class);
+    $app->get('/admin', \App\Action\InsertCons\ConsCreateAction::class)->setName('admin');
+    $app->post('/admin', \App\Action\InsertCons\ConsSubmitAction::class);
 
     $app->get('/mail', \App\Action\Mail\MailAction::class)->setName('mail');
 

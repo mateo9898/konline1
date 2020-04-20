@@ -1,9 +1,9 @@
 <?php
 
-namespace App\Action\InsertCons;
+namespace App\Action\InsertSubj;
 
-use App\Domain\Cons\Data\ConsCreatorData;
-use App\Domain\Cons\Service\ConsCreator;
+use App\Domain\Subj\Data\SubjCreatorData;
+use App\Domain\Subj\Service\SubjCreator;
 use App\Responder\Responder;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -13,7 +13,7 @@ use Slim\Views\Twig;
 /**
  * Action.
  */
-final class ConsCreateAction
+final class SubjCreateAction
 {
     /**
      * @var Responder
@@ -21,24 +21,24 @@ final class ConsCreateAction
     private $responder;
 
     /**
-     * @var ConsCreator
+     * @var SubjCreator
      */
-    private $consCreator;
+    private $subjCreator;
 /**
      * @var Twig
      */
     private $twig;
     /**
-     * The constructor.
+     * The subjtructor.
      *
      * @param Responder $responder The responder
      * @param UserCreator $userCreator The service
      */
-    public function __construct(Responder $responder, ConsCreator $consCreator, Twig $twig)
+    public function __subjtruct(Responder $responder, SubjCreator $subjCreator, Twig $twig)
     {
         $this->twig = $twig;
         $this->responder = $responder;
-        $this->consCreator = $consCreator;
+        $this->subjCreator = $subjCreator;
     }
 
     /**
@@ -53,6 +53,6 @@ final class ConsCreateAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        return $this->twig->render($response, 'admin/newCons.twig');
+        return $this->twig->render($response, 'create-subj/login.twig');
     }
 }

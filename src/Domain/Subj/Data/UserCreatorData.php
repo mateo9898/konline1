@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Domain\Cons\Data;
+namespace App\Domain\Subj\Data;
 
 use App\Interfaces\DataInterface;
 use Selective\ArrayReader\ArrayReader;
@@ -8,31 +8,25 @@ use Selective\ArrayReader\ArrayReader;
 /**
  * Data object.
  */
-final class ConsCreatorData implements DataInterface
+final class SubjCreatorData implements DataInterface
 {
     /** @var int|null */
-    public $id_consultation;
-
-    /** @var string|null */
-    public $start;
-
-    /** @var string|null */
-    public $end;
+    public $id_user;
 
     /** @var string|null */
     public $name;
 
     /** @var string|null */
-    public $surname;
+    public $password;
 
     /** @var string|null */
     public $email;
 
-    /** @var int|null */
-    public $id_user_FK;
+    /** @var string|null */
+    public $surname;
 
-    /** @var int|null */
-    public $id_subject_FK;
+    /** @var string|null */
+    public $role = 'ROLE_USER';
 
     /**
      * The constructor.
@@ -43,13 +37,11 @@ final class ConsCreatorData implements DataInterface
     {
         $data = new ArrayReader($array);
 
-        $this->id_consultation = $data->findInt('id_consultation');
-        $this->start = $data->findData('start');
-        $this->end = $data->findData('start');
+        $this->id_user = $data->findInt('id_user');
         $this->name = $data->findString('name');
+        $this->password = $data->findString('password');
         $this->surname = $data->findString('surname');
         $this->email = $data->findString('email');
-        $this->id_user_FK = 1;
-        $this->id_subject_FK = 1;
+        $this->role = $data->findString('role');
     }
 }
