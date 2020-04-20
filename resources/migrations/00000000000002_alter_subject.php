@@ -29,19 +29,19 @@ $this->table('subject', [
                     'limit' => MysqlAdapter::INT_REGULAR,
                     'identity' => 'enable',
                 ])
-                ->addColumn('name', 'string', [
+                ->addColumn('subject_name', 'string', [
                     'null' => false,
                     'limit' => 255,
                     'collation' => 'utf8mb4_unicode_ci',
                     'encoding' => 'utf8mb4',
                     'after' => 'id_subject',
                 ])
-                ->addColumn('id_user_FK', 'integer', [
+                ->addColumn('id_owner_FK', 'integer', [
                     'null' => false,
                     'limit' => MysqlAdapter::INT_REGULAR,
                     'after' => 'name',
                 ])
-                ->addForeignKey('id_user_FK','users','id_user',
+                ->addForeignKey('id_owner_FK','users','id_user',
                 ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_user_FK1'])
                 ->create();
     }

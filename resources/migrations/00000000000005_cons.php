@@ -18,8 +18,8 @@ class Cons extends AbstractMigration
 
         $rows1[] = [
             'id_subject' => 1,
-            'name'=> 'IAM',
-            'id_user_FK'=> 1,
+            'subject_name'=> 'IAM',
+            'id_owner_FK'=> 1,
         ];
         $this->table('subject')->insert($rows1)->save();
         $rows2[] = [
