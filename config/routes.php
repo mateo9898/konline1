@@ -39,8 +39,8 @@ return function (App $app) {
     $app->get('/users', \App\Action\User\UserListAction::class)->setName('uesrs');
     $app->post('/users', \App\Action\User\UserListDataTableAction::class)->setName('uesrs');
 
-    $app->get('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-list');
-    //$app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
+    $app->get('/datatable', \App\Action\Cons\ConsListAction::class)->setName('user-list');
+    $app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
 
     $app->get('/old', \App\Action\Home\HomeAction::class)->setName('root');
     $app->get('/home', \App\Action\Main\MainAction::class)->setName('home');
