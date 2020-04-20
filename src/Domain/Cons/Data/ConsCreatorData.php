@@ -44,8 +44,10 @@ final class ConsCreatorData implements DataInterface
         $data = new ArrayReader($array);
 
         $this->id_consultation = $data->findInt('id_consultation');
-        $this->start = $data->findData('start');
-        $this->end = $data->findData('start');
+        //$this->start = $data->findData('start');
+        $this->start = data('1999-12-12');
+        //$this->end = $data->findData('start');
+        $this->end = data('1999-12-12');
         $this->name = $data->findString('name');
         $this->surname = $data->findString('surname');
         $this->email = $data->findString('email');
