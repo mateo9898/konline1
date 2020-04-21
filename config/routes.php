@@ -10,6 +10,7 @@ return function (App $app) {
 
     //====================== STRONA GŁÓWNA ========================================
     $app->get('/', \App\Action\Admin\AdminAction::class)->setName('main');
+    $app->post('/', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
 
     //================== DODAWANIE KONSULTACJI ====================================
     $app->get('/add', \App\Action\Cons\ConsCreateAction::class)->setName('new-cons');
