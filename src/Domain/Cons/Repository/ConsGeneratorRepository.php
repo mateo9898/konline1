@@ -44,6 +44,7 @@ class ConsGeneratorRepository implements RepositoryInterface
             'email'=> $cons->email,
             'id_user_FK' => $cons->id_user_FK,
             'id_subject_FK' => $cons->id_subject_FK,
+            'id_day_FK' => $cons->id_day_FK,
         ];
 
         return (int)$this->queryFactory->newInsert(TableName::CONSULTATION, $row)->execute()->lastInsertId();

@@ -45,8 +45,10 @@ class ConsListDataTableRepository implements RepositoryInterface
         $query = $this->queryFactory->newSelect('consultation');
         $query->select([
             'id_consultation',
-            'start',
-            'end',
+            'start_date',
+            'start_hour',
+            'end_date',
+            'end_hour',
             'name',
             'surname',
             's.id_subject',

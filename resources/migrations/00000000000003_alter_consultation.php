@@ -29,20 +29,28 @@ $this->table('consultation', [
                     'limit' => MysqlAdapter::INT_REGULAR,
                     'identity' => 'enable',
                 ])
-                ->addColumn('start', 'timestamp', [
+                ->addColumn('start_date', 'date', [
                     'null' => true,
                     'after' => 'id_consultation',
                 ])
-                ->addColumn('end', 'timestamp', [
+                ->addColumn('start_hour', 'time', [
                     'null' => true,
-                    'after' => 'start',
+                    'after' => 'start_date',
+                ])
+                ->addColumn('end_date', 'date', [
+                    'null' => true,
+                    'after' => 'start_hour',
+                ])
+                ->addColumn('end_hour', 'time', [
+                    'null' => true,
+                    'after' => 'end_date',
                 ])
                 ->addColumn('name', 'string', [
                     'null' => false,
                     'limit' => 255,
                     'collation' => 'utf8mb4_unicode_ci',
                     'encoding' => 'utf8mb4',
-                    'after' => 'end',
+                    'after' => 'end_hour',
                 ])
                 ->addColumn('surname', 'string', [
                     'null' => false,
