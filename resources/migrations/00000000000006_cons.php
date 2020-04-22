@@ -25,9 +25,9 @@ class Cons extends AbstractMigration
         $rows2[] = [
             'id_consultation' => 1,
             'start_date'=>date("1999-01-01"),
-            'start_hour'=>date("12:11:11"),
+            'start_hour'=>date("12:10:00"),
             'end_date'=> date("1999-01-01"),
-            'end_hour'=> date("13:11:11"),
+            'end_hour'=> date("13:10:00"),
             'name'=>'Andrzej',
             'surname'=>'Luszcz',
             'email'=>'andrzej.luszcz@gmail.com',
