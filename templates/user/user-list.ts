@@ -13,29 +13,23 @@ export class UserList {
                 //  'url': __('js/datatable-english.json')
             },
             'ajax': {
-                'url': 'users/datatable',
+                'url': 'users',
                 'type': 'POST'
             },
-            'columns': [{
-                'data': 'c.id_consultation'
-            },
-            {
-                'data': 'c.start'
-            },
-            {
-                'data': 'c.end'
-            },
-            {
-                'data': 'c.name'
-            },
-            {
-                'orderable': false,
-                'searchable': false,
-                'data': null,
-                'render': function (data: any, type: any, row: any, meta: any) {
-                    return '<button type="button" class="btn btn-info">Edit</button>';
+            'columns': [
+                { 'data': 'id_user' },
+                { 'data': 'name' },
+                { 'data': 'email' },
+                { 'data': 'surname' },
+                { 'data': 'role' },
+                {
+                    'orderable': false,
+                    'searchable': false,
+                    'data': null,
+                    'render': function (data: any, type: any, row: any, meta: any) {
+                        return '<button type="button" class="btn btn-info">Edit</button>';
+                    }
                 }
-            }
             ],
         });
     };

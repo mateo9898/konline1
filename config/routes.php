@@ -10,6 +10,7 @@ return function (App $app) {
 
     //====================== STRONA GŁÓWNA ========================================
     $app->get('/', \App\Action\Admin\AdminAction::class)->setName('main');
+    $app->post('/', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
 
     //================== DODAWANIE KONSULTACJI ====================================
     $app->get('/add', \App\Action\Cons\ConsCreateAction::class)->setName('new-cons');
@@ -39,8 +40,8 @@ return function (App $app) {
     $app->get('/users', \App\Action\User\UserListAction::class)->setName('uesrs');
     $app->post('/users', \App\Action\User\UserListDataTableAction::class)->setName('uesrs');
 
-    $app->get('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-list');
-    //$app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
+    $app->get('/datatable', \App\Action\Cons\ConsListAction::class)->setName('user-list');
+    $app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
 
     $app->get('/old', \App\Action\Home\HomeAction::class)->setName('root');
     $app->get('/home', \App\Action\Main\MainAction::class)->setName('home');
