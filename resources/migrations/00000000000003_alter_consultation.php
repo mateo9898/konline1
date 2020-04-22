@@ -69,7 +69,7 @@ $this->table('consultation', [
                     'after' => 'id_day_FK',
                 ])
                 ->addForeignKey('id_user_FK','users','id_user',
-                ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_user_FK2'])
+                ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_user_FK3'])
                 ->addForeignKey('id_subject_FK','subject','id_subject',
                 ['delete'=> 'NO_ACTION', 'update'=> 'NO_ACTION', 'constraint' => 'id_subject_FK'])
                 ->create();
