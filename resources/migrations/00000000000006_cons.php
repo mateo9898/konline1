@@ -24,8 +24,10 @@ class Cons extends AbstractMigration
         $this->table('subject')->insert($rows1)->save();
         $rows2[] = [
             'id_consultation' => 1,
-            'start'=>date("1999-01-01 12:11:11"),
-            'end'=> date("1999-01-01 12:11:11"),
+            'start_date'=>date("1999-01-01"),
+            'start_hour'=>date("12:11:11"),
+            'end_date'=> date("1999-01-01"),
+            'end_hour'=> date("13:11:11"),
             'name'=>'Andrzej',
             'surname'=>'Luszcz',
             'email'=>'andrzej.luszcz@gmail.com',
