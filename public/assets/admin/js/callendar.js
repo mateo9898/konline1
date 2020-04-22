@@ -2,10 +2,6 @@ $(document).ready(function () {
 
     let json = "1";
 
-    adr = function (input) {
-        json = input;
-    }
-
     const test = jQuery.ajax({
         type: "POST",
         url: '',
