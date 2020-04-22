@@ -42,14 +42,32 @@ $(document).ready(function () {
                 let column = 0;
                 let row = 0;
                 let minute = 0;
-                let day = "";
-
+                let hour = 0;
+                let startTime = (json.data[0].start_cons).substr(0, 2);
 
                 for (let i = 0; i < json.data.length; i++) {
 
-                    day = (json.data[i].day_name).toLowerCase();
+                    for (let l = 0; l < 24; l++) {
+                        console.log(((json.data[i].end_hour).substr(0, 5)) + " == " + (startTime + ":" + minute + "0") + "->" + hour)
 
-                    switch (day) {
+                        if (((json.data[i].start_hour).substr(0, 5)) == (startTime + ":" + minute + "0")) {
+                            row = l;
+                        }
+
+                        if (((json.data[i].end_hour).substr(0, 5)) == (startTime + ":" + minute + "0")) {
+                            hour = l;
+                        }
+
+                        minute++;
+
+                        if (minute > 5) {
+                            minute = 0;
+                            startTime++;
+                        }
+
+                    }
+
+                    switch ((json.data[i].day_name).toLowerCase()) {
                         case "poniedziałek":
                             column = 1;
                             break;
@@ -67,12 +85,16 @@ $(document).ready(function () {
                             break;
                     };
 
-                    array[2][column] = json.data[i].name;
-                    array[3][column] = json.data[i].surname;
+
+                    for (let m = 0; m < (hour - row); m++) {
+                        array[(row + m)][column] = json.data[i].name + " " + json.data[i].surname;
+                    }
 
                 }
 
-                let startTime = (json.data[0].start_cons).substr(0, 2);
+
+                minute = 0;
+                startTime = (json.data[0].start_cons).substr(0, 2);
 
                 for (let i = 0; i < 24; i++) {
                     array[i][0] = startTime + ":" + minute + "0";
