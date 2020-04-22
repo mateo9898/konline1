@@ -44,11 +44,12 @@ $(document).ready(function () {
                 let minute = 0;
                 let hour = 0;
                 let startTime = (json.data[0].start_cons).substr(0, 2);
+                let cell;
+                let id;
 
                 for (let i = 0; i < json.data.length; i++) {
 
                     for (let l = 0; l < 24; l++) {
-                        console.log(((json.data[i].end_hour).substr(0, 5)) + " == " + (startTime + ":" + minute + "0") + "->" + hour)
 
                         if (((json.data[i].start_hour).substr(0, 5)) == (startTime + ":" + minute + "0")) {
                             row = l;
@@ -88,6 +89,10 @@ $(document).ready(function () {
 
                     for (let m = 0; m < (hour - row); m++) {
                         array[(row + m)][column] = json.data[i].name + " " + json.data[i].surname;
+                        console.log((row + 1 + m) + "_" + (1 + column));
+                        cell = document.getElementById((row + 1 + m) + "_" + (1 + column));
+                        cell.style['background'] = '#2f323e';
+                        cell.style['color'] = '#fff'
                     }
 
                 }
@@ -104,6 +109,7 @@ $(document).ready(function () {
                         startTime++;
                     }
                 }
+
 
 
                 // rows
