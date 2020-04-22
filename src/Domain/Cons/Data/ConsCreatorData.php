@@ -14,10 +14,16 @@ final class ConsCreatorData implements DataInterface
     public $id_consultation;
 
     /** @var string|null */
-    public $start;
+    public $start_date;
 
     /** @var string|null */
-    public $end;
+    public $start_time;
+
+    /** @var string|null */
+    public $end_date;
+
+    /** @var string|null */
+    public $end_time;
 
     /** @var string|null */
     public $name;
