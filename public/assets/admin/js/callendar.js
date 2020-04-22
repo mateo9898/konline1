@@ -43,11 +43,13 @@ $(document).ready(function () {
                 let row = 0;
                 let minute = 0;
                 let hour = 0;
-                let startTime = (json.data[0].start_cons).substr(0, 2);
+                let startTime;
                 let cell;
                 let id;
 
                 for (let i = 0; i < json.data.length; i++) {
+
+                    startTime = (json.data[i].start_cons).substr(0, 2);
 
                     for (let l = 0; l < 24; l++) {
 
