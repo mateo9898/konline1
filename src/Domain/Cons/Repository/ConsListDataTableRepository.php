@@ -43,24 +43,28 @@ class ConsListDataTableRepository implements RepositoryInterface
     public function getTableData(array $params): array
     {
         $query = $this->queryFactory->newSelect('consultation');
-
         $query->select([
             'id_consultation',
             'start',
             'end',
             'name',
             'surname',
-            'id_user_FK',
-            'id_subject_FK',
+            's.id_subject',
+            's.subject_name',
+            'd.day_name',
+            'd.start_cons',
+            'd.end_cons',
         ]);
 
         $query->join([
+            's'=>[
             'table' => 'subject',
-            'alias' => 's',
-            'type' => 'LEFT',
-            'conditions' => array(
-                's.id_subject = id_subject_FK',
-            )
+            'conditions' => 's.id_subject = id_subject_FK',
+            ],
+            'd'=>[
+                'table' => 'day',
+                'conditions' => 'd.id_day = id_day_FK',
+                ]
         ]);
 
 
