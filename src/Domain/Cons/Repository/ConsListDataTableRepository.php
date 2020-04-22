@@ -55,14 +55,22 @@ class ConsListDataTableRepository implements RepositoryInterface
         ]);
 
         $query->join([
+            's'=>[
             'table' => 'subject',
             'alias' => 's',
             'type' => 'LEFT',
             'conditions' => array(
                 's.id_subject = id_subject_FK',
             )
-
-
+            ],
+            'd' => [
+                'table' => 'day',
+                'alias' => 'd',
+                'type' => 'INNER',
+                'conditions' => array(
+                    'd.id_owner2_FK = id_user_FK',
+                )
+            ]
         ]);
 
 
