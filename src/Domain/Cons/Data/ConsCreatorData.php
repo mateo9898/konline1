@@ -51,11 +51,13 @@ final class ConsCreatorData implements DataInterface
     public function __construct(array $array = [])
     {
         $data = new ArrayReader($array);
+        $pom=strtotime($data->find('start_hour'));
+        $pom=$pom+(int)$data->find('dur')*60;
         $this->id_consultation = $data->findInt('id_consultation');
         $this->start_date = date($data->find('start_date'));
         $this->start_hour = date($data->find('start_hour'));
         $this->end_date = date($data->find('start_date'));
-        $this->end_hour = date($data->find('start_hour'));
+        $this->end_hour = date('H:i:s',$pom);
         $this->name = $data->find('name');
         $this->surname = $data->findString('surname');
         $this->email = $data->findString('email');
