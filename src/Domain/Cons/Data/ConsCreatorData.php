@@ -17,13 +17,13 @@ final class ConsCreatorData implements DataInterface
     public $start_date;
 
     /** @var string|null */
-    public $start_time;
+    public $start_hour;
 
     /** @var string|null */
     public $end_date;
 
     /** @var string|null */
-    public $end_time;
+    public $end_hour;
 
     /** @var string|null */
     public $name;
@@ -52,17 +52,13 @@ final class ConsCreatorData implements DataInterface
     {
         $data = new ArrayReader($array);
         $this->id_consultation = $data->findInt('id_consultation');
-        //$this->id_consultation = 1;
-        $this->start = date($data->find('start_date') + " " + $data->find('start_hour'));
-        //$this->start =date("1999-01-01 12:11:11");
-        $this->end = null;
-        //$this->end = date("1999-01-01 12:11:11");
+        $this->start_date = date($data->find('start_date'));
+        $this->start_hour = date($data->find('start_hour'));
+        $this->end_date = date($data->find('start_date'));
+        $this->end_hour = date($data->find('start_hour'));
         $this->name = $data->find('name');
-        //$this->name = 'Heniekw';
-        //$this->surname = 'hen';
         $this->surname = $data->findString('surname');
         $this->email = $data->findString('email');
-        //$this->email = 'a@a.pl';
         $this->id_user_FK = 1;
         $this->id_subject_FK = 1;
         $this->id_day_FK = 1;

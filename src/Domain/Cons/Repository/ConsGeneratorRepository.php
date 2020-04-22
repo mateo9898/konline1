@@ -37,8 +37,10 @@ class ConsGeneratorRepository implements RepositoryInterface
     public function insertCons(ConsCreatorData $cons): int
     {
         $row = [
-            'start' =>$cons->start,
-            'end' => $cons->end,
+            'start_date' =>$cons->start_date,
+            'start_hour' =>$cons->start_hour,
+            'end_date' => $cons->end_date,
+            'end_hour' => $cons->end_hour,
             'name' => $cons->name,
             'surname' => $cons->surname,
             'email'=> $cons->email,
