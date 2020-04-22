@@ -42,36 +42,36 @@ class ConsListDataTableRepository implements RepositoryInterface
      */
     public function getTableData(array $params): array
     {
-        $query = $this->queryFactory->newSelect('consultation');
+        $query = $this->queryFactory->newSelect('consultation c, subject s')->select('*');
 
-        $query->select([
-            'id_consultation',
-            'start',
-            'end',
-            'name',
-            'surname',
-            'id_user_FK',
-            'id_subject_FK',
-        ]);
+        // $query->select([
+        //     'id_consultation',
+        //     'start',
+        //     'end',
+        //     'name',
+        //     'surname',
+        //     'id_user_FK',
+        //     'id_subject_FK',
+        // ]);
 
-        $query->join([
-            's'=>[
-            'table' => 'subject',
-            'alias' => 's',
-            'type' => 'LEFT',
-            'conditions' => array(
-                's.id_subject = id_subject_FK',
-            )
-            ],
-            'd' => [
-                'table' => 'day',
-                'alias' => 'd',
-                'type' => 'INNER',
-                'conditions' => array(
-                    'd.id_owner2_FK = id_user_FK',
-                )
-            ]
-        ]);
+        // $query->join([
+        //     's'=>[
+        //     'table' => 'subject',
+        //     'alias' => 's',
+        //     'type' => 'LEFT',
+        //     'conditions' => array(
+        //         's.id_subject = id_subject_FK',
+        //     )
+        //     ],
+        //     'd' => [
+        //         'table' => 'day',
+        //         'alias' => 'd',
+        //         'type' => 'INNER',
+        //         'conditions' => array(
+        //             'd.id_owner2_FK = id_user_FK',
+        //         )
+        //     ]
+        // ]);
 
 
         return $this->dataTable->load($query, $params);
