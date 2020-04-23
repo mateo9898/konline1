@@ -44,7 +44,7 @@ class SubjectListDataTableRepository implements RepositoryInterface
     {
         $query = $this->queryFactory->newSelect('subject');
         $query->select([
-            'id_consultation',
+            'id_subject',
             'subject_name',
         ]);
 
