@@ -13,7 +13,8 @@ return function (App $app) {
     $app->post('/', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
 
     //================== DODAWANIE KONSULTACJI ====================================
-    //$app->get('/add', \App\Action\Cons\ConsCreateAction::class)->setName('new-cons');
+    $app->get('/add', \App\Action\InsertCons\ConsCreateAction::class)->setName('add');
+    $app->post('/add', \App\Action\InsertCons\ConsSubmitAction::class);
 
 
     //======================== LOGOWANIE ==========================================
@@ -32,8 +33,7 @@ return function (App $app) {
     $app->get('/register', \App\Action\User\UserCreateAction::class)->setName('register');
     $app->post('/register', \App\Action\User\UserSubmitAction::class);
 
-    $app->get('/add', \App\Action\InsertCons\ConsCreateAction::class)->setName('add');
-    $app->post('/add', \App\Action\InsertCons\ConsSubmitAction::class);
+    
 
     $app->get('/mail', \App\Action\Mail\MailAction::class)->setName('mail');
 
