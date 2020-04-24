@@ -51,18 +51,17 @@ final class ConsValidator
         $query = $this->queryFactory->newSelect('day')->select('*');
         $id_day= $query->execute()->fetchAll('assoc');
         
-        $params = [];
-        $validation->addError('email', __(sizeof($id_day)));
-        
         switch(sizeof($id_day)){
             case 1:
                 if (date('w',strtotime(($cons->start_date))) != $id_day[0]['id_day']) {
                     $validation->addError('id_day', __("W tym dniu nie ma konsultacji"));
                 }
+            break;
             case 2:
                 if ((date('w',strtotime(($cons->start_date))) != $id_day[0]['id_day']) && (date('w',strtotime(($cons->start_date))) != $id_day[1]['id_day'])) {
                     $validation->addError('id_day', __("W tym dniu nie ma konsultacji"));
                 }
+            break;
         }
             
         return $validation;
