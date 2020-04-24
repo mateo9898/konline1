@@ -97,7 +97,7 @@
                                 <div class="form-group">
                                     <label class="col-sm-12">Wybierz przedmiot</label>
                                     <div class="col-sm-12">
-                                        <select class="form-control form-control-line">
+                                        <select id="second-choice" class="form-control form-control-line">
                                             <option>Przedmiot domyślny</option>
                                             <option>Przedmiot #2</option>
                                             <option>Przedmiot #3</option>
@@ -150,5 +150,18 @@ output.innerHTML = slider.value;
 slider.oninput = function() {
   output.innerHTML = this.value;
 }
+</script>
+
+<script>
+$(document).ready(function () {
+    var vals = ["PAM", "IAM", "PIS", "Inne"];
+
+    var $secondChoice = $("#second-choice");
+    $secondChoice.empty();
+    $.each(vals, function (index, value) {
+        $secondChoice.append("<option>" + value + "</option>");
+    });
+
+});
 </script>
 {% endblock %}
