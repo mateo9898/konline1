@@ -9,7 +9,7 @@ use Slim\Routing\RouteCollectorProxy;
 return function (App $app) {
 
     //====================== STRONA GŁÓWNA ========================================
-    $app->get('/', \App\Action\Admin\AdminAction::class)->setName('main');
+    $app->get('/', \App\Action\Cons\ConsAction::class)->setName('main');
     $app->post('/', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
 
     //================== DODAWANIE KONSULTACJI ====================================
@@ -28,7 +28,6 @@ return function (App $app) {
 
 
 
-    $app->get('/days', \App\Action\InsertDay\DayCreateAction::class)->setName('days');
 
     $app->get('/hello/{name}', \App\Action\Hello\HelloAction::class)->setName('hello');
 
