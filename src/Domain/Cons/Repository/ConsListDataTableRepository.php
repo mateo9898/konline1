@@ -47,22 +47,16 @@ class ConsListDataTableRepository implements RepositoryInterface
             'id_consultation',
             'start_date',
             'start_hour',
-            'end_date',
             'end_hour',
             'name',
             'surname',
-            's.id_subject',
-            's.subject_name',
+            'subject',
             'd.day_name',
             'd.start_cons',
             'd.end_cons',
         ]);
 
         $query->join([
-            's'=>[
-            'table' => 'subject',
-            'conditions' => 's.id_subject = id_subject_FK',
-            ],
             'd'=>[
                 'table' => 'day',
                 'conditions' => 'd.id_day = id_day_FK',
