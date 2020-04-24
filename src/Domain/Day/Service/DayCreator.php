@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Domain\Cons\Service;
+namespace App\Domain\Day\Service;
 
-use App\Domain\Cons\Data\ConsCreatorData;
-use App\Domain\Cons\Repository\ConsGeneratorRepository;
-use App\Domain\Cons\Validator\ConsValidator;
+use App\Domain\Day\Data\DayCreatorData;
+use App\Domain\Day\Repository\DayGeneratorRepository;
+//use App\Domain\Day\Validator\DayValidator;
 use App\Factory\LoggerFactory;
 use App\Interfaces\ServiceInterface;
 use Psr\Log\LoggerInterface;
@@ -13,7 +13,7 @@ use Selective\Validation\Exception\ValidationException;
 /**
  * Domain Service.
  */
-final class ConsCreator implements ServiceInterface
+final class DayCreator implements ServiceInterface
 {
     /**
      * @var ConsGeneratorRepository
@@ -23,7 +23,7 @@ final class ConsCreator implements ServiceInterface
     /**
      * @var ConsValidator
      */
-    protected $consValidator;
+    protected $dayValidator;
 
     /**
      * @var LoggerInterface
@@ -38,15 +38,15 @@ final class ConsCreator implements ServiceInterface
      * @param LoggerFactory $loggerFactory The logger factory
      */
     public function __construct(
-        ConsGeneratorRepository $repository,
-        ConsValidator $consValidator,
+        DayGeneratorRepository $repository,
+        DayValidator $dayValidator,
         LoggerFactory $loggerFactory
     ) {
         $this->repository = $repository;
-        $this->consValidator = $consValidator;
+        $this->dayValidator = $dayValidator;
         $this->logger = $loggerFactory
-            ->addFileHandler('cons_creator.log')
-            ->createInstance('cons_creator');
+            ->addFileHandler('day_creator.log')
+            ->createInstance('day_creator');
     }
 
     /**
@@ -58,23 +58,24 @@ final class ConsCreator implements ServiceInterface
      *
      * @return int The new user ID
      */
-    public function createCons(ConsCreatorData $cons): int
+    public function createDay(DayCreatorData $day): int
     {
         // Validation
-        $validation = $this->consValidator->validateCons($cons);
+        $validation = $this->dayValidator->validateDay($day);
 
         if ($validation->isFailed()) {
-            $validation->setMessage(__('Please check your input'));
+            $validation->setMessage(__('Sprawdź dane, które wstawiłeś'));
 
             throw new ValidationException($validation);
         }
 
         // Insert user
-        $consId = $this->repository->insertCons($cons);
+        $dayId = $this->repository->insertDay($day);
+        $dayId = $this->repository->insertDay2($day);
 
         // Logging
-        $this->logger->info(__('Consultation created successfully: %s', $consId));
+        $this->logger->info(__('Dzień wstawiony poprawnie: %s', $dayId));
 
-        return $consId;
+        return $dayId;
     }
 }
