@@ -40,6 +40,6 @@ final class AdminAction
         //     'now' => date('d.m.Y H:i:s'),
         // ];
 
-        return $this->twig->render($response, 'admin/dashboard.twig');
+        return $this->twig->render($response, 'admin/admin.twig');
     }
 }

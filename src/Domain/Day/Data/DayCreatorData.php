@@ -8,7 +8,7 @@ use Selective\ArrayReader\ArrayReader;
 /**
  * Data object.
  */
-final class ConsCreatorData implements DataInterface
+final class DayCreatorData implements DataInterface
 {
     /** @var int|null */
     public $id_day1;

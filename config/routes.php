@@ -23,7 +23,12 @@ return function (App $app) {
     //====================== DNI KONSULTACJI =======================================
     $app->get('/days', \App\Action\InsertDay\DayCreateAction::class)->setName('days');
 
+    //====================== ADMIN =======================================
+    $app->get('/admin', \App\Action\Admin\AdminAction::class)->setName('admin');
 
+
+
+    $app->get('/days', \App\Action\InsertDay\DayCreateAction::class)->setName('days');
 
     $app->get('/hello/{name}', \App\Action\Hello\HelloAction::class)->setName('hello');
 
