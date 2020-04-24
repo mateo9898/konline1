@@ -25,6 +25,7 @@ class Cons extends AbstractMigration
             'name'=>'Andrzej',
             'surname'=>'Luszcz',
             'email'=>'andrzej.luszcz@gmail.com',
+            'accept'=>1,
             'id_user_FK'=> 1,
             'id_day_FK'=> 1,
         ];

@@ -61,6 +61,7 @@ final class ConsCreatorData implements DataInterface
         $this->name = $data->find('name');
         $this->surname = $data->findString('surname');
         $this->email = $data->findString('email');
+        $this->accept = 0;
         $this->id_user_FK = 1;
         $this->id_day_FK = 1;
     }

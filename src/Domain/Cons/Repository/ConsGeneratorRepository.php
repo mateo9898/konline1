@@ -44,6 +44,7 @@ class ConsGeneratorRepository implements RepositoryInterface
             'name' => $cons->name,
             'surname' => $cons->surname,
             'email'=> $cons->email,
+            'accept' => $cons->accept,
             'id_user_FK' => $cons->id_user_FK,
             'id_day_FK' => $cons->id_day_FK,
         ];

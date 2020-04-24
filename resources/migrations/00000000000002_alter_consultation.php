@@ -69,10 +69,15 @@ $this->table('consultation', [
                     'encoding' => 'utf8mb4',
                     'after' => 'surname',
                 ])
-                ->addColumn('id_user_FK', 'integer', [
+                ->addColumn('accept', 'integer', [
                     'null' => false,
                     'limit' => MysqlAdapter::INT_REGULAR,
                     'after' => 'email',
+                ])
+                ->addColumn('id_user_FK', 'integer', [
+                    'null' => false,
+                    'limit' => MysqlAdapter::INT_REGULAR,
+                    'after' => 'accept',
                 ])
                 ->addColumn('id_day_FK', 'integer', [
                     'null' => false,
