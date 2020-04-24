@@ -8,7 +8,7 @@ use App\Responder\Responder;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
-
+use App\Domain\Day\Service\DayListDataTable;
 
 /**
  * Action.
@@ -28,17 +28,20 @@ final class ConsCreateAction
      * @var Twig
      */
     private $twig;
+
+    private $dayListDataTable;
     /**
      * The constructor.
      *
      * @param Responder $responder The responder
      * @param UserCreator $userCreator The service
      */
-    public function __construct(Responder $responder, ConsCreator $consCreator, Twig $twig)
+    public function __construct(Responder $responder, ConsCreator $consCreator, Twig $twig, DayListDataTable $dayListDataTable)
     {
         $this->twig = $twig;
         $this->responder = $responder;
         $this->consCreator = $consCreator;
+        $this->dayListDataTable = $dayListDataTable;
     }
 
     /**
@@ -53,6 +56,8 @@ final class ConsCreateAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
+        $params = (array)$request->getParsedBody();
+        $this->dayListDataTable->listAllDay($params);
         return $this->twig->render($response, 'admin/newCons.twig');
     }
 }

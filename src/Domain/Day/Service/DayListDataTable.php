@@ -2,7 +2,7 @@
 
 namespace App\Domain\Day\Service;
 
-use App\Domain\Cons\Repository\DayListDataTableRepository;
+use App\Domain\Day\Repository\DayListDataTableRepository;
 use App\Interfaces\ServiceInterface;
 
 /**
