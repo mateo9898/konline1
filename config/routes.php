@@ -16,13 +16,12 @@ return function (App $app) {
     $app->get('/add', \App\Action\InsertCons\ConsCreateAction::class)->setName('add');
     $app->post('/add', \App\Action\InsertCons\ConsSubmitAction::class);
 
-
     //======================== LOGOWANIE ==========================================
     $app->get('/login', \App\Action\Login\LoginAction::class)->setName('login');
     $app->post('/login', \App\Action\Login\LoginSubmitAction::class);
 
-
-
+    //====================== DNI KONSULTACJI =======================================
+    $app->get('/days', \App\Action\InsertDay\DayCreateAction::class)->setName('days');
 
 
 

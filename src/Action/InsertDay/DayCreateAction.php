@@ -55,6 +55,6 @@ final class DayCreateAction
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
 
-        return $this->twig->render($response, 'admin/newCons.twig');
+        return $this->twig->render($response, 'admin/days.twig');
     }
 }
