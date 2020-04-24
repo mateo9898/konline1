@@ -17,7 +17,7 @@ class Days extends AbstractMigration
     {
         $rows1[] = [
             'id_day' => 1,
-            'day_name'=>'wtorek',
+            'day_name'=>'poniedziałek',
             'start_cons'=> date('11:00:00'),
             'end_cons'=> date('13:00:00'),
             'id_owner2_FK'=> 1,
@@ -25,7 +25,7 @@ class Days extends AbstractMigration
         $this->table('day')->insert($rows1)->save();
         $rows2[] = [
             'id_day' => 2,
-            'day_name'=>'środa',
+            'day_name'=>'wtorek',
             'start_cons'=> date('11:00:00'),
             'end_cons'=> date('13:00:00'),
             'id_owner2_FK'=> 1,

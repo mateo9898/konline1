@@ -36,22 +36,22 @@ final class ConsCreatorData implements DataInterface
     public function __construct(array $array = [])
     {
         $data = new ArrayReader($array);
-        if($data->find('day_name1')=='poniedzialek'){
+        if($data->find('day_name1')=='poniedziałek'){
             $this->id_day1=1;
         } else if ($data->find('day_name1')=='wtorek'){
             $this->id_day1=2;
-        } else if ($data->find('day_name1')=='sroda'){
+        } else if ($data->find('day_name1')=='środa'){
             $this->id_day1=3;
         } else if ($data->find('day_name1')=='czwartek'){
             $this->id_day1=4;
         } else {
             $this->id_day1=5;
         }     
-        if($data->find('day_name2')=='poniedzialek'){
+        if($data->find('day_name2')=='poniedziałek'){
             $this->id_day2=1;
         } else if ($data->find('day_name2')=='wtorek'){
             $this->id_day2=2;
-        } else if ($data->find('day_name2')=='sroda'){
+        } else if ($data->find('day_name2')=='środa'){
             $this->id_day2=3;
         } else if ($data->find('day_name2')=='czwartek'){
             $this->id_day2=4;
