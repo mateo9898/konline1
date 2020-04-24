@@ -4,7 +4,7 @@ namespace App\Domain\Cons\Data;
 
 use App\Interfaces\DataInterface;
 use Selective\ArrayReader\ArrayReader;
-include App\Domain\Cons\ConsValidator;
+//include App\Domain\Cons\ConsValidator;
 
 /**
  * Data object.
@@ -20,8 +20,7 @@ final class ConsCreatorData implements DataInterface
     /** @var string|null */
     public $start_hour;
 
-    /** @var string|null */
-    public $end_date;
+    public $subject;
 
     /** @var string|null */
     public $end_hour;
@@ -35,11 +34,11 @@ final class ConsCreatorData implements DataInterface
     /** @var string|null */
     public $email;
 
+    public $accept;
+
     /** @var int|null */
     public $id_user_FK;
 
-    /** @var int|null */
-    public $id_subject_FK;
 
     /** @var int|null */
     public $id_day_FK;

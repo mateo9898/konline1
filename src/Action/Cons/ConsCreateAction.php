@@ -2,6 +2,7 @@
 
 namespace App\Action\Cons;
 
+use App\Domain\Day\Service\DayListDataTable;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
 use Slim\Views\Twig;
@@ -17,14 +18,16 @@ final class ConsCreateAction
      */
     private $twig;
 
+    private $dayListDataTable;
     /**
      * The constructor.
      *
      * @param Twig $twig The twig engine
      */
-    public function __construct(Twig $twig)
+    public function __construct(Twig $twig, DayListDataTable $dayListDataTable)
     {
         $this->twig = $twig;
+        $this->dayListDataTable = $dayListDataTable;
     }
 
     /**
@@ -40,7 +43,8 @@ final class ConsCreateAction
         // $viewData = [
         //     'now' => date('d.m.Y H:i:s'),
         // ];
-
+        $params = (array)$request->getParsedBody();
+        $this->dayListDataTable->listAllDay($params);
         return $this->twig->render($response, 'admin/newCons.twig');
     }
 }
