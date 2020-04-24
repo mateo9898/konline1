@@ -21,25 +21,43 @@ final class ConsValidator
     {
         $validation = new ValidationResult();
 
-        // if (empty($user->name)) {
-        //     $validation->addError('name', __('Input required'));
-        // }
-
-        // if (empty($user->surname)) {
-        //     $validation->addError('surname', __('Input required'));
-        // }
-
-       
 
 
-        
-        // if (empty($user->email)) {
-        //     $validation->addError('email', __('Input required'));
-        // }
-         if (filter_var($cons->email, FILTER_VALIDATE_EMAIL) === false) {
+        if (filter_var($cons->email, FILTER_VALIDATE_EMAIL) === false) {
             $validation->addError('email', __('Invalid email address'));
         }
 
         return $validation;
+    }
+
+    private function dayOfWeek(){
+        $servername = "localhost";
+        $username = "root";
+        $password = "";
+        $dbname = "phpdb";
+        $i = 0;
+        $results = [];
+
+        // Create connection
+        $conn = new mysqli($servername, $username, $password, $dbname);
+        // Check connection
+        if ($conn->connect_error) {
+            die("Connection failed: " . $conn->connect_error);
+        }
+
+        $sql = 'SELECT id_day, day_name FROM day';
+        $result = $conn->query($sql);
+
+        if ($result->num_rows > 0) {
+            // output data to table
+            while($row = $result->fetch_assoc()) {
+                $results[$i]=$row;
+                $i++;
+            }
+        } else {
+            echo "0 results";
+        }
+        $conn->close();
+        return $results;
     }
 }
