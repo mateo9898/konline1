@@ -64,6 +64,6 @@ final class ConsCreatorData implements DataInterface
         $this->email = $data->findString('email');
         $this->accept = 0;
         $this->id_user_FK = 1;
-        $this->id_day_FK = 1;
+        $this->id_day_FK = date('w',strtotime($data->find('start_date')));
     }
 }
