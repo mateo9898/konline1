@@ -4,6 +4,7 @@ namespace App\Domain\Cons\Data;
 
 use App\Interfaces\DataInterface;
 use Selective\ArrayReader\ArrayReader;
+include App\Domain\Cons\ConsValidator;
 
 /**
  * Data object.
@@ -42,7 +43,6 @@ final class ConsCreatorData implements DataInterface
 
     /** @var int|null */
     public $id_day_FK;
-
     /**
      * The constructor.
      *
@@ -50,6 +50,8 @@ final class ConsCreatorData implements DataInterface
      */
     public function __construct(array $array = [])
     {
+
+        //dayOfWeek();
         $data = new ArrayReader($array);
         $pom=strtotime($data->find('start_hour'));
         $pom=$pom+(int)$data->find('dur')*60;

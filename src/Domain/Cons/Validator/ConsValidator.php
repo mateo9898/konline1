@@ -30,34 +30,34 @@ final class ConsValidator
         return $validation;
     }
 
-    private function dayOfWeek(){
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-        $dbname = "phpdb";
-        $i = 0;
-        $results = [];
+    // public function dayOfWeek(){
+    //     $servername = "localhost";
+    //     $username = "root";
+    //     $password = "";
+    //     $dbname = "phpdb";
+    //     $i = 0;
+    //     $results = [];
 
-        // Create connection
-        $conn = new mysqli($servername, $username, $password, $dbname);
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: " . $conn->connect_error);
-        }
+    //     // Create connection
+    //     $conn = new mysqli($servername, $username, $password, $dbname);
+    //     // Check connection
+    //     if ($conn->connect_error) {
+    //         die("Connection failed: " . $conn->connect_error);
+    //     }
 
-        $sql = 'SELECT id_day, day_name FROM day';
-        $result = $conn->query($sql);
+    //     $sql = 'SELECT id_day, day_name FROM day';
+    //     $result = $conn->query($sql);
 
-        if ($result->num_rows > 0) {
-            // output data to table
-            while($row = $result->fetch_assoc()) {
-                $results[$i]=$row;
-                $i++;
-            }
-        } else {
-            echo "0 results";
-        }
-        $conn->close();
-        return $results;
-    }
+    //     if ($result->num_rows > 0) {
+    //         // output data to table
+    //         while($row = $result->fetch_assoc()) {
+    //             $results[$i]=$row;
+    //             $i++;
+    //         }
+    //     } else {
+    //         echo "0 results";
+    //     }
+    //     $conn->close();
+    //     return $results;
+    // }
 }
