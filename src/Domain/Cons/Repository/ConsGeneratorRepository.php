@@ -39,13 +39,12 @@ class ConsGeneratorRepository implements RepositoryInterface
         $row = [
             'start_date' =>$cons->start_date,
             'start_hour' =>$cons->start_hour,
-            'end_date' => $cons->end_date,
+            'subject' => $cons->subject,
             'end_hour' => $cons->end_hour,
             'name' => $cons->name,
             'surname' => $cons->surname,
             'email'=> $cons->email,
             'id_user_FK' => $cons->id_user_FK,
-            'id_subject_FK' => $cons->id_subject_FK,
             'id_day_FK' => $cons->id_day_FK,
         ];
 

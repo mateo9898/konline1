@@ -56,13 +56,12 @@ final class ConsCreatorData implements DataInterface
         $this->id_consultation = $data->findInt('id_consultation');
         $this->start_date = date($data->find('start_date'));
         $this->start_hour = date($data->find('start_hour'));
-        $this->end_date = date($data->find('start_date'));
+        $this->subject = $data->find('subject');
         $this->end_hour = date('H:i:s',$pom);
         $this->name = $data->find('name');
         $this->surname = $data->findString('surname');
         $this->email = $data->findString('email');
         $this->id_user_FK = 1;
-        $this->id_subject_FK = 1;
         $this->id_day_FK = 1;
     }
 }
