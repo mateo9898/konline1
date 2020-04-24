@@ -4,7 +4,7 @@ namespace App\Domain\Cons\Validator;
 
 use App\Domain\Cons\Data\ConsCreatorData;
 use Selective\Validation\ValidationResult;
-
+use App\Repository\QueryFactory;
 /**
  * Validator.
  */
@@ -17,47 +17,54 @@ final class ConsValidator
      *
      * @return ValidationResult The validation result
      */
+
+    /**
+     * @var QueryFactory
+     */
+    private $queryFactory;
+
+    private $repository;
+    /**
+     * Constructor.
+     *
+     * @param QueryFactory $queryFactory The query factory
+     */
+    public function __construct(QueryFactory $queryFactory)
+    {
+        $this->queryFactory = $queryFactory;
+    }
+
+    // public function dayOfWeek():array
+    // {
+        
+    //     return 
+    // }
+
     public function validateCons(ConsCreatorData $cons): ValidationResult
     {
         $validation = new ValidationResult();
-
-
 
         if (filter_var($cons->email, FILTER_VALIDATE_EMAIL) === false) {
             $validation->addError('email', __('Invalid email address'));
         }
 
+        $query = $this->queryFactory->newSelect('day')->select('*');
+        $id_day= $query->execute()->fetchAll('assoc');
+        
+        $params = [];
+        $validation->addError('email', __(sizeof($id_day)));
+        
+        switch(sizeof($id_day)){
+            case 1:
+                if (date('w',strtotime(($cons->start_date))) != $id_day[0]['id_day']) {
+                    $validation->addError('id_day', __("W tym dniu nie ma konsultacji"));
+                }
+            case 2:
+                if ((date('w',strtotime(($cons->start_date))) != $id_day[0]['id_day']) && (date('w',strtotime(($cons->start_date))) != $id_day[1]['id_day'])) {
+                    $validation->addError('id_day', __("W tym dniu nie ma konsultacji"));
+                }
+        }
+            
         return $validation;
     }
-
-    // public function dayOfWeek(){
-    //     $servername = "localhost";
-    //     $username = "root";
-    //     $password = "";
-    //     $dbname = "phpdb";
-    //     $i = 0;
-    //     $results = [];
-
-    //     // Create connection
-    //     $conn = new mysqli($servername, $username, $password, $dbname);
-    //     // Check connection
-    //     if ($conn->connect_error) {
-    //         die("Connection failed: " . $conn->connect_error);
-    //     }
-
-    //     $sql = 'SELECT id_day, day_name FROM day';
-    //     $result = $conn->query($sql);
-
-    //     if ($result->num_rows > 0) {
-    //         // output data to table
-    //         while($row = $result->fetch_assoc()) {
-    //             $results[$i]=$row;
-    //             $i++;
-    //         }
-    //     } else {
-    //         echo "0 results";
-    //     }
-    //     $conn->close();
-    //     return $results;
-    // }
 }
