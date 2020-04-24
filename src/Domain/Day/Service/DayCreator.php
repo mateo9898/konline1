@@ -4,7 +4,7 @@ namespace App\Domain\Day\Service;
 
 use App\Domain\Day\Data\DayCreatorData;
 use App\Domain\Day\Repository\DayGeneratorRepository;
-//use App\Domain\Day\Validator\DayValidator;
+use App\Domain\Day\Validator\DayValidator;
 use App\Factory\LoggerFactory;
 use App\Interfaces\ServiceInterface;
 use Psr\Log\LoggerInterface;
@@ -71,6 +71,8 @@ final class DayCreator implements ServiceInterface
 
         // Insert user
         $dayId = $this->repository->insertDay($day);
+
+        
         $dayId = $this->repository->insertDay2($day);
 
         // Logging

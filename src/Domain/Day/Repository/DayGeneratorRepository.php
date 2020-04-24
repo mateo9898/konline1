@@ -36,6 +36,8 @@ class DayGeneratorRepository implements RepositoryInterface
      */
     public function insertDay(DayCreatorData $day): int
     {
+        $this->queryFactory->newDelete('consultation')->execute();
+        $this->queryFactory->newDelete('day')->execute();
         $row = [
             'id_day' =>$day->id_day1,
             'day_name' =>$day->day_name1,

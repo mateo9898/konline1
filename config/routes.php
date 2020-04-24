@@ -22,6 +22,7 @@ return function (App $app) {
 
     //====================== DNI KONSULTACJI =======================================
     $app->get('/days', \App\Action\InsertDay\DayCreateAction::class)->setName('days');
+    $app->post('/days', \App\Action\InsertDay\DaySubmitAction::class);
 
     //====================== ADMIN =======================================
     $app->get('/admin', \App\Action\Admin\AdminAction::class)->setName('admin');
