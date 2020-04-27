@@ -56,6 +56,7 @@ final class EditConsAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
+        $params = (array)$request->getParsedBody();
         $this->responder->encodeJson($response, $this->fewConsListDataTable->listAllCons($params));
         return $this->twig->render($response, 'admin/days.twig');
     }

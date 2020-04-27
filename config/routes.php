@@ -29,8 +29,8 @@ return function (App $app) {
     $app->post('/admin', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
 
     //====================== EDYCJA =======================================
-    $app->get('/edit', \App\Action\EditCons\AdminAction::class)->setName('edit');
-    $app->post('/edit', \App\Action\EditCons\ConsListDataTableAction::class)->setName('cons-datatable');
+    $app->get('/edit', \App\Action\EditCons\EditConsAction::class)->setName('edit');
+    $app->post('/edit', \App\Action\EditCons\EditSubmitAction::class);
 
     //====================== ACCEPT =======================================
     // $app->get('/accept', \App\Action\InsertDay\DayCreateAction::class)->setName('accept');

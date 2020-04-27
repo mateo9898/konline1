@@ -42,13 +42,11 @@ class FewConsListDataTableRepository implements RepositoryInterface
      */
     public function getTableData(array $params): array
     {
-        $query = $this->queryFactory->newSelect('consultation');
-        $query->select([
+        $query = $this->queryFactory->newSelect('consultation')->select([
             'start_date',
             'start_hour',
             'end_hour',
-        ]);
-        $select->andWhere(['id_consultation' => $_GET['id_cons3']]);
+        ])->andWhere(['id_consultation' => $_GET['id_cons3']]);
 
         return $this->dataTable->load($query, $params);
     }

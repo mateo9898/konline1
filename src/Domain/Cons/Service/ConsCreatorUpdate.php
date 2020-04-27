@@ -38,7 +38,7 @@ final class ConsCreatorUpdate implements ServiceInterface
      * @param LoggerFactory $loggerFactory The logger factory
      */
     public function __construct(
-        ConsGeneratorRepository $repository,
+        ConsGeneratorRepositoryUpdate $repository,
         ConsValidator $consValidator,
         LoggerFactory $loggerFactory
     ) {
@@ -61,7 +61,7 @@ final class ConsCreatorUpdate implements ServiceInterface
     public function createCons(ConsFewData $cons): int
     {
         // Validation
-        $validation = $this->consValidator->validateCons($cons);
+        $validation = $this->consValidator->validateCons1($cons);
 
         if ($validation->isFailed()) {
             $validation->setMessage(__('Sprawdz wprowadzone dane'));
