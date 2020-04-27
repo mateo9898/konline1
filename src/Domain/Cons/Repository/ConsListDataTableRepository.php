@@ -42,6 +42,11 @@ class ConsListDataTableRepository implements RepositoryInterface
      */
     public function getTableData(array $params): array
     {
+        
+        // if(isset($_GET['id_cons'])){
+        //     $query=$this->queryFactory->newDelete('consultation')->andWhere(['id' => $_GET['id_cons']]);
+        //     $this->dataTable->load($query, $params);
+        // }
         $query = $this->queryFactory->newSelect('consultation');
         $query->select([
             'id_consultation',

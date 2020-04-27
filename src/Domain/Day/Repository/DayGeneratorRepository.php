@@ -57,7 +57,11 @@ class DayGeneratorRepository implements RepositoryInterface
             'end_cons' => $day->end_cons,
             'id_owner2_FK' => $day->id_owner2_FK,
         ];
-
-        return (int)$this->queryFactory->newInsert(TableName::DAY, $row)->execute()->lastInsertId();
+        if($day->day_name2!='--brak--'){
+            return (int)$this->queryFactory->newInsert(TableName::DAY, $row)->execute()->lastInsertId();
+        }
+        else{
+            return 0;
+        }
     }
 }
