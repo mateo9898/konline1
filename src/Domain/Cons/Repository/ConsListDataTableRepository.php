@@ -44,8 +44,10 @@ class ConsListDataTableRepository implements RepositoryInterface
     {
         
         // if(isset($_GET['id_cons'])){
-        //     $query=$this->queryFactory->newDelete('consultation')->andWhere(['id' => $_GET['id_cons']]);
-        //     $this->dataTable->load($query, $params);
+        //     // $query=$this->queryFactory->newDelete('consultation')->andWhere(['id_consultation' => $_GET['id_cons']]);
+        //     // $this->dataTable->load($query, $params);
+        //     $s=$_SERVER['HTTP_HOST'];
+        //     header("Location: http://www.google.pl");
         // }
         $query = $this->queryFactory->newSelect('consultation');
         $query->select([

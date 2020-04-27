@@ -275,8 +275,11 @@
                         <input type="hidden" value=${json.data[i].id_consultation} name="id_cons">
                         <button class="btn btn-success btn-circle btn-lg" type="submit"><i class="fa fa-check"></i></button>
                         </form>
-                                                    <button class="btn btn-danger btn-circle btn-lg" type="button"><i class="fa fa-times"></i></button>
-                                                    <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-edit"></i></button>`;
+                        <form method="GET" action="admin" name="accept">
+                        <input type="hidden" value=${json.data[i].id_consultation} name="id_cons2">
+                        <button class="btn btn-danger btn-circle btn-lg" type="submit"><i class="fa fa-times"></i></button>
+                        </form>
+                         <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-edit"></i></button>`;
                         counter++;
                     }
                 }
