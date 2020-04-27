@@ -28,6 +28,10 @@ return function (App $app) {
     $app->get('/admin', \App\Action\Admin\AdminAction::class)->setName('admin');
     $app->post('/admin', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
 
+    //====================== EDYCJA =======================================
+    $app->get('/edit', \App\Action\EditCons\AdminAction::class)->setName('edit');
+    $app->post('/edit', \App\Action\EditCons\ConsListDataTableAction::class)->setName('cons-datatable');
+
     //====================== ACCEPT =======================================
     // $app->get('/accept', \App\Action\InsertDay\DayCreateAction::class)->setName('accept');
     // $app->post('/accept', \App\Action\InsertDay\DaySubmitAction::class)->setName('cons-datatable');

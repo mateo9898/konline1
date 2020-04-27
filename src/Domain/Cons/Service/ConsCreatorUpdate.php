@@ -2,8 +2,8 @@
 
 namespace App\Domain\Cons\Service;
 
-use App\Domain\Cons\Data\ConsCreatorData;
-use App\Domain\Cons\Repository\ConsGeneratorRepository;
+use App\Domain\Cons\Data\ConsFewData;
+use App\Domain\Cons\Repository\ConsGeneratorRepositoryUpdate;
 use App\Domain\Cons\Validator\ConsValidator;
 use App\Factory\LoggerFactory;
 use App\Interfaces\ServiceInterface;
@@ -13,7 +13,7 @@ use Selective\Validation\Exception\ValidationException;
 /**
  * Domain Service.
  */
-final class ConsCreator implements ServiceInterface
+final class ConsCreatorUpdate implements ServiceInterface
 {
     /**
      * @var ConsGeneratorRepository
@@ -58,7 +58,7 @@ final class ConsCreator implements ServiceInterface
      *
      * @return int The new user ID
      */
-    public function createCons(ConsCreatorData $cons): int
+    public function createCons(ConsFewData $cons): int
     {
         // Validation
         $validation = $this->consValidator->validateCons($cons);
@@ -70,7 +70,7 @@ final class ConsCreator implements ServiceInterface
         }
 
         // Insert user
-        $consId = $this->repository->insertCons($cons);
+        $consId = $this->repository->updateCons($cons);
 
         // Logging
         $this->logger->info(__('Consultacje stworzone poprawnie: %s', $consId));
