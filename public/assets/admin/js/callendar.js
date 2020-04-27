@@ -10,7 +10,7 @@ $(document).ready(function () {
         success: function (obj, textstatus, response) {
             if (!('error' in obj)) {
                 json = response.responseJSON;
-                console.log(json);
+                //console.log(json);
                 let array = [
                     ["", "", "", "", "", ""],
                     ["", "", "", "", "", ""],
@@ -49,52 +49,54 @@ $(document).ready(function () {
 
                 for (let i = 0; i < json.data.length; i++) {
 
-                    startTime = (json.data[i].start_cons).substr(0, 2);
+                    if (json.data[i].accept == 1) {
+                        startTime = (json.data[i].start_cons).substr(0, 2);
 
-                    for (let l = 0; l < 24; l++) {
+                        for (let l = 0; l < 24; l++) {
 
-                        if (((json.data[i].start_hour).substr(0, 5)) == (startTime + ":" + minute + "0")) {
-                            row = l;
+                            if (((json.data[i].start_hour).substr(0, 5)) == (startTime + ":" + minute + "0")) {
+                                row = l;
+                            }
+
+                            if (((json.data[i].end_hour).substr(0, 5)) == (startTime + ":" + minute + "0")) {
+                                hour = l;
+                            }
+
+                            minute++;
+
+                            if (minute > 5) {
+                                minute = 0;
+                                startTime++;
+                            }
+
                         }
 
-                        if (((json.data[i].end_hour).substr(0, 5)) == (startTime + ":" + minute + "0")) {
-                            hour = l;
+                        switch ((json.data[i].day_name).toLowerCase()) {
+                            case "poniedziałek":
+                                column = 1;
+                                break;
+                            case "wtorek":
+                                column = 2;
+                                break;
+                            case "środa":
+                                column = 3;
+                                break;
+                            case "czwartek":
+                                column = 4;
+                                break;
+                            case "piątek":
+                                column = 5;
+                                break;
+                        };
+
+
+                        for (let m = 0; m < (hour - row); m++) {
+                            array[(row + m)][column] = json.data[i].name + " " + json.data[i].surname;
+                            //console.log((row + 1 + m) + "_" + (1 + column));
+                            cell = document.getElementById((row + 1 + m) + "_" + (1 + column));
+                            cell.style['background'] = '#2f323e';
+                            cell.style['color'] = '#fff'
                         }
-
-                        minute++;
-
-                        if (minute > 5) {
-                            minute = 0;
-                            startTime++;
-                        }
-
-                    }
-
-                    switch ((json.data[i].day_name).toLowerCase()) {
-                        case "poniedziałek":
-                            column = 1;
-                            break;
-                        case "wtorek":
-                            column = 2;
-                            break;
-                        case "środa":
-                            column = 3;
-                            break;
-                        case "czwartek":
-                            column = 4;
-                            break;
-                        case "piątek":
-                            column = 5;
-                            break;
-                    };
-
-
-                    for (let m = 0; m < (hour - row); m++) {
-                        array[(row + m)][column] = json.data[i].name + " " + json.data[i].surname;
-                        console.log((row + 1 + m) + "_" + (1 + column));
-                        cell = document.getElementById((row + 1 + m) + "_" + (1 + column));
-                        cell.style['background'] = '#2f323e';
-                        cell.style['color'] = '#fff'
                     }
 
                 }

@@ -51,6 +51,7 @@ class ConsListDataTableRepository implements RepositoryInterface
             'name',
             'surname',
             'subject',
+            'accept',
             'd.day_name',
             'd.start_cons',
             'd.end_cons',

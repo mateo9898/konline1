@@ -13,7 +13,7 @@
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
                         <h4 class="page-title">Strona główna</h4> </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
-                        <a href="add" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Zarezerwuj termin konsultacji</a>
+                        <a href="days" class="btn btn-danger pull-right m-l-20 hidden-xs hidden-sm waves-effect waves-light">Zmień dni konsultacji</a>
                         <ol class="breadcrumb">
                         </ol>
                     </div>
@@ -30,7 +30,7 @@
                             </div>
                             <h3 class="box-title">Zarządzaj konsultacjami</h3>
                             <div class="table-responsive">
-                                <table class="table">
+                                <table class="table" id="consTable">
                                     <thead>
                                         <tr class="table100-head">
                                             <th>#</th>
@@ -43,53 +43,9 @@
                                     </thead>
                                     <tbody>
                                         <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Imię i nazwisko</td>
-                                            <td>IAM</td>
-                                            <td class="txt-oflo">April 18, 2017</td>
-                                            <td class="txt-oflo">10:00</td>
-                                            <td>  
-                                                    <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-check"></i></button>
-                                                    <button class="btn btn-danger btn-circle btn-lg" type="button"><i class="fa fa-times"></i></button>
-                                                    <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-edit"></i></button>
-                                            </td>
+
                                         </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Imię i nazwisko</td>
-                                            <td>IAM</td>
-                                            <td class="txt-oflo">April 18, 2017</td>
-                                            <td class="txt-oflo">10:00</td>
-                                            <td>  
-                                                    <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-check"></i></button>
-                                                    <button class="btn btn-danger btn-circle btn-lg" type="button"><i class="fa fa-times"></i></button>
-                                                    <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-edit"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Imię i nazwisko</td>
-                                            <td>IAM</td>
-                                            <td class="txt-oflo">April 18, 2017</td>
-                                            <td class="txt-oflo">10:00</td>
-                                            <td>  
-                                                    <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-check"></i></button>
-                                                    <button class="btn btn-danger btn-circle btn-lg" type="button"><i class="fa fa-times"></i></button>
-                                                    <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-edit"></i></button>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td>1</td>
-                                            <td class="txt-oflo">Imię i nazwisko</td>
-                                            <td>IAM</td>
-                                            <td class="txt-oflo">April 18, 2017</td>
-                                            <td class="txt-oflo">10:00</td>
-                                            <td>  
-                                                    <button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-check"></i></button>
-                                                    <button class="btn btn-danger btn-circle btn-lg" type="button"><i class="fa fa-times"></i></button>
-                                                    <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-edit"></i></button>
-                                            </td>
-                                        </tr>
+                                        
                                     </tbody>
                                 </table>
                             </div>
@@ -282,4 +238,70 @@
     
 {% block js %}
 <script src="assets/admin/js/callendar.js"></script>
+
+<script>
+
+    let json = "1";
+
+    const test = jQuery.ajax({
+        type: "POST",
+        url: '',
+        dataType: 'json',
+
+        success: function (obj, textstatus, response) {
+            if (!('error' in obj)) {
+                json = response.responseJSON;
+                console.log(json);
+
+                console.log(json.data.length);
+                let counter = 0;
+
+                for(let i = 0; i < json.data.length; i++){
+                    if(json.data[i].accept == 0){
+                        let table = document.getElementById("consTable");
+                        let row = table.insertRow(i+1);
+                        let cell1 = row.insertCell(0);
+                        let cell2 = row.insertCell(1);
+                        let cell3 = row.insertCell(2);
+                        let cell4 = row.insertCell(3);
+                        let cell5 = row.insertCell(4);
+                        let cell6 = row.insertCell(5);
+                        cell1.innerHTML = i+1;
+                        cell2.innerHTML = (json.data[i].name) + " " + (json.data[i].surname);
+                        cell3.innerHTML = json.data[i].subject;
+                        cell4.innerHTML = (json.data[i].day_name) + " " + (json.data[i].start_date);
+                        cell5.innerHTML = (json.data[i].start_hour) + " - " + (json.data[i].end_hour);
+                        cell6.innerHTML = `<button class="btn btn-success btn-circle btn-lg" type="button"><i class="fa fa-check"></i></button>
+                                                    <button class="btn btn-danger btn-circle btn-lg" type="button"><i class="fa fa-times"></i></button>
+                                                    <button class="btn btn-info btn-circle btn-lg" type="button"><i class="fa fa-edit"></i></button>`;
+                        counter++;
+                    }
+                }
+                if (counter == 0){
+                    let table = document.getElementById("consTable");
+                        let row = table.insertRow(1);
+                        let cell1 = row.insertCell(0);
+                        let cell2 = row.insertCell(1);
+                        let cell3 = row.insertCell(2);
+                        let cell4 = row.insertCell(3);
+                        let cell5 = row.insertCell(4);
+                        let cell6 = row.insertCell(5);
+                        cell1.innerHTML = " ";
+                        cell2.innerHTML = " ";
+                        cell3.innerHTML = " ";
+                        cell4.innerHTML = 'BRAK NOWYCH KONSULTACJI';
+                        cell5.innerHTML = " ";
+                        cell6.innerHTML = " ";
+                }
+                
+
+            } else {
+                console.log(obj.error);
+            }
+        }
+    });
+
+
+</script>
+
 {% endblock %}
