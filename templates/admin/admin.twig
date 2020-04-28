@@ -259,17 +259,19 @@
                 console.log(json.data.length);
                 let counter = 0;
 
+
+
                 for(let i = 0; i < json.data.length; i++){
                     if(json.data[i].accept == 0){
                         let table = document.getElementById("consTable");
-                        let row = table.insertRow(i+1);
+                        let row = table.insertRow(counter+1);
                         let cell1 = row.insertCell(0);
                         let cell2 = row.insertCell(1);
                         let cell3 = row.insertCell(2);
                         let cell4 = row.insertCell(3);
                         let cell5 = row.insertCell(4);
                         let cell6 = row.insertCell(5);
-                        cell1.innerHTML = i+1;
+                        cell1.innerHTML = counter+1;
                         cell2.innerHTML = (json.data[i].name) + " " + (json.data[i].surname);
                         cell3.innerHTML = json.data[i].subject;
                         cell4.innerHTML = (json.data[i].day_name) + " " + (json.data[i].start_date);
