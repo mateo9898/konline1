@@ -6,6 +6,8 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\SMTP;
 
+use App\Repository\QueryFactory;
+
 require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/Exception.php';
 require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
 require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
@@ -13,12 +15,28 @@ require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
     final class SendMail
 {
 
+    /**
+     * @var QueryFactory
+     */
+    private $queryFactory;
+
     public $topic = "Empty subject";
     public $content = "Empty body";
     public $id_consultation;
 
-    function get_nice_superlative_for_me_please() {
-        return 'gorgeous';
+    public function __construct(QueryFactory $queryFactory)
+    {
+        $this->queryFactory = $queryFactory;
+    }
+
+    function getMailAdress( $id ) {
+        $query = $this->queryFactory->newSelect('consultation')->select([
+            'email',
+        ])->andWhere(['id_consultation' => $id]);
+
+        $result = $query->execute();
+
+        return $result;
     }
 
     function send() {
@@ -36,7 +54,7 @@ require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
         
             //Recipients
             $mail->setFrom('poczta@mailtrap.io', 'Administrator');
-            $mail->addAddress('mateusz.wrzol@o2.pl', 'Joe User');     // Add a recipient
+            $mail->addAddress($this->getMailAdress($this->id_consultation), '');     // Add a recipient
             // $mail->addAddress('ellen@example.com');               // Name is optional
             $mail->addReplyTo('administracjaserwisu@example.com', 'Information');
             // $mail->addCC('cc@example.com');
@@ -57,7 +75,7 @@ require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
             $mail->send();
             echo 'Message has been sent';
         } catch (Exception $e) {
-            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+            echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo} ";
         }
     }
 }
