@@ -15,6 +15,7 @@ require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
 
     public $topic = "Empty subject";
     public $content = "Empty body";
+    public $id_consultation;
 
     function get_nice_superlative_for_me_please() {
         return 'gorgeous';
