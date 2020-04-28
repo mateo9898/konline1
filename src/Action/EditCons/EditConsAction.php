@@ -58,6 +58,6 @@ final class EditConsAction
     {
         $params = (array)$request->getParsedBody();
         $this->responder->encodeJson($response, $this->fewConsListDataTable->listAllCons($params));
-        return $this->twig->render($response, 'admin/days.twig');
+        return $this->twig->render($response, 'admin/editCons.twig');
     }
 }
