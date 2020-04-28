@@ -25,9 +25,10 @@ return function (App $app) {
     $app->post('/days', \App\Action\InsertDay\DaySubmitAction::class);
 
     //====================== ADMIN =======================================
-    $app->get('/admin', \App\Action\Admin\AdminAction::class)->setName('admin');
-    $app->post('/admin', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
-
+    $app->group('/admin', function (RouteCollectorProxy $group) {
+    $group->get('', \App\Action\Admin\AdminAction::class)->setName('admin');
+    $group->post('/admin', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
+    })->add(UserAuthMiddleware::class);
     //====================== EDYCJA =======================================
     $app->get('/edit', \App\Action\EditCons\EditConsAction::class)->setName('edit');
     $app->post('/edit', \App\Action\EditCons\EditSubmitAction::class);
@@ -38,25 +39,25 @@ return function (App $app) {
 
 
 
-    $app->get('/hello/{name}', \App\Action\Hello\HelloAction::class)->setName('hello');
+    // $app->get('/hello/{name}', \App\Action\Hello\HelloAction::class)->setName('hello');
 
-    $app->post('/api/users', \App\Action\User\UserCreateAction::class)->setName('api-user-create');
+    // $app->post('/api/users', \App\Action\User\UserCreateAction::class)->setName('api-user-create');
 
-    $app->get('/register', \App\Action\User\UserCreateAction::class)->setName('register');
-    $app->post('/register', \App\Action\User\UserSubmitAction::class);
+    // $app->get('/register', \App\Action\User\UserCreateAction::class)->setName('register');
+    // $app->post('/register', \App\Action\User\UserSubmitAction::class);
 
     
 
-    $app->get('/mail', \App\Action\Admin\AdminAction::class)->setName('mail');
+    // $app->get('/mail', \App\Action\Admin\AdminAction::class)->setName('mail');
 
-    $app->get('/users', \App\Action\User\UserListAction::class)->setName('uesrs');
-    $app->post('/users', \App\Action\User\UserListDataTableAction::class)->setName('uesrs');
+    // $app->get('/users', \App\Action\User\UserListAction::class)->setName('uesrs');
+    // $app->post('/users', \App\Action\User\UserListDataTableAction::class)->setName('uesrs');
 
-    $app->get('/datatable', \App\Action\Cons\ConsListAction::class)->setName('user-list');
-    $app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
+    // $app->get('/datatable', \App\Action\Cons\ConsListAction::class)->setName('user-list');
+    // $app->post('/datatable', \App\Action\Cons\ConsListDataTableAction::class)->setName('user-datatable');
 
-    $app->get('/old', \App\Action\Home\HomeAction::class)->setName('root');
-    $app->get('/home', \App\Action\Main\MainAction::class)->setName('home');
+    // $app->get('/old', \App\Action\Home\HomeAction::class)->setName('root');
+    // $app->get('/home', \App\Action\Main\MainAction::class)->setName('home');
 
 
     // $app->group('/datatable', function (RouteCollectorProxy $group) {
