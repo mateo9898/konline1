@@ -2,18 +2,15 @@
 
 namespace App\Action\EditCons;
 
-use App\Domain\Cons\Data\ConsFewData;
-use App\Domain\Cons\Service\ConsCreatorUpdate;
+use App\Domain\Cons\Service\FewConsListDataTable;
 use App\Responder\Responder;
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
-use Slim\Views\Twig;
-//use App\Domain\Day\Service\DayListDataTable;
 
 /**
  * Action.
  */
-final class EditConsAction
+final class GetFewAction
 {
     /**
      * @var Responder
@@ -21,32 +18,24 @@ final class EditConsAction
     private $responder;
 
     /**
-     * @var ConsCreator
+     * @var ConsListDataTable
      */
-    private $consCreatorUpdate;
-/**
-     * @var Twig
-     */
-    private $twig;
 
-    
+    private $fewConsListDataTable;
     /**
      * The constructor.
      *
      * @param Responder $responder The responder
-     * @param UserCreator $userCreator The service
+     * @param ConsListDataTable $userListDataTable The service
      */
-    public function __construct(Responder $responder, ConsCreatorUpdate $consCreatorUpdate, Twig $twig)
+    public function __construct(Responder $responder, FewConsListDataTable $fewConsListDataTable)
     {
-        $this->twig = $twig;
         $this->responder = $responder;
-        $this->consCreatorUpdate = $consCreatorUpdate;
+        $this->fewConsListDataTable = $fewConsListDataTable;
     }
 
     /**
      * Action.
-     *
-     * > curl -X POST -H "Content-Type: application/json" -d {\"key1\":\"value1\"} http://localhost/users
      *
      * @param ServerRequestInterface $request The request
      * @param ResponseInterface $response The response
@@ -55,7 +44,8 @@ final class EditConsAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
-        
-        return $this->twig->render($response, 'edit-cons/editCons.twig');
+        $params = (array)$request->getParsedBody();
+
+        return $this->responder->encodeJson($response, $this->fewConsListDataTable->listAllCons($params));
     }
 }
