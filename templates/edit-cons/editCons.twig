@@ -120,4 +120,26 @@ slider.oninput = function() {
   output.innerHTML = this.value;
 }
 </script>
+
+<script>
+
+    let json = "1";
+
+    const test = jQuery.ajax({
+        type: "POST",
+        url: '',
+        dataType: 'json',
+
+        success: function (obj, textstatus, response) {
+            if (!('error' in obj)) {
+                json = response.responseJSON;
+                console.log(json);
+            } else {
+                console.log(obj.error);
+            }
+        }
+    });
+
+
+</script>
 {% endblock %}
