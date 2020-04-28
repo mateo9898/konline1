@@ -37,6 +37,7 @@ class ConsGeneratorRepository implements RepositoryInterface
     public function insertCons(ConsCreatorData $cons): int
     {
         $row = [
+            'id_consultation' => rand(),
             'start_date' =>$cons->start_date,
             'start_hour' =>$cons->start_hour,
             'subject' => $cons->subject,

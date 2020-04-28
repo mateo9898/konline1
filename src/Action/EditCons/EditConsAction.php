@@ -56,8 +56,9 @@ final class EditConsAction
      */
     public function __invoke(ServerRequestInterface $request, ResponseInterface $response): ResponseInterface
     {
+        //$_SESSION["id"]=$_GET["id_cons3"];
         $params = (array)$request->getParsedBody();
         $this->responder->encodeJson($response, $this->fewConsListDataTable->listAllCons($params));
-        return $this->twig->render($response, 'admin/editCons.twig');
+        return $this->twig->render($response, 'edit-cons/editCons.twig');
     }
 }

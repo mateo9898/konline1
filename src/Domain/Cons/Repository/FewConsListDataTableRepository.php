@@ -46,7 +46,7 @@ class FewConsListDataTableRepository implements RepositoryInterface
             'start_date',
             'start_hour',
             'end_hour',
-        ])->andWhere(['id_consultation' => $_GET['id_cons3']]);
+        ])->andWhere(['id_consultation' => $_SESSION["id"]]);
 
         return $this->dataTable->load($query, $params);
     }

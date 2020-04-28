@@ -25,10 +25,10 @@ return function (App $app) {
     $app->post('/days', \App\Action\InsertDay\DaySubmitAction::class);
 
     //====================== ADMIN =======================================
-    $app->group('/admin', function (RouteCollectorProxy $group) {
-    $group->get('', \App\Action\Admin\AdminAction::class)->setName('admin');
-    $group->post('/admin', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
-    })->add(UserAuthMiddleware::class);
+    // $app->group('/admin', function (RouteCollectorProxy $group) {
+    $app->get('/admin', \App\Action\Admin\AdminAction::class)->setName('admin');
+    $app->post('/admin', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
+    // })->add(UserAuthMiddleware::class);
     //====================== EDYCJA =======================================
     $app->get('/edit', \App\Action\EditCons\EditConsAction::class)->setName('edit');
     $app->post('/edit', \App\Action\EditCons\EditSubmitAction::class);

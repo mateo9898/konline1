@@ -38,6 +38,6 @@ class ConsGeneratorRepositoryUpdate implements RepositoryInterface
         return (int)$this->queryFactory->newUpdate('consultation',['start_date' =>$cons->start_date,
         'start_hour' =>$cons->start_hour, 
         'end_hour' => $cons->end_hour, 
-        'id_day_FK' => $cons->id_day_FK,])->andWhere(['id_consultation' => $_GET['id_cons3']])->execute()->lastInsertId();
+        'id_day_FK' => $cons->id_day_FK,])->andWhere(['id_consultation' => $_SESSION["id"]])->execute()->lastInsertId();
     }
 }
