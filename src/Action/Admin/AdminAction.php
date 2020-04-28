@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Action\Admin;
+require __DIR__.'/../../../vendor/autoload.php';
 
 use Psr\Http\Message\ResponseInterface;
 use Psr\Http\Message\ServerRequestInterface;
@@ -10,7 +11,17 @@ use App\Repository\QueryFactory;
 use App\Repository\DataTableRepository;
 use App\Repository\RepositoryInterface;
 
+echo(__DIR__.'\...\..\..\vendor\PHPMailer\src\Exception.php');
+
 use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+use PHPMailer\PHPMailer\SMTP;
+
+require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/Exception.php';
+require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/PHPMailer.php';
+require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
+
+
 /**
  * Action.
  */
@@ -51,13 +62,13 @@ final class AdminAction
         // ];
 
 
-        require __DIR__.'/../../../vendor/autoload.php';
+
         $mail = new PHPMailer(true);
         try {
             //Server settings
             $mail->SMTPDebug = SMTP::DEBUG_SERVER;                      // Enable verbose debug output
             $mail->isSMTP();                                            // Send using SMTP
-            $mail->Host       = 'mailtrap.io';                    // Set the SMTP server to send through
+            $mail->Host       = 'smtp.mailtrap.io';                    // Set the SMTP server to send through
             $mail->SMTPAuth   = true;                                   // Enable SMTP authentication
             $mail->Username   = '63bd291a50651f';                     // SMTP username
             $mail->Password   = 'aea8eff261d903';                               // SMTP password

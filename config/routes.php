@@ -47,7 +47,7 @@ return function (App $app) {
 
     
 
-    $app->get('/mail', \App\Action\Mail\MailAction::class)->setName('mail');
+    $app->get('/mail', \App\Action\Admin\AdminAction::class)->setName('mail');
 
     $app->get('/users', \App\Action\User\UserListAction::class)->setName('uesrs');
     $app->post('/users', \App\Action\User\UserListDataTableAction::class)->setName('uesrs');
