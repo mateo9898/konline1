@@ -27,9 +27,15 @@ return function (App $app) {
     //====================== ADMIN =======================================
     $app->group('/admin', function (RouteCollectorProxy $group) {
     $group->get('', \App\Action\Admin\AdminAction::class)->setName('admin');
-    
     })->add(UserAuthMiddleware::class);
     $app->post('/admin', \App\Action\Cons\ConsListDataTableAction::class)->setName('cons-datatable');
+
+    //====================== ACCEPTBYUSER =======================================
+    $app->get('/accept', \App\Action\Accept\AcceptAction::class)->setName('accept');
+    //$app->post('/accept', \App\Action\EditCons\EditSubmitAction::class);
+
+
+
     //====================== EDYCJA =======================================
     $app->get('/edit', \App\Action\EditCons\EditConsAction::class)->setName('edit');
     $app->post('/edit', \App\Action\EditCons\EditSubmitAction::class);
