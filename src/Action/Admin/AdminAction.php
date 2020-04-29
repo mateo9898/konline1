@@ -58,6 +58,7 @@ final class AdminAction
         //     'now' => date('d.m.Y H:i:s'),
         // ];
 
+        echo "Wynosi: ",$_GET['id_cons3'];
 
         if(isset($_GET['id_cons'])){
             $this->sendMail->id_consultation = $_GET['id_cons'];
