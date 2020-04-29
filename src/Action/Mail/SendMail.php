@@ -34,9 +34,9 @@ require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
             'email',
         ])->andWhere(['id_consultation' => $id]);
 
-        $result = $query->execute();
+        $result = $query->execute()->fetch('assoc');
 
-        return $result;
+        return $result["email"]."";
     }
 
     function send() {
@@ -54,7 +54,7 @@ require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
         
             //Recipients
             $mail->setFrom('poczta@mailtrap.io', 'Administrator');
-            $mail->addAddress($this->getMailAdress($this->id_consultation), '');     // Add a recipient
+            $mail->addAddress($this->getMailAdress( $this->id_consultation ), 'Test');     // Add a recipient
             // $mail->addAddress('ellen@example.com');               // Name is optional
             $mail->addReplyTo('administracjaserwisu@example.com', 'Information');
             // $mail->addCC('cc@example.com');
