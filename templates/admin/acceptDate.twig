@@ -1,0 +1,77 @@
+{% extends "admin/layout.twig" %}
+
+{% block style %}
+
+{% endblock %}
+
+{% block content %}
+<div id="page-wrapper">
+            <div class="container-fluid">
+                <div class="row bg-title">
+                    <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
+                        <h4 class="page-title">Zmiana terminu</h4>
+                    </div>
+                    <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
+                        <ol class="breadcrumb">
+                            <li><a href="#">Strona główna</a></li>
+                            <li class="active">Zaakceptuj lub odrzuć datę i godzinę konsultacji</li>
+                        </ol>
+                    </div>
+                </div>
+                <!-- /.row -->
+                <!-- .row -->
+                <div class="row">
+                    <div class="col-md-4 col-xs-12">
+                        <div class="white-box">
+                            <div class="user-bg"> <img width="100%" alt="user" src="assets/admin/images/large/teacher.jpg">
+
+                            </div>
+                            <div class="user-btm-box">
+                                <div class="col-md-4 col-sm-4 text-center">
+                                    <p class="text-purple"><i class="ti-facebook"></i></p>
+                                    <h1>dr inż.</h1>
+                                </div>
+                                <div class="col-md-4 col-sm-4 text-center">
+                                    <p class="text-blue"><i class="ti-twitter"></i></p>
+                                    <h1> Jan</h1>
+                                </div>
+                                <div class="col-md-4 col-sm-4 text-center">
+                                    <p class="text-danger"><i class="ti-dribbble"></i></p>
+                                    <h1>Nowak</h1>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-8 col-xs-12">
+                        <div class="white-box">
+                            <form class="form-horizontal form-material" method="POST">
+                                <div class="form-group">
+                                    <label class="col-md-12">ID konsultacji</label>
+                                    <div class="col-md-12">
+                                        <input type="text" name="id_consultation" placeholder="Wprowadź ID dostarczone poprzez e-mail"
+                                            class="form-control form-control-line"> </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-12">Wybierz przedmiot</label>
+                                    <div class="col-sm-12">
+                                        <select id="second-choice" class="form-control form-control-line" name="decision">
+                                            <option>Akceptuje nowy termin</option>
+                                            <option>Usuwam wniosek o konsultację</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-sm-12">
+                                        <button class="btn btn-success">Potwierdź</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <!-- /.row -->
+            </div>
+        </div>
+            {% endblock %}
+{% block js %}
+{% endblock %}
