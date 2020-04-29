@@ -5,9 +5,9 @@ namespace App\Domain\Cons\Service;
 use App\Domain\Cons\Data\ConsFewData;
 use App\Domain\Cons\Repository\ConsGeneratorRepositoryUpdate;
 use App\Domain\Cons\Validator\ConsValidator;
-use App\Factory\LoggerFactory;
+//use App\Factory\LoggerFactory;
 use App\Interfaces\ServiceInterface;
-use Psr\Log\LoggerInterface;
+//use Psr\Log\LoggerInterface;
 use Selective\Validation\Exception\ValidationException;
 
 /**
@@ -28,7 +28,7 @@ final class ConsCreatorUpdate implements ServiceInterface
     /**
      * @var LoggerInterface
      */
-    private $logger;
+    // /private $logger;
 
     /**
      * The constructor.
@@ -39,14 +39,14 @@ final class ConsCreatorUpdate implements ServiceInterface
      */
     public function __construct(
         ConsGeneratorRepositoryUpdate $repository,
-        ConsValidator $consValidator,
-        LoggerFactory $loggerFactory
+        ConsValidator $consValidator
+        //LoggerFactory $loggerFactory
     ) {
         $this->repository = $repository;
         $this->consValidator = $consValidator;
-        $this->logger = $loggerFactory
-            ->addFileHandler('cons_creator.log')
-            ->createInstance('cons_creator');
+        // $this->logger = $loggerFactory
+        //     ->addFileHandler('cons_creator.log')
+        //     ->createInstance('cons_creator');
     }
 
     /**
@@ -70,11 +70,11 @@ final class ConsCreatorUpdate implements ServiceInterface
         }
 
         // Insert user
-        $consId = $this->repository->updateCons($cons);
+        $this->repository->updateCons($cons);
 
         // Logging
-        $this->logger->info(__('Consultacje stworzone poprawnie: %s', $consId));
+        //$this->logger->info(__('Consultacje stworzone poprawnie: %s', $consId));
 
-        return $consId;
+        return 1;
     }
 }

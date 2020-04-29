@@ -33,11 +33,11 @@ class ConsGeneratorRepositoryUpdate implements RepositoryInterface
      *
      * @return int The new ID
      */
-    public function updateCons(ConsFewData $cons): int
+    public function updateCons(ConsFewData $cons)
     {
-        return (int)$this->queryFactory->newUpdate('consultation',['start_date' =>$cons->start_date,
+        $this->queryFactory->newUpdate('consultation',['start_date' =>$cons->start_date,
         'start_hour' =>$cons->start_hour, 
         'end_hour' => $cons->end_hour, 
-        'id_day_FK' => $cons->id_day_FK,])->andWhere(['id_consultation' => $_SESSION["id"]])->execute()->lastInsertId();
+        'id_day_FK' => $cons->id_day_FK,])->andWhere(['id_consultation' => $_SESSION["id"]])->execute();
     }
 }

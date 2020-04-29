@@ -71,9 +71,9 @@ final class ConsValidator
     {
         $validation = new ValidationResult();
 
-        if (filter_var($cons->email, FILTER_VALIDATE_EMAIL) === false) {
-            $validation->addError('email', __('Invalid email address'));
-        }
+        // if (filter_var($cons->email, FILTER_VALIDATE_EMAIL) === false) {
+        //     $validation->addError('email', __('Invalid email address'));
+        // }
 
         $query = $this->queryFactory->newSelect('day')->select('*');
         $id_day= $query->execute()->fetchAll('assoc');
