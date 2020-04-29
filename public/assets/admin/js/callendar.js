@@ -115,8 +115,8 @@ function fill(week) {
                             for (let m = 0; m < (hour - row); m++) {
                                 array[(row + m)][column] = json.data[i].name + " " + json.data[i].surname;
                                 cell = document.getElementById((row + 1 + m) + "_" + (1 + column));
-                                cell.style['background'] = '#2f323e';
-                                cell.style['color'] = '#fff'
+                                //cell.style['background'] = '#2f323e';
+                                // cell.style['color'] = '#fff'
                             }
                         }
                     }
