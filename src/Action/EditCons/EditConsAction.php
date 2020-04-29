@@ -65,7 +65,7 @@ final class EditConsAction
         ])->andWhere(['id_consultation' => $_GET['id_cons3']]);
         $result = $query->execute()->fetch('assoc');
         $_SESSION["id"]=$_GET['id_cons3'];
-        echo "Wynosi: ", $_SESSION["id"];
+        //echo "Wynosi: ", $_SESSION["id"];
         return $this->twig->render($response, 'edit-cons/editCons.twig');
     }
 }

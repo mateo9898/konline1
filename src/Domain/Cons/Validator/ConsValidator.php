@@ -45,6 +45,19 @@ final class ConsValidator
     {
         $validation = new ValidationResult();
 
+        $query = $this->queryFactory->newSelect('consultation')->select('*');
+
+        $results = $query->execute()->fetch('assoc');
+
+        foreach($results as $result){
+            if($result["start_hour"].""<=$cons->start_hour && $result["end_hour"]>=$cons->start_hour && $result["accept"]==1 && $result["start_date"]==$cons->start_date){
+                $validation->addError('start_hour', __("O tej godzinie sa inne konsultacje"));
+            }
+            if($result["start_hour"].""<=$cons->end_hour && $result["end_hour"]>=$cons->start_hour && $result["accept"]==1 && $result["start_date"]==$cons->start_date){
+                $validation->addError('end_hour', __("O tej godzinie sa inne konsultacje"));
+            }
+        }
+
         if (filter_var($cons->email, FILTER_VALIDATE_EMAIL) === false) {
             $validation->addError('email', __('Invalid email address'));
         }
