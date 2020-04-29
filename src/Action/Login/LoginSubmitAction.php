@@ -66,10 +66,10 @@ final class LoginSubmitAction
 
         if ($user) {
             $this->startUserSession($user);
-            $flash->set('success', __('Login successfully'));
+            //$flash->set('success', __('Login successfully'));
             $url = 'admin';
         } else {
-            $flash->set('error', __('Login failed!'));
+            //$flash->set('error', __('Login failed!'));
             $url = 'login';
         }
 

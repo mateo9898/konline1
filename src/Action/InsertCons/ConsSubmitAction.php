@@ -54,8 +54,6 @@ final class ConsSubmitAction
         $consId = $this->consCreator->createCons($consData);
 
         // Build the HTTP response
-        return $this->responder->encodeJson($response, [
-            'cons_id' => $consId,
-        ]);
+        return $this->responder->redirect($request, $response, 'main');
     }
 }

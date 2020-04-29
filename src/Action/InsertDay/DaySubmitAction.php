@@ -54,8 +54,7 @@ final class DaySubmitAction
         $dayId = $this->dayCreator->createDay($dayData);
 
         // Build the HTTP response
-        return $this->responder->encodeJson($response, [
-            'day_id' => $dayId,
-        ]);
+        
+        return $this->responder->redirect($request, $response, 'admin');
     }
 }

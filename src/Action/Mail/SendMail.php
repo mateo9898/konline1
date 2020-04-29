@@ -20,8 +20,8 @@ require __DIR__.'./../../../vendor/phpmailer/phpmailer/src/SMTP.php';
      */
     private $queryFactory;
 
-    public $topic = "Empty subject";
-    public $content = "Empty body";
+    public $topic;
+    public $content;
     public $id_consultation;
 
     public function __construct(QueryFactory $queryFactory)
