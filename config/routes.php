@@ -32,9 +32,7 @@ return function (App $app) {
 
     //====================== ACCEPTBYUSER =======================================
     $app->get('/accept', \App\Action\Accept\AcceptAction::class)->setName('accept');
-    //$app->post('/accept', \App\Action\EditCons\EditSubmitAction::class);
-
-
+    $app->post('/accept', \App\Action\Accept\AcceptSubmit::class);
 
     //====================== EDYCJA =======================================
     $app->get('/edit', \App\Action\EditCons\EditConsAction::class)->setName('edit');

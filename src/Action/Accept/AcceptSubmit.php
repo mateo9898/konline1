@@ -58,19 +58,19 @@ final class AcceptSubmit
         // ];
 
 
-        if(isset($_GET['id_cons'])){
-            $this->sendMail->id_consultation = $_GET['id_cons'];
-            $this->sendMail->topic = "Konsultacje zaakceptowane przez użytkownika";
-            $this->sendMail->content = "Użytkownik zaakceptował kondultacje";
-            $this->queryFactory->newUpdate('consultation',['accept' => 1])->andWhere(['id_consultation' => $_GET['id_cons']])->execute();
-            $this->sendMail->send();
+        if(isset($_POST['id_cons4'])&&$_POST['decision']==1){
+            // $this->sendMail->id_consultation = $_POST['id_cons'];
+            // $this->sendMail->topic = "Konsultacje zaakceptowane przez użytkownika";
+            // $this->sendMail->content = "Użytkownik zaakceptował kondultacje";
+            $this->queryFactory->newUpdate('consultation',['accept' => 1])->andWhere(['id_consultation' => $_POST['id_cons4']])->execute();
+            //$this->sendMail->send();
         }
-        if(isset($_GET['id_cons2'])){
-            $this->sendMail->id_consultation = $_GET['id_cons2'];
-            $this->sendMail->topic = "Konsultacje odrzucone przez użytkownika";
-            $this->sendMail->content = "Użytkownik odrzucił konsultacje";
-            $this->queryFactory->newDelete('consultation')->andWhere(['id_consultation' => $_GET['id_cons2']])->execute();
-            $this->sendMail->send();
+        if(isset($_POST['id_cons4'])&&$_POST['decision']==0){
+            // $this->sendMail->id_consultation = $_GET['id_cons2'];
+            // $this->sendMail->topic = "Konsultacje odrzucone przez użytkownika";
+            // $this->sendMail->content = "Użytkownik odrzucił konsultacje";
+            $this->queryFactory->newDelete('consultation')->andWhere(['id_consultation' => $_POST['id_cons4']])->execute();
+            // $this->sendMail->send();
         }
         return $this->twig->render($response, 'admin/dashboard.twig');
     }
