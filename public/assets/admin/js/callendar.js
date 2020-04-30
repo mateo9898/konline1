@@ -126,7 +126,12 @@ function fill(week) {
                     } else {
                         if (consultation_day[1] == undefined) consultation_day[1] = json.data[i].day_name;
                     }
-                    document.getElementById("count").textContent = consultation_day[0] + ", " + consultation_day[1] + " w godz: " + json.data[0].start_cons + " - " + json.data[0].end_cons;
+                    if (consultation_day.length > 1) {
+                        document.getElementById("count").textContent = consultation_day[0] + ", " + consultation_day[1] + " w godz: " + json.data[0].start_cons + " - " + json.data[0].end_cons;
+                    } else {
+                        document.getElementById("count").textContent = consultation_day[0] + " w godz: " + json.data[0].start_cons + " - " + json.data[0].end_cons;
+                    }
+
                 }
 
 
