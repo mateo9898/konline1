@@ -74,8 +74,6 @@ final class EditSubmitAction
 
         // Build the HTTP response
        // return $this->responder->redirect($request, $response, 'admin');
-        return $this->responder->encodeJson($response, [
-            'cons_id' => $consId,
-        ]);
+        return $this->twig->render($response, 'admin/admin.twig');
     }
 }
