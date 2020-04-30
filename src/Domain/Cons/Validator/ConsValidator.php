@@ -48,15 +48,39 @@ final class ConsValidator
         $query = $this->queryFactory->newSelect('consultation')->select('*');
 
         $results = $query->execute()->fetch('assoc');
+        //array("hello" => "val")["hello"];
 
-        foreach($results as $result){
-            if($result["start_hour"].""<=$cons->start_hour && $result["end_hour"]>=$cons->start_hour && $result["accept"]==1 && $result["start_date"]==$cons->start_date){
-                $validation->addError('start_hour', __("O tej godzinie sa inne konsultacje"));
-            }
-            if($result["start_hour"].""<=$cons->end_hour && $result["end_hour"]>=$cons->start_hour && $result["accept"]==1 && $result["start_date"]==$cons->start_date){
-                $validation->addError('end_hour', __("O tej godzinie sa inne konsultacje"));
-            }
-        }
+        // while ($row = mysql_fetch_array($results)) {
+ 
+        //     if($row['start_hour']<=$cons->start_hour && $result["end_hour"]>=$cons->start_hour && $result["accept"]==1 && $result["start_date"]==$cons->start_date){
+        //         $validation->addError('start_hour', __("O tej godzinie sa inne konsultacje"));
+        //     }
+        //     if($result["start_hour"].""<=$cons->end_hour && $result["end_hour"]>=$cons->start_hour && $result["accept"]==1 && $result["start_date"]==$cons->start_date){
+        //         $validation->addError('end_hour', __("O tej godzinie sa inne konsultacje"));
+        //     }
+
+        //    $id = $row['id'];
+        //    $array[] = $id;
+        // }
+        // for($i=0; $i<count($results); $i++){
+        //         echo $i;
+        //       for($j=0; $j<11; $j++){
+        //             echo $j;
+        //       }  
+        // }
+
+        // foreach($results as $result1){
+        //     foreach($result1 as $result){
+        //         if($result["start_hour"].""<=$cons->start_hour && $result["end_hour"]>=$cons->start_hour && $result["accept"]==1 && $result["start_date"]==$cons->start_date){
+        //             $validation->addError('start_hour', __("O tej godzinie sa inne konsultacje"));
+        //         }
+        //         if($result["start_hour"].""<=$cons->end_hour && $result["end_hour"]>=$cons->start_hour && $result["accept"]==1 && $result["start_date"]==$cons->start_date){
+        //             $validation->addError('end_hour', __("O tej godzinie sa inne konsultacje"));
+        //         }
+
+        //     }
+            
+        // }
 
         if (filter_var($cons->email, FILTER_VALIDATE_EMAIL) === false) {
             $validation->addError('email', __('Invalid email address'));
