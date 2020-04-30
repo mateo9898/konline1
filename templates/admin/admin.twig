@@ -61,38 +61,40 @@
                 <!-- Different data widgets -->
                 <!-- ============================================================== -->
                 <!-- .row -->
-                <div class="row">
+                 <div class="row">
                     <a href="#">
-                        <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-sm-6 col-xs-12" onclick="prevWeek()">
                             <div class="white-box analytics-info">
                                 <h3 class="box-title" style="text-align:center">Poprzedni tydzień</h3>
                                 <ul class="list-inline two-part">
                                     <li>
                                         <i class="fa fa-chevron-left fa-fw"></i>
                                     </li>
-                                    <li class="text-right"><i class="ti-arrow-up text-success"></i> <h2>13.04 - 17.04</h2></li>
+                                    <li class="text-right"><i class="ti-arrow-up text-success"></i> </li>
                                 </ul>
                             </div>
                         </div>
+                        
                     </a>
                     <div class="col-lg-4 col-sm-6 col-xs-12">
                         <div class="white-box analytics-info">
-                            <h3 class="box-title" style="text-align:center">Ilość wolnych terminów konsultacji</h3>
+                            <h3 class="box-title" style="text-align:center">Konsultacje odbywają się w dniach:</h3>
                             <ul class="list-inline two-part">
                                 <li>
                                     <div id="sparklinedash2"></div>
                                 </li>
-                                <li class="text-right"><i class="ti-arrow-up text-purple"></i> <span class="counter text-purple">65</span></li>
+                                <li class="text-right"><i class="ti-arrow-up text-success"></i> <h2 id="count" style="line-height: 25px;
+                                font-size: 18px;"></h2></li>
                             </ul>
                         </div>
                     </div>
                     <a href="#">
-                        <div class="col-lg-4 col-sm-6 col-xs-12">
+                        <div class="col-lg-4 col-sm-6 col-xs-12" onclick="nextWeek()">
                             <div class="white-box analytics-info">
                                 <h3 class="box-title" style="text-align:center">Kolejny tydzień</h3>
                                 <ul class="list-inline two-part">
                                     <li>
-                                        <i class="ti-arrow-up text-info"></i> <h2>27.04 - 1.05</h2>
+                                        <i class="ti-arrow-up text-info"></i> 
                                     </li>
                                     <li class="text-right"><i class="fa fa-chevron-right fa-fw"></i></li>
                                 </ul>
@@ -254,9 +256,9 @@
         success: function (obj, textstatus, response) {
             if (!('error' in obj)) {
                 json = response.responseJSON;
-                console.log(json);
+                //console.log(json);
 
-                console.log(json.data.length);
+                //console.log(json.data.length);
                 let counter = 0;
 
 

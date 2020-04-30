@@ -73,6 +73,6 @@ final class EditSubmitAction
         $consId = $this->consCreatorUpdate->createCons($consData);
 
         // Build the HTTP response
-    return $this->responder->redirect($request, $response, 'admin');
+        return $this->responder->redirect($request, $response, 'admin');
     }
 }
