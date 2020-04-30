@@ -39,12 +39,13 @@
             <div class="container-fluid">
                 <div class="row bg-title">
                     <div class="col-lg-3 col-md-4 col-sm-4 col-xs-12">
-                        <h4 class="page-title">Rezerwowanie terminu konsultacji</h4>
+                        <h4 class="page-title">Propozycja zmiany terminu spotkania</h4>
                     </div>
                     <div class="col-lg-9 col-sm-8 col-md-8 col-xs-12">
                         <ol class="breadcrumb">
                             <li><a href="#">Strona główna</a></li>
-                            <li class="active">Rezerwowanie terminu konsultacji</li>
+                            <li><a href="admin">Panel nauczyciela</a></li>
+                            <li class="active">Propozycja zmiany terminu spotkania</li>
                         </ol>
                     </div>
                 </div>
@@ -93,6 +94,7 @@
                                          <p style="padding-top: 15px;"><span id="duration-time"></span> minut</p>
                                         </div>
                                 </div>
+                                <input type="hidden" id="hidden" name="id_consultation" value="">
                                  <div class="form-group">
                                     <label class="col-md-12"></label>
                                     <div class="col-md-12"> </div>
@@ -112,34 +114,20 @@
             {% endblock %}
 {% block js %}
 <script>
-var slider = document.getElementById("duration");
-var output = document.getElementById("duration-time");
-output.innerHTML = slider.value;
 
-slider.oninput = function() {
-  output.innerHTML = this.value;
-}
+    var slider = document.getElementById("duration");
+    var output = document.getElementById("duration-time");
+    output.innerHTML = slider.value;
+
+    slider.oninput = function() {
+    output.innerHTML = this.value;
+    }
+
 </script>
 
 <script>
 
-    let json = "1";
-
-    const test = jQuery.ajax({
-        type: "GET",
-        url: 'http://localhost/slimskeleton/edit',
-        dataType: 'json',
-
-        success: function (obj, textstatus, response) {
-            if (!('error' in obj)) {
-                json = response.responseJSON;
-                console.log(json);
-            } else {
-                console.log(obj.error);
-            }
-        }
-    });
-
+    document.getElementById("hidden").value = (window.location.href.split("="))[1];
 
 </script>
 {% endblock %}

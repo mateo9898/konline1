@@ -58,7 +58,7 @@ final class AdminAction
         //     'now' => date('d.m.Y H:i:s'),
         // ];
 
-        echo "Wynosi: ",$_GET['id_cons3'];
+        //echo "Wynosi: ",$_GET['id_cons3'];
 
         if(isset($_GET['id_cons'])){
             $this->sendMail->id_consultation = $_GET['id_cons'];
@@ -71,7 +71,7 @@ final class AdminAction
             $this->sendMail->id_consultation = $_GET['id_cons2'];
             $this->sendMail->topic = "Konsultacje odrzucone";
             $this->sendMail->content = "Twoje konsultacje zostały odrzucone przez prowadzącego";
-            //$this->queryFactory->newDelete('consultation')->andWhere(['id_consultation' => $_GET['id_cons2']])->execute();
+            $this->queryFactory->newDelete('consultation')->andWhere(['id_consultation' => $_GET['id_cons2']])->execute();
             $this->sendMail->send();
         }
         return $this->twig->render($response, 'admin/admin.twig');

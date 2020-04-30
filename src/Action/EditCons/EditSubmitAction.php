@@ -62,7 +62,7 @@ final class EditSubmitAction
         $start_date = $consData->start_date;
         $start_hour = $consData->start_hour;
         $end_hour = $consData->end_hour;
-        $id_consultation = $_SESSION["id"];
+        $id_consultation = $consData->id_consultation;
         
         $this->sendMail->id_consultation = $id_consultation;
         $this->sendMail->topic = "Zmiana terminów konsultacji";
