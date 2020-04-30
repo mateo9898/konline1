@@ -73,7 +73,6 @@ final class EditSubmitAction
         $consId = $this->consCreatorUpdate->createCons($consData);
 
         // Build the HTTP response
-       // return $this->responder->redirect($request, $response, 'admin');
-        return $this->twig->render($response, 'admin/admin.twig');
+    return $this->responder->redirect($request, $response, 'admin');
     }
 }
