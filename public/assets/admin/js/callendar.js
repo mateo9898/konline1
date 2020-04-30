@@ -24,7 +24,7 @@ function fill(week) {
         success: function (obj, textstatus, response) {
             if (!('error' in obj)) {
                 json = response.responseJSON;
-                //console.log(json);
+                console.log(json);
                 let array = [
                     ["", "", "", "", "", ""],
                     ["", "", "", "", "", ""],
@@ -60,7 +60,7 @@ function fill(week) {
                 let startTime;
                 let endTime;
                 let cell;
-                let id;
+                let consultation_day = [];
 
                 if (week < (getWeekNumber(new Date(Date.now())))) week = (getWeekNumber(new Date(Date.now())));
 
@@ -92,6 +92,13 @@ function fill(week) {
                                 }
 
                             }
+
+                            if (consultation_day[0] == undefined) {
+                                consultation_day[0] = json.data[i].day_name;
+                            } else {
+                                if (consultation_day[1] == undefined) consultation_day[1] = json.data[i].day_name;
+                            }
+                            document.getElementById("count").textContent = consultation_day[0] + ", " + consultation_day[1] + " w godz: " + json.data[0].start_cons + " - " + json.data[0].end_cons;
 
                             switch ((json.data[i].day_name).toLowerCase()) {
                                 case "poniedziałek":
